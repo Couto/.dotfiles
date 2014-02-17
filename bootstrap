@@ -83,6 +83,7 @@ ask () {
 ask_default () {
     local question="$1";
     local default_val="$2";
+    
     answer=$(ask "$1 [$2]");
 
     if [ -z "$answer" ]; then
@@ -109,16 +110,12 @@ github () {
 
     linfo "Cloning $1";
     git_clone "git@github.com:$repository.git" "$destination" || abort "Failed."
-    lsuccess "Cloned dotfiles"
-}
-
-osx_version () {
-    #echo "$(sw_vers -productVersion)";
-    echo "10.8";
+    lsuccess "Cloned $repository to $destination;"
 }
 
 is_mavericks () {
-    local version=$(osx_version);
+    local version=$(sw_vers -productVersion);
+    
     if [[  $version =~ ^[0-9]+\.([0-9]+) ]]; then
         local middle=${BASH_REMATCH[1]};
         if [ $middle -eq "9" ]; then
@@ -167,10 +164,11 @@ install_command_line_tools () {
 }
 
 install_homebrew () {
-    info "Installing homebrew, please follow the installer instructions:";
 
-    # nothing much, just using the recomended step on brew.sh
-    ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+    if [[ ! -f $(which brew) ]]; then
+        info "Installing homebrew, please follow the installer instructions:";
+        ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+    fi
 
     cd $DOTFILES_DIRECTORY/homebrew
 
@@ -179,10 +177,10 @@ install_homebrew () {
     (
         brew bundle Brewfile &&
         brew bundle Caskfile &&
-        brew bundle Fontfile
+        brew bundle Foundryfile
     ) || abort "Error occurred while installing brews."
 
-    success "homebrew and brews installed successfully."
+    success "homebrew and recipes installed successfully."
 }
 
 main () {
@@ -215,18 +213,20 @@ main () {
     [[ ! has_command_line_tools ]] && install_command_line_tools;
 
     # Ask the user if they want to change some defaults
-    DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" $DOTFILES_DIRECTORY);
-
+    DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" "$HOME/tmp_dotfiles");
+    COMPUTER_NAME=$(ask_default "What's the computer name?" "$(scutil --get ComputerName)");
+    GIT_NAME=$(ask_default "What name do you want to use to sign your git commits?" "$(finger $(whoami) | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //')");
+    GIT_EMAIL=$(ask "Which email do you want to use to sign your git commits?");
 
     github $DOTFILES_REPOSITORY $DOTFILES_DIRECTORY;
 
     install_homebrew
-    install_rbenv
-    install_pyenv
-    install_nvm
-    install_dnsmasq
+    #install_rbenv
+    #install_pyenv
+    #install_nvm
+    #install_dnsmasq
 
-    link $DOTFILES_DIRECTORY/**/*.symlink $HOME
+    # link $DOTFILES_DIRECTORY/**/*.symlink $HOME
 
 }
 
