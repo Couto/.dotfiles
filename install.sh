@@ -108,7 +108,8 @@ github () {
 }
 
 osx_version () {
-    echo "$(sw_vers -productVersion)";
+    #echo "$(sw_vers -productVersion)";
+    echo "10.8";
 }
 
 is_mavericks () {
@@ -124,9 +125,24 @@ is_mavericks () {
 }
 
 has_command_line_tools () {
-    if [[ is_mavericks ]]; then
-        #local dev_dir=$(/usr/bin/xcode-select -print-path 2>/dev/null);
-        return 1;
+    if [[ ! is_mavericks ]]; then
+        local dev_dir=$(/usr/bin/xcode-select -print-path 2>/dev/null);
+        local length=$(ls $dev_dir | wc -l)
+
+        if [[ $length == 0 ]]; then
+            return 1;
+        else
+            return 0;
+        fi
+    else
+        abort "
+
+            It seems you don't have the Command Line Tools installed.
+            You should install them before running this script.
+
+            https://developer.apple.com/downloads
+
+        "
     fi
 }
 
@@ -135,12 +151,13 @@ install_command_line_tools () {
     info "Will now attempt to install Command Line Tools (expect a GUI popup):"
     sudo "$(which xcode-select)" --install
     ask "Press any key when the installation has completed."
+
     if [[ ! has_command_line_tools ]]; then
         abort "Please install Command Line Tools and then try again";
+    else
+        success "Successfully installed Command Line Tools"
     fi
 }
-
-
 
 
 # Ask the user if they want to continue
@@ -168,7 +185,7 @@ is_mavericks || (prompt "
 
 # Check if the command line tools are installed
 # Try to install them, if not.
-[[ has_command_line_tools ]] && install_command_line_tools;
+[[ ! has_command_line_tools ]] && install_command_line_tools;
 
 # Ask the user if they want to change some defaults
 DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" $DOTFILES_DIRECTORY);
