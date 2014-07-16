@@ -63,8 +63,8 @@ prompt () {
     echo "$@";
     select yn in "Yes" "No"; do
         case $yn in
-            Yes ) return 1; exit;;
-            No ) return 0; exit;;
+            Yes ) return 0; exit;;
+            No ) return 1; exit;;
         esac
     done
 }
@@ -106,19 +106,60 @@ github () {
     lsuccess "Cloned dotfiles"
 }
 
+osx_version () {
+    echo "$(sw_vers -productVersion)";
+}
+
+is_mavericks () {
+    local version=$(osx_version);
+    if [[  $version =~ ^[0-9]+\.([0-9]+) ]]; then
+        local middle=${BASH_REMATCH[1]};
+        if [ $middle -eq "9" ]; then
+            return 0;
+        else
+            return 1;
+        fi
+    fi
+}
+
+# command_line_tools () {
+#     if macos_version >= "10.9"
+#   developer_dir = `/usr/bin/xcode-select -print-path 2>/dev/null`.chomp
+#   if developer_dir.empty? || !File.exist?("#{developer_dir}/usr/bin/git")
+#     ohai "Installing the Command Line Tools (expect a GUI popup):"
+#     sudo "/usr/bin/xcode-select", "--install"
+#     puts "Press any key when the installation has completed."
+#     getc
+#   end
+# end
+# }
+
 # Ask the user if they want to continue
 # even if the computer is not a Mac
 # this is risky since I'm not testing on linux.
-[[ $(uname -s) != "Darwin" ]] && prompt "
+[[ $(uname -s) != "Darwin" ]] && (prompt "
 
   This is not an OSX machine.
-  The following script was only tested on OSX Maverick.
+  The following script was only tested on OSX Mavericks.
 
   Do you still want to proceed at your own risk?
 
-" && exit;
+" || exit);
+
+# Inform the user that although they are using OSX
+# I only tested on mavericks
+is_mavericks || (prompt "
+
+  Although this is an OSX machine, the following script
+  was only tested on Mavericks.
+
+  Do you still want to proceed at your own risk?
+
+" || exit);
+
 
 # Ask the user if they want to change some defaults
 DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" $DOTFILES_DIRECTORY);
 
-github $DOTFILES_REPOSITORY $DOTFILES_DIRECTORY;
+
+#github $DOTFILES_REPOSITORY $DOTFILES_DIRECTORY;
