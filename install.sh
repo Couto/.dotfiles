@@ -30,6 +30,7 @@ abort () {
     echo "";
     echo -e " ${red}${unicode_x_mark}${NC} $@";
     echo "";
+    sleep 1;
     exit 1;
 }
 
@@ -122,17 +123,25 @@ is_mavericks () {
     fi
 }
 
-# command_line_tools () {
-#     if macos_version >= "10.9"
-#   developer_dir = `/usr/bin/xcode-select -print-path 2>/dev/null`.chomp
-#   if developer_dir.empty? || !File.exist?("#{developer_dir}/usr/bin/git")
-#     ohai "Installing the Command Line Tools (expect a GUI popup):"
-#     sudo "/usr/bin/xcode-select", "--install"
-#     puts "Press any key when the installation has completed."
-#     getc
-#   end
-# end
-# }
+has_command_line_tools () {
+    if [[ is_mavericks ]]; then
+        #local dev_dir=$(/usr/bin/xcode-select -print-path 2>/dev/null);
+        return 1;
+    fi
+}
+
+
+install_command_line_tools () {
+    info "Will now attempt to install Command Line Tools (expect a GUI popup):"
+    sudo "$(which xcode-select)" --install
+    ask "Press any key when the installation has completed."
+    if [[ ! has_command_line_tools ]]; then
+        abort "Please install Command Line Tools and then try again";
+    fi
+}
+
+
+
 
 # Ask the user if they want to continue
 # even if the computer is not a Mac
@@ -157,6 +166,9 @@ is_mavericks || (prompt "
 
 " || exit);
 
+# Check if the command line tools are installed
+# Try to install them, if not.
+[[ has_command_line_tools ]] && install_command_line_tools;
 
 # Ask the user if they want to change some defaults
 DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" $DOTFILES_DIRECTORY);
