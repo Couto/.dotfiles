@@ -25,7 +25,7 @@ TODO
 - [ ] Install brew-cask
 - [ ] Install brew/brew cask applications
 - [ ] Install brew-fonts applications
-- [ ] Install antigen
+- [x] Install antigen
 - [ ] Link zsh configurations
 - [ ] Link vim configurations
 - [ ] Link tmux configurations
