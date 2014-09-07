@@ -1,7 +1,7 @@
 # start_time="$(date +%s)"
 
-HOME=/Users/couto;
-DOTFILES=$HOME/.dotfiles
+export HOME=/Users/couto;
+export DOTFILES=$HOME/.dotfiles
 
 # Antigen and ZSH plugins
 source $DOTFILES/antigen/antigen.zsh
