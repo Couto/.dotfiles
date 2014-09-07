@@ -1,0 +1,8 @@
+tap caskroom/versions
+
+cask install iterm2
+cask install atom
+cask install slack
+cask install google-chrome-canary
+cask install firefox-nightly
+cask install opera-next

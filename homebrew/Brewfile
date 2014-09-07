@@ -1,0 +1,7 @@
+install caskroom/cask/brew-cask
+
+install tmux
+install nvm
+install rbenv ruby-build
+install pyenv
+

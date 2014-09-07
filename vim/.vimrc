@@ -3,7 +3,7 @@ filetype off                  " required
 
 " Automatically install Vundle is it doesnt exist
 if !filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
-        echo "Installing Vundle.."
+    echo "Installing Vundle.."
     echo ""
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/Vundle.vim
