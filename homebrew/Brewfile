@@ -4,4 +4,4 @@ install tmux
 install nvm
 install rbenv ruby-build
 install pyenv
-
+install dnsmasq

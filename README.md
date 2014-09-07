@@ -12,7 +12,7 @@ If correctly installed you should now have:
   * [vim](http://www.vim.org) - as a terminal code editor
   * [vundle](https://github.com/gmarik/Vundle.vim) - to manage vim plugins
   * [Atom](https://atom.io) - as code editor
-  * [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) - to force all .dev domains to point back to localhost
+  * [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html) - to force all .dev domains to point back to localhost as explained [here](http://passingcuriosity.com/2013/dnsmasq-dev-osx/)
   * [nvm](https://github.com/creationix/nvm) - to manage [node.js](http://nodejs.org) versions
   * [rbenv](https://github.com/sstephenson/rbenv) - to manage [ruby](https://www.ruby-lang.org) versions
   * [pyenv](https://github.com/yyuu/pyenv) - to manage [python](https://www.python.org) versions
