@@ -1,13 +1,21 @@
-# start_time="$(date +%s)"
+start_time="$(date +%s)"
 
+# Quick shortcuts
 export HOME=/Users/couto;
 export DOTFILES=$HOME/.dotfiles
+
+# Editors
+export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest/"
+export ATOM="$ATOM_PATH/Atom.app"
+export EDITOR=$(which vim)
+export VISUAL="$(which vim)"
 
 # Antigen and ZSH plugins
 source $DOTFILES/antigen/antigen.zsh
 
 antigen bundles <<EOFBUNDLES 
 
+rupa/z
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 kennethreitz/autoenv
@@ -28,7 +36,12 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
+# Alias
+alias gi='gist -c -p -P -s -t js'
+alias l='ls -laG'
+alias poopin='open /System/Library/Frameworks/ScreenSaver.framework/Versions/Current/Resources/ScreenSaverEngine.app/'
+alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias flush="dscacheutil -flushcache"
 
-
-# end_time="$(date +%s)"
-# echo .zshrc: $((end_time - start_time)) seconds
+end_time="$(date +%s)"
+echo .zshrc: $((end_time - start_time)) seconds

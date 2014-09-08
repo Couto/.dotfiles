@@ -1,9 +1,8 @@
 install caskroom/cask/brew-cask
 
 install zsh
-install tmux
+install tmux reattach-to-user-namespace
 install htop-osx
-install z
 
 install nvm
 install rbenv ruby-build
@@ -17,3 +16,4 @@ install hydra
 install git
 install git-extras
 install git-flow
+install gist
