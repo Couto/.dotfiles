@@ -7,6 +7,7 @@ if !filereadable(expand("$HOME/.vim/bundle/Vundle.vim/README.md"))
     echo ""
     silent !mkdir -p ~/.vim/bundle
     silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/Vundle.vim
+    silent !vim +PluginInstall +qall
 endif
 
 " set the runtime path to include Vundle and initialize
@@ -50,6 +51,7 @@ set expandtab
 autocmd vimenter * NERDTree " open a NERDTree automatically when vim starts up
 autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically when vim starts up if no files were specified
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif "  close vim if the only window left open is a NERDTree
+let NERDTreeShowHidden=1 " Show hidden files
 
 " vim-airline
 let g:airline_powerline_fonts = 1 " automatically populate the g:airline_symbols dictionary with the powerline symbols.
