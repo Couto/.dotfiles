@@ -1,7 +1,19 @@
 install caskroom/cask/brew-cask
 
+install zsh
 install tmux
+install htop-osx
+install z
+
 install nvm
 install rbenv ruby-build
 install pyenv
+
 install dnsmasq
+install nmap
+install ettercap
+install hydra
+
+install git
+install git-extras
+install git-flow
