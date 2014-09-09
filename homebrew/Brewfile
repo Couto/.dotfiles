@@ -17,3 +17,6 @@ install git
 install git-extras
 install git-flow
 install gist
+
+install shellcheck
+install ansible

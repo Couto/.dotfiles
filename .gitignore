@@ -1,3 +1,5 @@
 *.swp
 atom/compile-cache/*
 atom/packages/*
+atom/.node-gyp
+atom/storage
