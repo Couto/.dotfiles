@@ -4,6 +4,9 @@ start_time="$(date +%s)"
 export HOME=/Users/couto;
 export DOTFILES=$HOME/.dotfiles
 
+# Path
+export PATH=${DOTFILES}/bin:$PATH;
+
 # Editors
 export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest/"
 export ATOM="$ATOM_PATH/Atom.app"

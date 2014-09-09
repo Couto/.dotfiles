@@ -1,0 +1,5 @@
+pyacoustid
+pyechonest
+pylast
+discogs-client
+

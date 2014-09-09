@@ -12,6 +12,7 @@ install dnsmasq
 install nmap
 install ettercap
 install hydra
+install httpie
 
 install git
 install git-extras
@@ -20,3 +21,11 @@ install gist
 
 install shellcheck
 install ansible
+
+tap theory/sqitch
+install sqitch_pg
+
+install apg
+install sshfs
+
+install chromaprint

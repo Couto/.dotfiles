@@ -1,5 +1,8 @@
 *.swp
-atom/compile-cache/*
-atom/packages/*
-atom/.node-gyp
-atom/storage
+
+atom/*
+!atom/config.cson
+
+config/beets/*
+!config/beets/config.yaml
+

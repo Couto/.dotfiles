@@ -1,0 +1,15 @@
+# Turn on some plugins
+# convert   - converts audio files
+# scrub     - strips audio files from unnecessary metatagging
+# chroma    - matches and generates acoustic fingerprints of the tracks
+# fetchart  - gets the album's cover art
+# embedart  - places the cover art inside the files' metainfo
+# lastgenre - fetchs music styles for the tracks
+plugins: convert discogs replaygain scrub chroma fetchart embedart lastgenre fromfilename lyrics
+
+fetchart:
+  cautious: true
+cover_names: front back
+
+acoustid:
+  apiKey: mvn4WLtW
