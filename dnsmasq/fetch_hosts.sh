@@ -17,11 +17,54 @@ clean_file () {
     grep "0.0.0.0\|127.0.0.1" $1 | awk '{ print "127.0.0.1\t"$2 }' | sed 's///g' >> "$2"
 }
 
+get_network_interface () {
+    echo "$(route get 8.8.8.8 | grep 'interface' | sed 's/interface://g' | tr -d ' ')";
+}
+
+get_network_service() {
+    
+    scutil_query(){
+        local key=$1;
+
+        scutil<<EOT
+            open
+            get $key
+            d.show
+            close
+EOT
+    }
+
+    local SERVICE_GUID="$(scutil_query State:/Network/Global/IPv4 | grep 'PrimaryService' | awk '{print $3}')";
+    local SERVICE_NAME="$(scutil_query Setup:/Network/Service/$SERVICE_GUID | grep 'UserDefinedName' | awk -F': ' '{print $2}')";
+
+    echo "$SERVICE_NAME";
+}
+
+get_dhcp_dns () {
+    local interface="$(get_network_interface)";
+    echo "$(ipconfig getpacket $interface | grep 'domain_name_server' |  cut -d '{' -f2 | cut -d '}' -f1)";
+}
+
+get_configured_dns () {
+    local service=$(get_network_service);
+    echo $(networksetup -getdnsservers $service);
+}
+
+get_nameservers() {
+    local nameservers="$(get_configured_dns)";
+
+    if [[ $nameservers == *DNS\ Servers* ]]; then
+        nameservers=$(get_dhcp_dns);
+    fi
+
+    echo $nameservers;
+}
+
 main () {
     
     local ADBLOCK_FILE="adblock.list";
     local TMP_FILE=$(tmp_file);
-    local NAMESERVERS="127.0.0.1 $(networksetup -getdnsservers Wi-Fi)";
+    local NAMESERVERS="127.0.0.1 $(get_nameservers)";
 
     local yoyo=$(tmp_file);
     local swch=$(tmp_file);
@@ -40,10 +83,11 @@ main () {
     clean_file "$host" "$TMP_FILE";
 
     echo "Sorting and removing duplicates"
-    tr '[A-Z]' '[a-z]' < "$TMP_FILE" | sort -f | uniq -u > $ADBLOCK_FILE;
+    tr '[A-Z]' '[a-z]' < "$TMP_FILE" | sort -f | uniq > $ADBLOCK_FILE;
 
     echo "Add local machine as nameserver"
-    sudo networksetup -setdnsservers Wi-Fi $(echo "$NAMESERVERS" | tr ' ' '\n' | uniq -u | tr '\n' ' ');
+    sudo networksetup -setdnsservers $(get_network_service) $(echo $NAMESERVERS | tr ' ' '\n' | uniq | tr '\n' ' ');
+
 }
 
 main;
