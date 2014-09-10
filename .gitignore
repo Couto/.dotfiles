@@ -6,3 +6,4 @@ atom/*
 config/beets/*
 !config/beets/config.yaml
 
+dnsmasq/adblock.list
