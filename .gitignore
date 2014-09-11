@@ -7,3 +7,4 @@ config/beets/*
 !config/beets/config.yaml
 
 dnsmasq/adblock.list
+.DS_Store
