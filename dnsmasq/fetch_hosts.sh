@@ -22,13 +22,19 @@ main () {
     local ADBLOCK_FILE="adblock.list";
     local TMP_FILE=$(tmp_file);
 
+    local camaleon=$(tmp_file); # Possible false positives
+    local jansal=$(tmp_file);
+    local adzhosts=$(tmp_file);
     local yoyo=$(tmp_file);
     local adaway=$(tmp_file);
     local mvps=$(tmp_file);
-    # local host=$(tmp_file);
+    # local host=$(tmp_file); # False positives
     local hostads=$(tmp_file);
     local malware=$(tmp_file);
 
+    download_file "http://sysctl.org/cameleon/hosts" "$camaleon" &
+    download_file "https://jansal.googlecode.com/svn/trunk/adblock/hosts" "$jansal" &
+    download_file "http://optimate.dl.sourceforge.net/project/adzhosts/HOSTS.txt" "$adzhosts" &
     download_file "http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0" "$yoyo" &
     download_file "https://adaway.org/hosts.txt" "$adaway" &
     download_file "http://winhelp2002.mvps.org/hosts.txt" "$mvps" &
@@ -37,6 +43,9 @@ main () {
     download_file "http://www.malwaredomainlist.com/hostslist/hosts.txt" $malware &
     wait
     
+    clean_file "$camaleon" "$TMP_FILE";
+    clean_file "$jansal" "$TMP_FILE";
+    clean_file "$adzhosts" "$TMP_FILE";
     clean_file "$yoyo" "$TMP_FILE";
     clean_file "$adaway" "$TMP_FILE";
     clean_file "$mvps" "$TMP_FILE";
