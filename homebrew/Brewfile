@@ -27,3 +27,4 @@ install apg
 install sshfs
 
 install chromaprint
+install archey

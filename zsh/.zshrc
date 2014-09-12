@@ -46,5 +46,11 @@ alias poopin='open /System/Library/Frameworks/ScreenSaver.framework/Versions/Cur
 alias wanip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias flush="dscacheutil -flushcache"
 
+# Display computer information using archey
+# but only if we're not inside a tmux/screen session
+if ! { [ "$TERM" = "screen" ] || [ -n "$TMUX" ]; } then
+    archey -c
+fi
+
 end_time="$(date +%s)"
 echo .zshrc: $((end_time - start_time)) seconds
