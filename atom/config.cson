@@ -1,3 +1,10 @@
+'editor':
+  'invisibles': {}
+  'fontSize': 11
+  'fontFamily': '"DejaVu Sans Mono"'
+  'showIndentGuide': true
+  'showInvisibles': true
+  'tabLength': 4
 'exception-reporting':
   'userId': '6292fc80-47fb-2982-dc54-d366a114cf85'
 'welcome':
@@ -10,12 +17,10 @@
     'seti-syntax'
   ]
   'projectHome': '/Users/couto/Development/'
-'editor':
-  'invisibles': {}
-  'fontSize': 11
-  'fontFamily': '"DejaVu Sans Mono"'
-  'showIndentGuide': true
-  'showInvisibles': true
-  'tabLength': 4
 'scope-inspector':
   'userId': '811e2465c893d630398810e72c2c57633b9d911d'
+'local-history':
+  'difftoolCommand': 'diff {current-file} {revision-file}'
+'gist-it':
+  'userToken': 'f9981bdec95ab7d3830abcb896cc097e239580b2' # Only gist permission. 
+  'newGistsDefaultToPrivate': true
