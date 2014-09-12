@@ -6,7 +6,6 @@ export DOTFILES=$HOME/.dotfiles
 
 # Get aliases, functions and so on
 for file in $DOTFILES/zsh/{aliases,exports,functions,keybindings}.zsh; do
-    echo $file;
     source $file;
 done
 
@@ -19,11 +18,9 @@ rupa/z
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
 kennethreitz/autoenv
+sindresorhus/pure
 
 EOFBUNDLES
-
-# This works as a theme
-antigen bundle sindresorhus/pure
 
 antigen apply
 
