@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Query postgresq directly
-q () {
+function q() {
     psql -h localhost -U postgres -d musicphotos -c $@;
 }
 

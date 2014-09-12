@@ -5,7 +5,7 @@ export HOME=/Users/couto;
 export DOTFILES=$HOME/.dotfiles
 
 # Get aliases, functions and so on
-for file in $DOTFILES/zsh/{aliases,exports,functions,keybindings}.zsh; do
+for file in $DOTFILES/zsh/{aliases,exports,functions,key-bindings}.zsh; do
     source $file;
 done
 
@@ -24,8 +24,12 @@ EOFBUNDLES
 
 antigen apply
 
+# smart urls
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
 # rbenv, pyenv, nvm and the likes
-source $(brew --prefix nvm)/nvm.sh
+source "$(brew --prefix nvm)/nvm.sh"
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
