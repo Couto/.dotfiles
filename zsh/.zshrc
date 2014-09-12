@@ -5,7 +5,7 @@ export HOME=/Users/couto;
 export DOTFILES=$HOME/.dotfiles
 
 # Path
-export PATH=${DOTFILES}/bin:$PATH;
+export PATH=$DOTFILES/bin:/usr/local/bin:/usr/local/sbin:$PATH;
 
 # Editors
 export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest/"
@@ -31,6 +31,7 @@ antigen bundle sindresorhus/pure
 antigen apply
 
 # rbenv, pyenv, nvm and the likes
+export NVM_DIR=$HOME/.nvm
 source $(brew --prefix nvm)/nvm.sh
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
