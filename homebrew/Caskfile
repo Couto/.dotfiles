@@ -11,11 +11,11 @@ cask install vagrant
 cask install google-chrome-canary
 cask install google-chrome-dev
 cask install firefox
-cask install firefox-aurora
-cask install firefox-nightly
+#cask install firefox-aurora 
+#cask install firefox-nightly
 cask install opera-next
 cask install webkit-nightly
 cask install torbrowser
 
 cask install tunnelblick-beta
-cask install imageptim
+cask install imageoptim

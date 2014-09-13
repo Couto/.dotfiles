@@ -10,3 +10,4 @@ config/beets/*
 dnsmasq/adblock.list
 
 vim/bundle/*
+config/configstore
