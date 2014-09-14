@@ -11,6 +11,7 @@ install nmap
 install ettercap
 install hydra
 install httpie
+install stunnel
 
 install git
 install git-extras

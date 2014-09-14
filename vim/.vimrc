@@ -53,6 +53,9 @@ autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif "  close vim if the only window left open is a NERDTree
 let NERDTreeShowHidden=1 " Show hidden files
 
+" Syntastic
+let g:syntastic_aggregate_errors = 1 "display together the errors found by all checkers enabled for the current file
+
 " vim-airline
 let g:airline_powerline_fonts = 1 " automatically populate the g:airline_symbols dictionary with the powerline symbols.
 let g:airline#extensions#tabline#enabled = 1 "Automatically displays all buffers when there's only one tab open.

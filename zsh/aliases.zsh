@@ -9,7 +9,7 @@ alias fuck='sudo'
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias whoiss='whois -h whois-servers.net'
-alias http-serve='python -m SimpleHTTPServer'
+alias server='python -m SimpleHTTPServer'
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 alias l='ls -lahG'
