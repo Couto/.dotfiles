@@ -5,6 +5,31 @@ function q() {
     psql -h localhost -U postgres -d musicphotos -c $@;
 }
 
+is-up () {
+    local red='\e[00;31m';
+    local green='\e[00;32m';
+    local nc='\e[00m';
+
+    local url="$1";
+    local uastring="Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
+    local status_code=$(curl -s -A "$uastring" "http://isitup.org/$url.json" | python -mjson.tool | grep 'status_code' | grep -o "\d")
+
+    case $status_code in
+    "1")
+        echo -e "$green ⬆ $nc Website is alive.";
+        ;;
+    "2")
+        echo -e "$red ⬇ $nc Website appears down.";
+        ;;
+    "3")
+        echo -e "$red ❌ $nc Domain was not valid.";
+        ;;
+    *)
+        echo -e "$red ❌  $nc Something really wrong happened...";
+        ;;
+    esac
+}
+
 # Create a new directory and enter it
 function mkd() {
     mkdir -p "$@" && cd "$@";

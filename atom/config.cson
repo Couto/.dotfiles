@@ -22,5 +22,5 @@
 'local-history':
   'difftoolCommand': 'diff {current-file} {revision-file}'
 'gist-it':
-  'userToken': 'f9981bdec95ab7d3830abcb896cc097e239580b2' # Only gist permission. 
+  'userToken': 'f9981bdec95ab7d3830abcb896cc097e239580b2'
   'newGistsDefaultToPrivate': true
