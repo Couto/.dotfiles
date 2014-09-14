@@ -5,6 +5,8 @@ function q() {
     psql -h localhost -U postgres -d musicphotos -c $@;
 }
 
+# Query isitup.org to check if given url is online
+# is-up 15minuteslate.net
 is-up () {
     local red='\e[00;31m';
     local green='\e[00;32m';
