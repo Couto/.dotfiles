@@ -15,13 +15,10 @@ bindkey '^e' end-of-line # ctrl+e
 bindkey '^?' backward-delete-char
 
 # [Delete] - delete forward
-if [[ "${terminfo[kdch1]}" != "" ]]; then
-    bindkey "${terminfo[kdch1]}" delete-char 
-else
-    bindkey "^[[3~" delete-char
-    bindkey "^[3;5~" delete-char
-    bindkey "\e[3~" delete-char
-fi
+bindkey "^[[3~" delete-char
+bindkey "^[3;5~" delete-char
+bindkey "\e[3~" delete-char
+
 
 # [Home] - Go to beginning of line
 if [[ "${terminfo[khome]}" != "" ]]; then
