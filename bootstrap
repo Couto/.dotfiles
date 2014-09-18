@@ -83,7 +83,7 @@ ask () {
 ask_default () {
     local question="$1";
     local default_val="$2";
-    
+
     answer=$(ask "$1 [$2]");
 
     if [ -z "$answer" ]; then
@@ -115,7 +115,7 @@ github () {
 
 is_mavericks () {
     local version=$(sw_vers -productVersion);
-    
+
     if [[  $version =~ ^[0-9]+\.([0-9]+) ]]; then
         local middle=${BASH_REMATCH[1]};
         if [ $middle -eq "9" ]; then
@@ -172,15 +172,15 @@ install_homebrew () {
 
     cd $DOTFILES_DIRECTORY/homebrew
 
-    info "Installing brews, casks and fonts..."
+    info "Installing brews, casks and fonts...";
 
-    (
-        brew bundle Brewfile &&
-        brew bundle Caskfile &&
-        brew bundle Foundryfile
-    ) || abort "Error occurred while installing brews."
+    local install=$(brew bundle Brewfile && brew bundle Caskfile && brew bundle Foundryfile);
 
-    success "homebrew and recipes installed successfully."
+    if [[ ! $install ]]; then
+        prompt "Something failed. Would you like to try again?" && install_homebrew || abort "Error occurred while installing brews.";
+    else
+        success "homebrew and recipes installed successfully."
+    fi
 }
 
 main () {
