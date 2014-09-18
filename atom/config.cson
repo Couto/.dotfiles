@@ -24,3 +24,5 @@
 'gist-it':
   'userToken': 'f9981bdec95ab7d3830abcb896cc097e239580b2'
   'newGistsDefaultToPrivate': true
+'tree-view':
+  'hideVcsIgnoredFiles': true
