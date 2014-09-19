@@ -26,3 +26,5 @@
   'newGistsDefaultToPrivate': true
 'tree-view':
   'hideVcsIgnoredFiles': true
+'linter':
+  'lintOnChange': false

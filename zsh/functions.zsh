@@ -13,7 +13,7 @@ is-up () {
     local nc='\e[00m';
 
     local url="$1";
-    local uastring="Mozilla/5.0 (Windows NT 6.3; Trident/7.0; rv:11.0) like Gecko";
+    local uastring="BASH/cURL";
     local status_code=$(curl -s -A "$uastring" "http://isitup.org/$url.json" | python -mjson.tool | grep 'status_code' | grep -o "\d")
 
     case $status_code in
