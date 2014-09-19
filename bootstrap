@@ -129,9 +129,8 @@ is_mavericks () {
 has_command_line_tools () {
     if [[ is_mavericks ]]; then
         local dev_dir=$(/usr/bin/xcode-select -print-path 2>/dev/null);
-        local length=$(ls $dev_dir | wc -l)
 
-        if [[ $length == 0 ]]; then
+        if test -z "$dev_dir"; then
             return 1;
         else
             return 0;
@@ -140,6 +139,7 @@ has_command_line_tools () {
 }
 
 install_command_line_tools () {
+
     info "Will now attempt to install Command Line Tools (expect a GUI popup):"
     sudo "$(which xcode-select)" --install
     ask "Press any key when the installation has completed."
