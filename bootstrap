@@ -136,18 +136,6 @@ has_command_line_tools () {
         else
             return 0;
         fi
-    else
-        warn "
-
-        It seems that you're not using Mavericks.
-
-        I won't try to detect if you have the Command Line Tools installed.
-        I'll just assume that you do.
-
-        Most likely `homebrew` will take care of the rest.
-
-        ";
-        return 0;
     fi
 }
 
@@ -184,6 +172,9 @@ install_homebrew () {
 }
 
 main () {
+
+    info "Checking OS.";
+
     # Ask the user if they want to continue
     # even if the computer is not a Mac
     # this is risky since I'm not testing on linux.
@@ -197,6 +188,8 @@ main () {
 
     " || exit);
 
+    info "Checking OS version.";
+
     # Inform the user that although they are using OSX
     # I only tested on mavericks
     is_mavericks || (prompt "
@@ -208,9 +201,14 @@ main () {
 
     " || exit);
 
+    info "Check if Command Line Tools are installed.";
+
     # Check if the command line tools are installed
     # Try to install them, if not.
     [[ ! has_command_line_tools ]] && install_command_line_tools;
+
+
+    info "Collecting user information and preferences";
 
     # Ask the user if they want to change some defaults
     DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" "$HOME/tmp_dotfiles");
