@@ -17,6 +17,16 @@ If correctly installed you should now have:
   * [rbenv](https://github.com/sstephenson/rbenv) - to manage [ruby](https://www.ruby-lang.org) versions
   * [pyenv](https://github.com/yyuu/pyenv) - to manage [python](https://www.python.org) versions
 
+Installation
+===========
+
+If you trust me, open your terminal and paste:
+
+```shell
+curl https://raw.githubusercontent.com/Couto/.dotfiles/master/bootstrap | bash
+```
+
+
 TODO
 ====
 
