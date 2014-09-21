@@ -207,7 +207,6 @@ main () {
     # Try to install them, if not.
     [[ ! has_command_line_tools ]] && install_command_line_tools;
 
-
     info "Collecting user information and preferences";
 
     # Ask the user if they want to change some defaults
@@ -216,7 +215,7 @@ main () {
     GIT_NAME=$(ask_default "What name do you want to use to sign your git commits?" "$(finger $(whoami) | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //')");
     GIT_EMAIL=$(ask "Which email do you want to use to sign your git commits?");
 
-    github $DOTFILES_REPOSITORY $DOTFILES_DIRECTORY;
+    # github "$DOTFILES_REPOSITORY" "$DOTFILES_DIRECTORY";
 
     install_homebrew
     #install_rbenv

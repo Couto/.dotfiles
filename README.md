@@ -23,7 +23,7 @@ Installation
 If you trust me, open your terminal and paste:
 
 ```shell
-curl https://raw.githubusercontent.com/Couto/.dotfiles/master/bootstrap | bash
+curl -fsS https://raw.githubusercontent.com/Couto/.dotfiles/master/bootstrap | bash
 ```
 
 
