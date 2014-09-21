@@ -116,26 +116,26 @@ github () {
 is_mavericks () {
     local version=$(sw_vers -productVersion);
 
-    if [[  $version =~ ^[0-9]+\.([0-9]+) ]]; then
+    if [[ $version =~ ^[0-9]+\.([0-9]+) ]]; then
         local middle=${BASH_REMATCH[1]};
         if [ $middle -eq "9" ]; then
-            return 0;
+            return true;
         else
-            return 1;
+            return false;
         fi
     fi
 }
 
 has_command_line_tools () {
-    if [[ is_mavericks ]]; then
-        local dev_dir=$(/usr/bin/xcode-select -print-path 2>/dev/null);
 
-        if test -z "$dev_dir"; then
-            return 1;
-        else
-            return 0;
-        fi
+    local dev_dir=$(/usr/bin/xcode-select -print-path 2>/dev/null);
+
+    if [ -z "$dev_dir" ]; then
+        return false;
+    else
+        return true;
     fi
+
 }
 
 install_homebrew () {
