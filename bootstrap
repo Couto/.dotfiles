@@ -138,19 +138,6 @@ has_command_line_tools () {
     fi
 }
 
-install_command_line_tools () {
-
-    info "Will now attempt to install Command Line Tools (expect a GUI popup):"
-    sudo "$(which xcode-select)" --install
-    ask "Press any key when the installation has completed."
-
-    if [[ ! has_command_line_tools ]]; then
-        abort "Please install Command Line Tools and then try again";
-    else
-        success "Successfully installed Command Line Tools"
-    fi
-}
-
 install_homebrew () {
 
     if [[ ! -f $(which brew) ]]; then
@@ -205,19 +192,28 @@ main () {
 
     # Check if the command line tools are installed
     # Try to install them, if not.
-    [[ ! has_command_line_tools ]] && install_command_line_tools;
+    [[ ! has_command_line_tools ]] && (prompt "
+
+        You don't have the Command-Line tools installed.
+        Homebrew usually allows you to install Command-Line Tools,
+        and this script will install Homebrew, so you should be fine.
+
+        Do you want to proceed with the script?
+
+    " || exit);
+
+    install_homebrew
 
     info "Collecting user information and preferences";
 
     # Ask the user if they want to change some defaults
-    DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" "$HOME/tmp_dotfiles");
+    DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" "$HOME/.dotfiles");
     COMPUTER_NAME=$(ask_default "What's the computer name?" "$(scutil --get ComputerName)");
     GIT_NAME=$(ask_default "What name do you want to use to sign your git commits?" "$(finger $(whoami) | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //')");
     GIT_EMAIL=$(ask "Which email do you want to use to sign your git commits?");
 
-    # github "$DOTFILES_REPOSITORY" "$DOTFILES_DIRECTORY";
+    github "$DOTFILES_REPOSITORY" "$DOTFILES_DIRECTORY";
 
-    install_homebrew
     #install_rbenv
     #install_pyenv
     #install_nvm
