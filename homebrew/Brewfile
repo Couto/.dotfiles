@@ -29,3 +29,4 @@ install sshfs
 
 install chromaprint
 install archey
+install gpg2

@@ -2,4 +2,4 @@ pyacoustid
 pyechonest
 pylast
 discogs-client
-
+speedtest-cli
