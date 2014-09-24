@@ -1,5 +1,17 @@
 #!/bin/zsh
 
+red='\e[00;31m';
+green='\e[00;32m';
+cyan='\e[00;36m';
+nc='\e[00m';
+
+arrow_up="⬆";
+arrow_down="⬇";
+arrow_left="⬅";
+arrow_right="➡";
+cross="❌ ";
+check="✔";
+
 # Query postgresq directly
 function q() {
     psql -h localhost -U postgres -d musicphotos -c $@;
@@ -8,26 +20,22 @@ function q() {
 # Query isitup.org to check if given url is online
 # is-up 15minuteslate.net
 is-up () {
-    local red='\e[00;31m';
-    local green='\e[00;32m';
-    local nc='\e[00m';
-
     local url="$1";
     local uastring="BASH/cURL";
     local status_code=$(curl -s -A "$uastring" "http://isitup.org/$url.json" | python -mjson.tool | grep 'status_code' | grep -o "\d")
 
     case $status_code in
     "1")
-        echo -e "$green ⬆ $nc Website is alive.";
+        echo -e "$green $arrow_up $nc Website is alive.";
         ;;
     "2")
-        echo -e "$red ⬇ $nc Website appears down.";
+        echo -e "$red $arrow_down $nc Website appears down.";
         ;;
     "3")
-        echo -e "$red ❌ $nc Domain was not valid.";
+        echo -e "$red $cross $nc Domain was not valid.";
         ;;
     *)
-        echo -e "$red ❌  $nc Something really wrong happened...";
+        echo -e "$red $cross $nc Something really wrong happened...";
         ;;
     esac
 }
@@ -114,4 +122,14 @@ function gz() {
 # Run `dig` and display the most useful info
 function digga() {
     dig +nocmd "$1" any +multiline +noall +answer;
+}
+
+# List blocked domains matching the given domain
+function list-blocked() {
+    local domain="$1";
+    local domain_list="$DOTFILES/dnsmasq/adblock.list"
+
+    if [ -f "$domain_list" ]; then
+        grep $domain $domain_list
+    fi
 }
