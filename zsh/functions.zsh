@@ -133,3 +133,13 @@ function list-blocked() {
         grep $domain $domain_list
     fi
 }
+
+function add-brew() {
+    local brewfile="$DOTFILES/homebrew/Brewfile";
+
+    for package in "$@"; do
+        echo "install $package" >> "$brewfile";
+    done
+
+    brew bundle $DOTFILES/homebrew/Brewfile
+}
