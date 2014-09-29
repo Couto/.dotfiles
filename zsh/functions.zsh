@@ -133,3 +133,20 @@ function list-blocked() {
         grep $domain $domain_list
     fi
 }
+
+# Send Youtube videos to office's chromecast
+function ccyt() {
+    curl -H "Content-Type: application/json" \
+        http://192.168.2.148:8008/apps/YouTube \
+        -X POST \
+        -d "v=$1";
+}
+
+# Search yt videos
+function ytsearch() {
+    local arguments=$(echo "$@" | tr ' ' '+');
+
+    curl -s https://www.youtube.com/results\?search_query\="$arguments" | \
+        grep -o 'watch?v=[^"]*"[^>]*title="[^"]*' | \
+        sed -e 's/^watch\?v=\([^"]*\)".*title="\(.*\)/\1 \2/g'
+}

@@ -11,6 +11,9 @@ alias flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias whoiss='whois -h whois-servers.net'
 alias server='python -m SimpleHTTPServer'
 alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
+alias startdnsmasq='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
+alias stopdnsmasq='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
+
 
 alias l='ls -lahG'
 
