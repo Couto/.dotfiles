@@ -134,6 +134,16 @@ function list-blocked() {
     fi
 }
 
+function add-brew() {
+    local brewfile="$DOTFILES/homebrew/Brewfile";
+
+    for package in "$@"; do
+        echo "install $package" >> "$brewfile";
+    done
+    
+    brew bundle $DOTFILES/homebrew/Brewfile
+}
+
 # Send Youtube videos to office's chromecast
 function ccyt() {
     curl -H "Content-Type: application/json" \
