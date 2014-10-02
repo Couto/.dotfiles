@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Unofficial bash strict mode
+set -euo pipefail
+IFS=$'\n\t'
+# set -x
+
 tmp_file () {
     local template="$(basename $0)";
     echo "$(mktemp -t $template)";
@@ -8,50 +13,41 @@ tmp_file () {
 download_file () {
     local output=$2;
     local url=$1
-    echo "Downloading $1";
-    curl -s -o "$output" "$url" || exit 1
+
+    curl -fsS -o "$output" "$url";
 }
 
-clean_file () {
-    echo "Cleaning: $1"; 
+clean_file () { 
     grep "0.0.0.0\|127.0.0.1" $1 | awk '{ print "0.0.0.0\t"$2 }' | sed 's///g' >> "$2"
+}
+
+fetch_host () {
+    local host="$1";
+    local output_file="$2";
+    local tmp="$(tmp_file)";
+    download_file "$host" "$tmp";
+    clean_file "$tmp" "$output_file"
 }
 
 main () {
     
     local ADBLOCK_FILE="adblock.list";
     local TMP_FILE=$(tmp_file);
+    local HOSTS_FILES=(
+        "http://sysctl.org/cameleon/hosts"
+        "https://jansal.googlecode.com/svn/trunk/adblock/hosts"
+        # "http://optimate.dl.sourceforge.net/project/adzhosts/HOSTS.txt"
+        "http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0"
+        "https://adaway.org/hosts.txt"
+        "http://hosts-file.net/ad_servers.txt"
+        "http://www.malwaredomainlist.com/hostslist/hosts.txt"
+    );
 
-    local camaleon=$(tmp_file); # Possible false positives
-    local jansal=$(tmp_file);
-    local adzhosts=$(tmp_file);
-    local yoyo=$(tmp_file);
-    local adaway=$(tmp_file);
-    local mvps=$(tmp_file);
-    # local host=$(tmp_file); # False positives
-    local hostads=$(tmp_file);
-    local malware=$(tmp_file);
-
-    download_file "http://sysctl.org/cameleon/hosts" "$camaleon" &
-    download_file "https://jansal.googlecode.com/svn/trunk/adblock/hosts" "$jansal" &
-    download_file "http://optimate.dl.sourceforge.net/project/adzhosts/HOSTS.txt" "$adzhosts" &
-    download_file "http://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0" "$yoyo" &
-    download_file "https://adaway.org/hosts.txt" "$adaway" &
-    download_file "http://winhelp2002.mvps.org/hosts.txt" "$mvps" &
-    # download_file "http://hosts-file.net/download/hosts.txt" "$host" &
-    download_file "http://hosts-file.net/ad_servers.txt" "$hostads" &
-    download_file "http://www.malwaredomainlist.com/hostslist/hosts.txt" $malware &
+    for host in ${HOSTS_FILES[@]};
+    do
+        fetch_host "$host" "$TMP_FILE" &
+    done;
     wait
-    
-    clean_file "$camaleon" "$TMP_FILE";
-    clean_file "$jansal" "$TMP_FILE";
-    clean_file "$adzhosts" "$TMP_FILE";
-    clean_file "$yoyo" "$TMP_FILE";
-    clean_file "$adaway" "$TMP_FILE";
-    clean_file "$mvps" "$TMP_FILE";
-    # clean_file "$host" "$TMP_FILE";
-    clean_file "$hostads" "$TMP_FILE";
-    clean_file "$malware" "$TMP_FILE";
 
     echo "Sorting and removing duplicates"
     tr '[A-Z]' '[a-z]' < "$TMP_FILE" | sort -f | uniq > $ADBLOCK_FILE;
