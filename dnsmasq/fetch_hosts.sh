@@ -7,7 +7,7 @@ IFS=$'\n\t'
 
 tmp_file () {
     local template="$(basename $0)";
-    echo "$(mktemp -t $template)";
+    mktemp -t "$template";
 }
 
 download_file () {
@@ -18,19 +18,21 @@ download_file () {
 }
 
 clean_file () { 
-    grep "0.0.0.0\|127.0.0.1" $1 | awk '{ print "0.0.0.0\t"$2 }' | sed 's///g' >> "$2"
+    grep "0.0.0.0\|127.0.0.1" "$1" | awk '{ print "0.0.0.0\t"$2 }' | sed 's///g' >> "$2"
 }
 
 fetch_host () {
     local host="$1";
     local output_file="$2";
     local tmp="$(tmp_file)";
+
     download_file "$host" "$tmp";
     clean_file "$tmp" "$output_file"
+
+    echo -e "Fetched: $host";
 }
 
-main () {
-    
+main () { 
     local ADBLOCK_FILE="adblock.list";
     local TMP_FILE=$(tmp_file);
     local HOSTS_FILES=(
@@ -43,15 +45,14 @@ main () {
         "http://www.malwaredomainlist.com/hostslist/hosts.txt"
     );
 
-    for host in ${HOSTS_FILES[@]};
+    for host in "${HOSTS_FILES[@]}";
     do
         fetch_host "$host" "$TMP_FILE" &
     done;
     wait
 
-    echo "Sorting and removing duplicates"
     tr '[A-Z]' '[a-z]' < "$TMP_FILE" | sort -f | uniq > $ADBLOCK_FILE;
-
+    echo -e "Deduped: $ADBLOCK_FILE";
 }
 
 main;
