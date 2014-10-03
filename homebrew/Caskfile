@@ -21,3 +21,6 @@ cask install torbrowser
 
 cask install tunnelblick-beta
 cask install imageoptim
+cask install subler
+cask install sublercli
+cask install mactracker

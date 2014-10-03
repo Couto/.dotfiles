@@ -14,7 +14,7 @@
 'core':
   'themes': [
     'proton'
-    'seti-syntax'
+    'dracula-theme'
   ]
   'projectHome': '/Users/couto/Development/'
 'scope-inspector':

@@ -134,14 +134,34 @@ function list-blocked() {
     fi
 }
 
-function add-brew() {
+function brew-add() {
     local brewfile="$DOTFILES/homebrew/Brewfile";
 
     for package in "$@"; do
         echo "install $package" >> "$brewfile";
     done
     
-    brew bundle $DOTFILES/homebrew/Brewfile
+    brew bundle "$brewfile";
+}
+
+function cask-add() {
+    local brewfile="$DOTFILES/homebrew/Caskfile";
+
+    for package in "$@"; do
+        echo "cask install $package" >> "$brewfile";
+    done
+    
+    brew bundle "$brewfile";
+}
+
+function foundry-add() {
+    local brewfile="$DOTFILES/homebrew/Foundryfile";
+
+    for package in "$@"; do
+        echo "cask install $package" >> "$brewfile";
+    done
+    
+    brew bundle "$brewfile";
 }
 
 # Send Youtube videos to office's chromecast

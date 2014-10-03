@@ -11,3 +11,4 @@ dnsmasq/adblock.list
 
 vim/bundle/*
 config/configstore
+vim/.netrwhist
