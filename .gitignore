@@ -7,7 +7,7 @@ atom/*
 config/beets/*
 !config/beets/config.yaml
 
-dnsmasq/adblock.list
+dnsmasq/blocked_hosts.list
 
 vim/bundle/*
 config/configstore

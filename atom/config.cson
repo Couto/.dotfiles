@@ -1,5 +1,4 @@
 'editor':
-  'invisibles': {}
   'fontSize': 11
   'fontFamily': '"DejaVu Sans Mono"'
   'showIndentGuide': true
@@ -14,7 +13,7 @@
 'core':
   'themes': [
     'proton'
-    'dracula-theme'
+    'seti-syntax'
   ]
   'projectHome': '/Users/couto/Development/'
 'scope-inspector':

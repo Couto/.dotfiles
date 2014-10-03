@@ -1,5 +1,10 @@
 #!/bin/zsh
 
+if [ "$TERM" != "dumb" ]; then
+    export LS_OPTIONS='--color=auto'
+    #eval `dircolors ~/.dir_colors`
+fi
+
 # Alias
 alias gi='gist -c -p -P -s -t js'
 alias poopin='open /System/Library/Frameworks/ScreenSaver.framework/Versions/Current/Resources/ScreenSaverEngine.app/'
@@ -16,7 +21,7 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias dnsmasq-start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
 alias dnsmasq-stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
 
-alias l='ls -alLh'
+alias l='ls $LS_OPTIONS -lAhF'
 
 # prompt before overwriting file
 alias cp='cp -i'

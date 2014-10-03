@@ -1,17 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# Unofficial strict-mode for bash 
+# Unofficial strict-mode for bash
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
 IFS=$'\n\t'
 
-
 # Set default values
-DOTFILES_REPOSITORY="Couto/.dotfiles"
-DOTFILES_DIRECTORY=$HOME/_dotfiles
-
-
-set -e;
+DOTFILES_REPOSITORY="https://github.com/Couto/.dotfiles"
+DOTFILES_DIRECTORY=$HOME/.dotfiles
 
 # Colors
 red='\x1B[0;31m';
@@ -20,7 +16,6 @@ cyan='\x1B[0;36m';
 gray='\x1B[0;30m';
 NC='\x1B[0m';
 yellow='\x1B[0;33m'
-clear='\033[0K'
 
 # Unicode characters
 unicode_empty_circle=○;
@@ -52,24 +47,6 @@ success () {
     echo -e " ${green}${unicode_check_mark}${NC} $@";
 }
 
-# Line status indicators
-# These will always be replaced by the next line
-linfo () {
-    echo -ne "${clear}";
-    echo -ne " ${cyan}${unicode_empty_circle}${NC} $@\r";
-}
-
-lfail () {
-    echo -ne "${clear}";
-    echo -ne " ${red}${unicode_crossed_circle}${NC} $@\r"
-}
-
-lsuccess () {
-    echo -ne "${clear}";
-    echo -ne " ${green}${unicode_full_circle}${NC} $@\r";
-}
-
-
 prompt () {
     echo "$@";
     select yn in "Yes" "No"; do
@@ -87,12 +64,12 @@ ask () {
 
 ask_default () {
     local question="$1";
-    local default_val="$2";
+    local default_value="$2";
 
     answer=$(ask "$1 [$2]");
 
     if [ -z "$answer" ]; then
-        echo $default_val;
+        echo $default_value;
     else
         echo $answer;
     fi
@@ -107,130 +84,87 @@ git_clone () {
     fi
 
     git clone --quiet --depth 1 "$repository" "$destination";
-}
-
-github () {
-    local repository="$1";
-    local destination="$2";
-
-    linfo "Cloning $1";
-    git_clone "git@github.com:$repository.git" "$destination" || abort "Failed."
-    lsuccess "Cloned $repository to $destination;"
+    cd $destination;
+    git submodule update --init;
+    cd ..
 }
 
 is_mavericks () {
 
     if [[ $(uname -s) != "Darwin" ]]; then
-        return false;
+        return 1;
     fi
 
     local version=$(sw_vers -productVersion);
-    
+
     if [[ $version =~ ^[0-9]+\.([0-9]+) ]]; then
         local middle=${BASH_REMATCH[1]};
         if [ $middle -eq "9" ]; then
-            return true;
+            return 0;
         else
-            return false;
+            return 1;
         fi
     fi
 }
 
 has_command_line_tools () {
 
-    local dev_dir=$(/usr/bin/xcode-select -print-path 2>/dev/null);
-
-    if [ -z "$dev_dir" ]; then
-        return false;
+    if [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; then
+        return 1;
     else
-        return true;
+        return 0;
+    fi
+}
+
+install_command_line_tools () {
+    
+    info "Installing command line tools.";
+
+    if [ ! has_command_line_tools ]; then
+        info "A dialog to install command line tools will popup.
+
+   Please follow the GUI instructions or 
+   press ctrl+C to cancel the script."
+
+        xcode-select --install &> /dev/null
+
+        while [ ! has_command_line_tools ];
+        do
+            sleep 2;
+        done
+
     fi
 
+    success "Command line tools are installed."
 }
 
 install_homebrew () {
 
-    if [[ ! -f $(which brew) ]]; then
-        info "Installing homebrew, please follow the installer instructions:";
-        ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-    fi
+    if [[ ! -x $(which brew) ]]; then
+        info "Installing homebrew.";
 
-    cd $DOTFILES_DIRECTORY/homebrew
-
-    info "Installing brews, casks and fonts...";
-
-    local install=$(brew bundle Brewfile && brew bundle Caskfile && brew bundle Foundryfile);
-
-    if [[ ! $install ]]; then
-        prompt "Something failed. Would you like to try again?" && install_homebrew || abort "Error occurred while installing brews.";
+        printf '\n' | ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
+        # └─ simulate ENTER keypress
+        print_result $? "brew"
     else
-        success "homebrew and recipes installed successfully."
+
+        info "Update and clean up homebrew packages.";
+
+        brew update
+        brew upgrade
+        brew cleanup
     fi
+
 }
 
 main () {
-
-    info "Checking OS.";
-
-    # Ask the user if they want to continue
-    # even if the computer is not a Mac
-    # this is risky since I'm not testing on linux.
-    [[ $(uname -s) != "Darwin" ]] && (prompt "
-
-      This is not an OSX machine.
-      The following script was only tested on OSX Mavericks,
-      and is most likely to break on other systems.
-
-      Do you still want to proceed at your own risk?
-
-    " || exit);
-
-    info "Checking OS version.";
-
-    # Inform the user that although they are using OSX
-    # I only tested on mavericks
-    is_mavericks || (prompt "
-
-      Although this is an OSX machine, the following script
-      was only tested on Mavericks.
-
-      Do you still want to proceed at your own risk?
-
-    " || exit);
-
-    info "Check if Command Line Tools are installed.";
-
-    # Check if the command line tools are installed
-    # Try to install them, if not.
-    [[ ! has_command_line_tools ]] && (prompt "
-
-        You don't have the Command-Line tools installed.
-        Homebrew usually allows you to install Command-Line Tools,
-        and this script will install Homebrew, so you should be fine.
-
-        Do you want to proceed with the script?
-
-    " || exit);
-
-    install_homebrew
-
-    info "Collecting user information and preferences";
-
-    # Ask the user if they want to change some defaults
-    DOTFILES_DIRECTORY=$(ask_default "Select the destination directory" "$HOME/.dotfiles");
-    COMPUTER_NAME=$(ask_default "What's the computer name?" "$(scutil --get ComputerName)");
-    GIT_NAME=$(ask_default "What name do you want to use to sign your git commits?" "$(finger $(whoami) | awk -F: '{ print $3 }' | head -n1 | sed 's/^ //')");
-    GIT_EMAIL=$(ask "Which email do you want to use to sign your git commits?");
-
-    github "$DOTFILES_REPOSITORY" "$DOTFILES_DIRECTORY";
-
-    #install_rbenv
-    #install_pyenv
-    #install_nvm
-    #install_dnsmasq
-
-    # link $DOTFILES_DIRECTORY/**/*.symlink $HOME
+    
+    # Don't run if it's not Mavericks
+    [ ! is_mavericks ] && abort "Sorry but this was only tested on OSX Mavericks";
+    
+    install_command_line_tools;
+    install_homebrew;
 
 }
 
-main;
+main $@;

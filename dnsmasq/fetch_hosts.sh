@@ -1,12 +1,28 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Unofficial bash strict mode
 set -euo pipefail
 IFS=$'\n\t'
-# set -x
 
-tmp_file () {
-    local template="$(basename $0)";
+
+# enable bash debug mode
+# if the script was called with '--debug'
+enable_debug () {
+    local args=$@;
+    local e;
+
+    for e in ${args[@]}; 
+    do
+        if [[ "$e" == "--debug" ]]; then
+            set -x
+        fi
+    done
+
+}
+
+
+create_tmp_file () {
+    local template="$(basename $0).XXXXXXXX";
     mktemp -t "$template";
 }
 
@@ -24,17 +40,30 @@ clean_file () {
 fetch_host () {
     local host="$1";
     local output_file="$2";
-    local tmp="$(tmp_file)";
+    local tmp_file="$(create_tmp_file)";
 
-    download_file "$host" "$tmp";
-    clean_file "$tmp" "$output_file"
+    download_file "$host" "$tmp_file";
+    clean_file "$tmp_file" "$output_file"
 
     echo -e "Fetched: $host";
 }
 
-main () { 
-    local ADBLOCK_FILE="adblock.list";
-    local TMP_FILE=$(tmp_file);
+restart_dnsmasq () {
+    local restart_script="$DOTFILES/dnsmasq/restart_dnsmasq.sh";
+    
+    if [ -f "$restart_script" ]; then
+        bash "$restart_script";
+    fi
+
+}
+
+
+main () {
+    
+    enable_debug "$@";
+
+    local ADBLOCK_FILE="blocked_hosts.list";
+    local TMP_FILE=$(create_tmp_file);
     local HOSTS_FILES=(
         "http://sysctl.org/cameleon/hosts"
         "https://jansal.googlecode.com/svn/trunk/adblock/hosts"
@@ -53,6 +82,10 @@ main () {
 
     tr '[A-Z]' '[a-z]' < "$TMP_FILE" | sort -f | uniq > $ADBLOCK_FILE;
     echo -e "Deduped: $ADBLOCK_FILE";
+    
+    echo -e "Attempting to restart dnsmasq";
+    restart_dnsmasq;
+
 }
 
-main;
+main "$@";
