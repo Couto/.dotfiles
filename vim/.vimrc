@@ -33,6 +33,8 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -71,3 +73,4 @@ highlight GitGutterAdd ctermbg=none
 highlight GitGutterChange ctermbg=none
 highlight GitGutterDelete ctermbg=none
 highlight GitGutterChangeDelete ctermbg=none
+
