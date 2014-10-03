@@ -1,6 +1,8 @@
 install caskroom/cask/brew-cask
 tap caskroom/versions
 
+cask update
+
 cask install iterm2
 cask install atom
 cask install slack
