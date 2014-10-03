@@ -3,7 +3,7 @@
 # Alias
 alias gi='gist -c -p -P -s -t js'
 alias poopin='open /System/Library/Frameworks/ScreenSaver.framework/Versions/Current/Resources/ScreenSaverEngine.app/'
-alias fuck='sudo'
+alias fuck='sudo !!'
 alias zshrc='source ~/.zshrc'
 
 # Network
@@ -16,7 +16,7 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 alias dnsmasq-start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
 alias dnsmasq-stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
 
-alias l='ls -lahG'
+alias l='ls -alLh'
 
 # prompt before overwriting file
 alias cp='cp -i'

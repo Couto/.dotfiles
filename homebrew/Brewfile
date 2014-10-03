@@ -1,6 +1,17 @@
+update
+upgrade
+
+install coreutils
+install moreutils
+install findutils
+install gnu-sed --default-names
+
 install zsh
 install tmux reattach-to-user-namespace
 install htop-osx
+
+install gpg
+install gpg2
 
 install nvm
 install rbenv ruby-build
@@ -29,5 +40,4 @@ install sshfs
 
 install chromaprint
 install archey
-install gpg
-install gpg2
+

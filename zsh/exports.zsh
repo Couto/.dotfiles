@@ -1,7 +1,10 @@
 #!/bin/zsh
 
 # Path
-export PATH=$DOTFILES/bin:/usr/local/bin:/usr/local/sbin:$PATH;
+export PATH=$DOTFILES/bin:$(brew --prefix)/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH;
+
+# Manpages
+export MANPATH=$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH;
 
 # Fix locales
 export LANG="en_US.UTF-8";
