@@ -23,7 +23,7 @@ Installation
 If you trust me, open your terminal and paste:
 
 ```shell
-bash <(curl -fsS https://raw.githubusercontent.com/Couto/.dotfiles/master/bootstrap)
+curl -fsS https://raw.githubusercontent.com/Couto/.dotfiles/master/bootstrap | bash
 ```
 
 
@@ -31,7 +31,8 @@ TODO
 ====
 
 - [x] Clone dotfiles
-- [ ] Install homebrew
+- [x] Install Command Line Tools
+- [x] Install homebrew
 - [ ] Install brew-cask
 - [ ] Install brew/brew cask applications
 - [ ] Install brew-fonts applications
