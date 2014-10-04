@@ -118,30 +118,29 @@ has_command_line_tools () {
 }
 
 has_homebrew () {
+    local brew_binary=$(which brew);
 
-    if [[ ! -x $(which brew) ]]; then
-        return 1;
-    else
+    if [[ -n "$brew_binary" && -e "$brew_binary" ]]; then
         return 0;
+    else
+        return 1;
     fi
 }
 
 install_command_line_tools () {
 
-    info $(cat <EOF
-
-    Installing command line tools."
+    info "Installing command line tools.
 
     A dialog to install command line tools will popup.
     Please follow the GUI instructions or
-    press ctrl+C to cancel the script."
-EOF);
+    press ctrl+C to cancel the script.
+";
 
     xcode-select --install &> /dev/null
 
-    while [ ! has_command_line_tools ];
+    while ! has_command_line_tools;
     do
-        sleep 2;
+        sleep 5;
     done
 
     success "Command line tools are installed."
@@ -150,9 +149,8 @@ EOF);
 install_homebrew () {
     info "Installing homebrew.";
 
-    printf '\n' | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master)"
+    printf '\n' | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     # └─ simulate ENTER keypress
-    print_result $? "brew"
 
     success "Installed homebrew";
 }
@@ -170,11 +168,11 @@ update_homebrew () {
 
 main () {
 
-    [ ! is_mavericks ] && abort "Sorry but this was only tested on OSX Mavericks";
-    [ ! has_command_line_tools ] && install_command_line_tools;
-    [ ! has_homebrew ] && install_homebrew;
+    if ! is_mavericks; then abort "Sorry but this was only tested on OSX Mavericks"; fi
+    if ! has_command_line_tools; then install_command_line_tools; fi
+    if ! has_homebrew; then install_homebrew; fi
 
-    update_homebrew;
+    # update_homebrew;
 
 }
 
