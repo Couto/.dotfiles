@@ -108,8 +108,18 @@ is_mavericks () {
 }
 
 has_command_line_tools () {
+    local xcode_file=$(xcode-select -p 2>/dev/null);
 
-    if [ $(xcode-select -p &> /dev/null; printf $?) -ne 0 ]; then
+    if [[ -n "$xcode_file" && -e "$xcode_file" ]]; then
+        return 0;
+    else
+        return 1;
+    fi
+}
+
+has_homebrew () {
+
+    if [[ ! -x $(which brew) ]]; then
         return 1;
     else
         return 0;
@@ -117,53 +127,54 @@ has_command_line_tools () {
 }
 
 install_command_line_tools () {
-    
-    info "Installing command line tools.";
 
-    if [ ! has_command_line_tools ]; then
-        info "A dialog to install command line tools will popup.
+    info $(cat <EOF
 
-   Please follow the GUI instructions or 
-   press ctrl+C to cancel the script."
+    Installing command line tools."
 
-        xcode-select --install &> /dev/null
+    A dialog to install command line tools will popup.
+    Please follow the GUI instructions or
+    press ctrl+C to cancel the script."
+EOF);
 
-        while [ ! has_command_line_tools ];
-        do
-            sleep 2;
-        done
+    xcode-select --install &> /dev/null
 
-    fi
+    while [ ! has_command_line_tools ];
+    do
+        sleep 2;
+    done
 
     success "Command line tools are installed."
 }
 
 install_homebrew () {
+    info "Installing homebrew.";
 
-    if [[ ! -x $(which brew) ]]; then
-        info "Installing homebrew.";
+    printf '\n' | ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master)"
+    # └─ simulate ENTER keypress
+    print_result $? "brew"
 
-        printf '\n' | ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)"
-        # └─ simulate ENTER keypress
-        print_result $? "brew"
-    else
+    success "Installed homebrew";
+}
 
-        info "Update and clean up homebrew packages.";
+update_homebrew () {
 
-        brew update
-        brew upgrade
-        brew cleanup
-    fi
+    info "Updating homebrew repositories and packages."
 
+    brew update;
+    brew upgrade;
+    brew cleanup;
+
+    success "Updated homebrew and packages".
 }
 
 main () {
-    
-    # Don't run if it's not Mavericks
+
     [ ! is_mavericks ] && abort "Sorry but this was only tested on OSX Mavericks";
-    
-    install_command_line_tools;
-    install_homebrew;
+    [ ! has_command_line_tools ] && install_command_line_tools;
+    [ ! has_homebrew ] && install_homebrew;
+
+    update_homebrew;
 
 }
 
