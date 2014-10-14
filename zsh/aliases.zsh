@@ -13,6 +13,7 @@ alias zshrc='source ~/.zshrc'
 
 # Network
 alias wanip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias geoip='curl -fsS http://ip-api.com/json | python -mjson.tool | pygmentize -l json'
 alias flush='dscacheutil -flushcache && sudo killall -HUP mDNSResponder'
 alias whoiss='whois -h whois-servers.net'
 alias server='python -m SimpleHTTPServer'
