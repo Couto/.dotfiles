@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# Install dependencies and clone my .dotfiles
+
 # Unofficial strict-mode for bash
 # http://redsymbol.net/articles/unofficial-bash-strict-mode/
 set -euo pipefail
@@ -7,15 +9,44 @@ IFS=$'\n\t'
 
 # Set default values
 DOTFILES_REPOSITORY="https://github.com/Couto/.dotfiles"
-DOTFILES_DIRECTORY=$HOME/.dotfiles
+DOTFILES_DIRECTORY=${HOME}/.dotfiles
+
+declare -a SYMLINK_FILES=(
+    "${DOTFILES_DIRECTORY}/atom/           : ${HOME}/.atom"
+    "${DOTFILES_DIRECTORY}/zsh/.zshrc      : ${HOME}/.zshrc"
+    "${DOTFILES_DIRECTORY}/vim/            : ${HOME}/.vim"
+    "${DOTFILES_DIRECTORY}/vim/.vimrc      : ${HOME}/.vimrc"
+    "${DOTFILES_DIRECTORY}/tmux/.tmux.conf : ${HOME}/.tmux.conf"
+    "${DOTFILES_DIRECTORY}/git/.gitconfig  : ${HOME}/.gitconfig"
+    "${DOTFILES_DIRECTORY}/git/.gitignore  : ${HOME}/.gitignore"
+);
+
+#forEach () {
+#
+#    local array="$1";
+#    local cmd="$2";
+#    local counter=0;
+
+
+#    for item in ${array[@]};
+#    do
+#        ${cmd} "${item}" "${counter}" "${array}";
+#        (( counter++ ));
+#    done
+#}
+
+
+#forEach "${SYMLINK_FILES}" "echo";
+
+#exit 0;
 
 # Colors
+nc='\x1B[0m';
+gray='\x1B[0;30m';
 red='\x1B[0;31m';
 green='\x1B[0;32m';
-cyan='\x1B[0;36m';
-gray='\x1B[0;30m';
-NC='\x1B[0m';
 yellow='\x1B[0;33m'
+cyan='\x1B[0;36m';
 
 # Unicode characters
 unicode_empty_circle=○;
@@ -27,30 +58,35 @@ unicode_right_arrow=➔;
 
 
 # Status indicators
-abort () {
-    echo "";
-    echo -e " ${red}${unicode_x_mark}${NC} $@";
-    echo "";
-    sleep 1;
-    exit 1;
+msg () {
+    local symbol=$1;
+
+    shift
+    echo " ${symbol} [$(date +'%Y-%m-%dT%H:%M:%S%z')] $@"
 }
 
 warn () {
-    echo -e " ${yellow}⚠${NC} $@";
+    msg "${yellow}${unicode_full_circle}${nc}" $@;
 }
 
 info () {
-    echo -e " ${cyan}${unicode_right_arrow}${NC} $@";
+    msg "${cyan}${unicode_right_arrow}${nc}" $@;
 }
 
 success () {
-    echo -e " ${green}${unicode_check_mark}${NC} $@";
+    msg "${green}${unicode_check_mark}${nc}" $@;
 }
+
+error () {
+    msg "${red}${unicode_x_mark}${nc}" $@ >&2;
+    exit 1;
+}
+
 
 prompt () {
     echo "$@";
     select yn in "Yes" "No"; do
-        case $yn in
+        case ${yn} in
             Yes ) return 0; exit;;
             No ) return 1; exit;;
         esac
@@ -59,19 +95,18 @@ prompt () {
 
 ask () {
     read  -p "$@ : " answer;
-    echo $answer;
+    echo ${answer};
 }
 
 ask_default () {
     local question="$1";
     local default_value="$2";
+    local answer=$(ask "$1 [$2]");
 
-    answer=$(ask "$1 [$2]");
-
-    if [ -z "$answer" ]; then
-        echo $default_value;
+    if [ -z "${answer}" ]; then
+        echo ${default_value};
     else
-        echo $answer;
+        echo ${answer};
     fi
 }
 
@@ -79,12 +114,12 @@ git_clone () {
     local repository="$1";
     local destination="$2";
 
-    if [[ -d "$destination" ]]; then
-		abort "Directory $destination already exists, aborting..."
+    if [[ -d "${destination}" ]]; then
+		abort "Directory ${destination} already exists, aborting..."
     fi
 
-    git clone --quiet --depth 1 "$repository" "$destination";
-    cd $destination;
+    git clone --quiet --depth 1 "${repository}" "${destination}";
+    cd ${destination};
     git submodule update --init;
     cd ..
 }
@@ -97,9 +132,10 @@ is_mavericks () {
 
     local version=$(sw_vers -productVersion);
 
-    if [[ $version =~ ^[0-9]+\.([0-9]+) ]]; then
+    if [[ ${version} =~ ^[0-9]+\.([0-9]+) ]]; then
         local middle=${BASH_REMATCH[1]};
-        if [ $middle -eq "9" ]; then
+
+        if [ ${middle} -eq "9" ]; then
             return 0;
         else
             return 1;
@@ -110,7 +146,7 @@ is_mavericks () {
 has_command_line_tools () {
     local xcode_file=$(xcode-select -p 2>/dev/null);
 
-    if [[ -n "$xcode_file" && -e "$xcode_file" ]]; then
+    if [[ -n "${xcode_file}" && -e "${xcode_file}" ]]; then
         return 0;
     else
         return 1;
@@ -120,7 +156,7 @@ has_command_line_tools () {
 has_homebrew () {
     local brew_binary=$(which brew);
 
-    if [[ -n "$brew_binary" && -e "$brew_binary" ]]; then
+    if [[ -n "${brew_binary}" && -e "${brew_binary}" ]]; then
         return 0;
     else
         return 1;
@@ -133,8 +169,7 @@ install_command_line_tools () {
 
     A dialog to install command line tools will popup.
     Please follow the GUI instructions or
-    press ctrl+C to cancel the script.
-";
+    press ctrl+C to cancel the script.";
 
     xcode-select --install &> /dev/null
 

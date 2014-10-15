@@ -28,3 +28,6 @@
   'hideVcsIgnoredFiles': true
 'linter':
   'lintOnChange': false
+'travis-ci-status':
+  'useTravisCiPro': true
+  'personalAccessToken': '989b127f673cc2917e7909b94f529b5467613a17'
