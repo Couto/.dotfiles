@@ -3,8 +3,8 @@
   'showIndentGuide': true
   'showInvisibles': true
   'tabLength': 4
-  'invisibles': {}
   'fontSize': 11
+  'invisibles': {}
 'exception-reporting':
   'userId': '6292fc80-47fb-2982-dc54-d366a114cf85'
 'welcome':
@@ -14,7 +14,7 @@
 'core':
   'themes': [
     'spacegray-dark-ui'
-    'spacegray-dark-syntax'
+    'base16-ocean-dark-spacegray'
   ]
   'projectHome': '/Users/couto/Development/'
 'scope-inspector':

@@ -25,3 +25,4 @@ cask install subler
 cask install sublercli
 cask install mactracker
 cask install Opera
+cask install the-unarchiver
