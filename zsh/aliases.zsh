@@ -21,6 +21,7 @@ alias httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET
 
 alias dnsmasq-start='sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
 alias dnsmasq-stop='sudo launchctl unload /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist'
+alias dnsmasq-reload='dnsmasq-stop && dnsmasq-start'
 
 alias l='ls $LS_OPTIONS -lAhF'
 
