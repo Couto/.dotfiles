@@ -44,3 +44,4 @@ TODO
 - [ ] Install nodejs global packages
 - [ ] Install python global packages
 - [ ] Install ruby global packages
+- [ ] Apply [fix-macosx](https://fix-macosx.com/) if needed.
