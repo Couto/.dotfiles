@@ -643,6 +643,13 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###############################################################################
+# Twitter for Mac                                                             #
+###############################################################################
+
+# Use circular avatars instead of square ones
+defaults write com.twitter.twitter-mac CircularAvatars -bool true
+
+###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
 
