@@ -6,6 +6,9 @@
     default = simple
 
 [alias]
+    # An alias to list all alias... how meta!
+    aliaslist =  config --get-regexp '(alias.*)'
+
     serve = daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
     st = status -sb
 

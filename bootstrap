@@ -41,20 +41,20 @@ declare -a SYMLINK_FILES=(
 #exit 0;
 
 # Colors
-nc='\x1B[0m';
-gray='\x1B[0;30m';
-red='\x1B[0;31m';
-green='\x1B[0;32m';
-yellow='\x1B[0;33m'
-cyan='\x1B[0;36m';
+readonly nc='\x1B[0m';
+readonly gray='\x1B[0;30m';
+readonly red='\x1B[0;31m';
+readonly green='\x1B[0;32m';
+readonly yellow='\x1B[0;33m'
+readonly cyan='\x1B[0;36m';
 
 # Unicode characters
-unicode_empty_circle=○;
-unicode_full_circle=●;
-unicode_crossed_circle=⊘;
-unicode_x_mark=✖;
-unicode_check_mark=✔;
-unicode_right_arrow=➔;
+readonly unicode_empty_circle=○;
+readonly unicode_full_circle=●;
+readonly unicode_crossed_circle=⊘;
+readonly unicode_x_mark=✖;
+readonly unicode_check_mark=✔;
+readonly unicode_right_arrow=➔;
 
 
 # Status indicators

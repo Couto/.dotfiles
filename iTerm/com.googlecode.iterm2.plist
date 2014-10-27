@@ -13080,6 +13080,8 @@
 	<false/>
 	<key>NSNavLastRootDirectory</key>
 	<string>~/.dotfiles/iTerm</string>
+	<key>NSNavPanelExpandedSizeForOpenMode</key>
+	<string>{712, 817}</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -13104,15 +13106,11 @@
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1087 259 445 270 0 0 1920 1058 </string>
+	<string>2049 88 445 270 0 0 2560 1418 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>452 508 605 485 0 0 1920 1080 </string>
+	<string>703 389 924 485 0 0 2560 1418 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>6 666 570 351 0 0 1920 1058 </string>
-	<key>NSWindow Frame iTerm Window 1</key>
-	<string>473 286 899 650 0 0 1920 1058 </string>
-	<key>NSWindow Frame iTerm Window 2</key>
-	<string>296 670 585 351 0 0 1920 1058 </string>
+	<string>573 184 1585 1183 0 0 2560 1418 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -13903,7 +13901,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-10-02T08:48:02Z</date>
+	<date>2014-10-26T19:41:32Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
 	<key>ShowBookmarkName</key>
@@ -13934,6 +13932,10 @@
 	<true/>
 	<key>UseLionStyleFullscreen</key>
 	<true/>
+	<key>WebKitDefaultFontSize</key>
+	<integer>11</integer>
+	<key>WebKitStandardFont</key>
+	<string>.Lucida Grande UI</string>
 	<key>WindowNumber</key>
 	<true/>
 	<key>WindowStyle</key>

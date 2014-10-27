@@ -32,5 +32,4 @@
   'linter-scss-lint':
     'scssLintExecutablePath': '/Users/couto/.rbenv/shims'
   'travis-ci-status':
-    'useTravisCiPro': true
-    'personalAccessToken': ''
+    'useTravisCiPro': false
