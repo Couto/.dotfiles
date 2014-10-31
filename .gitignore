@@ -12,3 +12,5 @@ dnsmasq/blocked_hosts.list
 vim/bundle/*
 config/configstore
 vim/.netrwhist
+gnupg/*
+!gnupg/gpg.conf
