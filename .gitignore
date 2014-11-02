@@ -14,3 +14,4 @@ config/configstore
 vim/.netrwhist
 gnupg/*
 !gnupg/gpg.conf
+config/keybase
