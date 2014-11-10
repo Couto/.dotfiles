@@ -2,6 +2,5 @@ tap caskroom/fonts
 
 cask update
 
-cask install font-droid-sans-mono-for-powerline
-cask install font-dejavu-sans font-dejavu-sans-mono-for-powerline
-
+cask install font-dejavu-sans
+cask install font-dejavu-sans-mono-for-powerline

@@ -10,6 +10,9 @@ export MANPATH=$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH;
 export LANG="en_US.UTF-8";
 export LC_ALL="en_US.UTF-8";
 
+# Antigen
+export ADOTDIR=$DOTFILES/.antigen
+
 # Editors
 export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest/"
 export ATOM="$ATOM_PATH/Atom.app"

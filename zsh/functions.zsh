@@ -41,7 +41,7 @@ is-up () {
 }
 
 # Create a new directory and enter it
-function mkd() {
+function md() {
     mkdir -p "$@" && cd "$@";
 }
 
@@ -53,7 +53,7 @@ function cdf() { # short for `cdfinder`
 # Create a .tar.gz archive, using `zopfli`, `pigz` or `gzip` for compression
 function targz() {
     local tmpFile="${@%/}.tar";
-    
+
     tar -cvf "${tmpFile}" --exclude=".DS_Store" "${@}" || return 1;
 
     size=$(
@@ -140,7 +140,7 @@ function brew-add() {
     for package in "$@"; do
         echo "install $package" >> "$brewfile";
     done
-    
+
     brew bundle "$brewfile";
 }
 
@@ -150,7 +150,7 @@ function cask-add() {
     for package in "$@"; do
         echo "cask install $package" >> "$brewfile";
     done
-    
+
     brew bundle "$brewfile";
 }
 
@@ -160,23 +160,6 @@ function foundry-add() {
     for package in "$@"; do
         echo "cask install $package" >> "$brewfile";
     done
-    
+
     brew bundle "$brewfile";
-}
-
-# Send Youtube videos to office's chromecast
-function ccyt() {
-    curl -H "Content-Type: application/json" \
-        http://192.168.2.148:8008/apps/YouTube \
-        -X POST \
-        -d "v=$1";
-}
-
-# Search yt videos
-function ytsearch() {
-    local arguments=$(echo "$@" | tr ' ' '+');
-
-    curl -s https://www.youtube.com/results\?search_query\="$arguments" | \
-        grep -o 'watch?v=[^"]*"[^>]*title="[^"]*' | \
-        sed -e 's/^watch\?v=\([^"]*\)".*title="\(.*\)/\1 \2/g'
 }

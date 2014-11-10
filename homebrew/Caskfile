@@ -13,8 +13,9 @@ cask install vagrant
 cask install google-chrome-canary
 cask install google-chrome-dev
 cask install firefox
-cask install firefox-aurora 
+cask install firefox-aurora
 cask install firefox-nightly
+cask install opera
 cask install opera-next
 cask install webkit-nightly
 cask install torbrowser
@@ -24,6 +25,6 @@ cask install imageoptim
 cask install subler
 cask install sublercli
 cask install mactracker
-cask install Opera
+
 cask install the-unarchiver
 cask install handbrake
