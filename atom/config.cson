@@ -31,5 +31,5 @@
     'lintOnChange': false
   'linter-scss-lint':
     'scssLintExecutablePath': '/Users/couto/.rbenv/shims'
-  'travis-ci-status':
-    'useTravisCiPro': false
+  'linter-jscs':
+    'preset': 'airbnb'

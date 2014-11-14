@@ -163,3 +163,7 @@ function foundry-add() {
 
     brew bundle "$brewfile";
 }
+
+function git-repository-name() {
+    git remote -v | grep -o ':.*/.*.git' | grep -o '[a-zA-Z0-9_-]*/[a-zA-Z0-9_-]*' | uniq
+}
