@@ -38,7 +38,7 @@ alias ....='cd ../../../'
 alias .....='cd ../../../../'
 
 # Bitbucket issues
-alias bbi='bbi -r $(git-repository-name)'
+alias bbi='bbi -r $(git-repository-shorturl)'
 
 # Utilities
 alias trim="sed -e 's/^[[:space:]]*//g' -e 's/[[:space:]]*\$//g'"; # echo " some string with spaces " | trim

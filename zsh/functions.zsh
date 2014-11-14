@@ -164,6 +164,10 @@ function foundry-add() {
     brew bundle "$brewfile";
 }
 
-function git-repository-name() {
-    git remote -v | grep -o ':.*/.*.git' | grep -o '[a-zA-Z0-9_-]*/[a-zA-Z0-9_-]*' | uniq
+function git-repository-url() {
+    git --git-dir=${PWD}/.git config --get remote.origin.url
+}
+
+function git-repository-shorturl() {
+    git-repository-url | grep -o ':.*/.*.git' | grep -o '[a-zA-Z0-9_-]*/[a-zA-Z0-9_-]*' | uniq
 }
