@@ -39,5 +39,6 @@ if ! { [ "$TERM" = "screen" ] || [ -n "$TMUX" ]; } then
     archey -c
 fi
 
+consolidate-path
 end_time=$(date +%s)
 echo .zshrc: $((end_time - start_time)) seconds

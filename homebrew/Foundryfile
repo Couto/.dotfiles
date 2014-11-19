@@ -1,6 +1,2 @@
-tap caskroom/fonts
-
-cask update
-
-cask install font-dejavu-sans
-cask install font-dejavu-sans-mono-for-powerline
+font-dejavu-sans
+font-dejavu-sans-mono-for-powerline

@@ -1,30 +1,17 @@
-install caskroom/cask/brew-cask
-tap caskroom/versions
-
-cask update
-
-cask install iterm2
-cask install atom
-cask install slack
-
-cask install virtualbox
-cask install vagrant
-
-cask install google-chrome-canary
-cask install google-chrome-dev
-cask install firefox
-cask install firefox-aurora
-cask install firefox-nightly
-cask install opera
-cask install opera-next
-cask install webkit-nightly
-cask install torbrowser
-
-cask install tunnelblick-beta
-cask install imageoptim
-cask install subler
-cask install sublercli
-cask install mactracker
-
-cask install the-unarchiver
-cask install handbrake
+iterm2
+atom
+slack
+virtualbox
+vagrant
+google-chrome-canary
+google-chrome-dev
+firefox
+firefoxdeveloperedition
+opera
+torbrowser
+tunnelblick-beta
+imageoptim
+subler
+sublercli
+the-unarchiver
+handbrake

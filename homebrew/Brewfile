@@ -1,45 +1,28 @@
-update
-upgrade
-
-install coreutils
-install moreutils
-install findutils
-install gnu-sed --default-names
-
-install zsh
-install tmux reattach-to-user-namespace
-install htop-osx
-
-install gpg
-install gpg2
-
-install nvm
-install rbenv ruby-build
-install pyenv
-
-install dnsmasq
-install nmap
-install ettercap
-install hydra
-install httpie
-install stunnel
-
-install git
-install git-extras
-install git-flow
-install gist
-
-install shellcheck
-install ansible
-
-tap theory/sqitch
-install sqitch_pg
-
-install apg
-install sshfs
-
-install chromaprint
-install archey
-
-install aacgain
-install phantomjs
+coreutils
+moreutils
+findutils
+htop-osx
+z
+zsh
+tmux
+reattach-to-user-namespace
+nvm
+pyenv
+rbenv
+ruby-build
+dnsmasq
+nmap
+ettercap
+hydra
+stunnel
+gpg
+git
+gist
+git-extras
+git-flow
+shellcheck
+ansible
+phantomjs
+apg
+chromaprint
+archey
