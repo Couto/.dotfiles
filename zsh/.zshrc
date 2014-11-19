@@ -5,7 +5,7 @@ export HOME=/Users/couto;
 export DOTFILES=${HOME}/.dotfiles
 
 # Get aliases, functions and so on
-for file in ${DOTFILES}/zsh/{aliases,exports,functions,key-bindings}.zsh; do
+for file in ${DOTFILES}/zsh/{exports,aliases,functions,key-bindings}.zsh; do
     source $file;
 done
 
@@ -39,6 +39,5 @@ if ! { [ "$TERM" = "screen" ] || [ -n "$TMUX" ]; } then
     archey -c
 fi
 
-consolidate-path
 end_time=$(date +%s)
 echo .zshrc: $((end_time - start_time)) seconds

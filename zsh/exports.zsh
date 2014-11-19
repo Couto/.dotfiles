@@ -1,7 +1,14 @@
 #!/bin/zsh
 
 # Path
-export PATH=$DOTFILES/bin:$(brew --prefix)/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/local/sbin:$PATH;
+typeset -U path
+path=(
+    $DOTFILES/bin
+    $(brew --prefix)/opt/coreutils/libexec/gnubin
+    /usr/local/bin
+    /usr/local/sbin
+    $path
+);
 
 # Manpages
 export MANPATH=$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH;
@@ -30,3 +37,7 @@ export MANPAGER="less -X";
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
+
+if [[ -n ${TMUX}  ]]; then
+    consolidate-path
+fi

@@ -1,11 +1,17 @@
-#!/usr/bin/env zsh
+#!/bin/bash
 
-# Remove duplicate entries from PATH
-typeset -a paths result
-paths=($path)
-while [[ ${#paths} -gt 0 ]]; do
-    p="${paths[1]}"
-    shift paths
-    [[ -z ${paths[(r)$p]} ]] && result+="$p"
-done
-echo ${(j+:+)result}
+if [ -n "$PATH" ]; then
+  old_PATH=$PATH:; PATH=
+  while [ -n "$old_PATH" ]; do
+    x=${old_PATH%%:*}       # the first remaining entry
+    case $PATH: in
+      *:"$x":*) ;;         # already there
+      *) PATH=$PATH:$x;;    # not there yet
+    esac
+    old_PATH=${old_PATH#*:}
+  done
+  PATH=${PATH#:}
+  unset old_PATH x
+fi
+
+
