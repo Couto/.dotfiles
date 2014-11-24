@@ -28,6 +28,3 @@ done < "${CASKFILE}"
 while read font; do
   brew cask install "${font}";
 done < "${FOUNDRYFILE}"
-
-
-
