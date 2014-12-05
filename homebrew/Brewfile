@@ -27,3 +27,5 @@ apg
 chromaprint
 archey
 boot2docker
+mitmproxy
+httpie
