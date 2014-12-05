@@ -10,7 +10,7 @@
     # An alias to list all alias... how meta!
     aliaslist =  config --get-regexp '(alias.*)'
 
-    serve = daemon --reuseaddr --verbose  --base-path=. --export-all ./.git
+    serve = daemon --reuseaddr --base-path=. --export-all --verbose --enable=receive-pack
     st = status -sb
 
     lg = log --graph --pretty=format:'%Cred%h%Creset (%G?) -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative

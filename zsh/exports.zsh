@@ -29,6 +29,10 @@ export VISUAL="$(which vim)"
 # Configurations
 export NVM_DIR=$HOME/.nvm
 
+export DOCKER_HOST=tcp://192.168.59.103:2376
+export DOCKER_CERT_PATH=/Users/couto/.boot2docker/certs/boot2docker-vm
+export DOCKER_TLS_VERIFY=1
+
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="${yellow}";
 

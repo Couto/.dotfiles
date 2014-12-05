@@ -4,8 +4,8 @@
     'showIndentGuide': true
     'showInvisibles': true
     'tabLength': 4
-    'fontSize': 12
-    'invisibles': {}
+    'fontSize': 13
+    'useShadowDOM': true
   'exception-reporting':
     'userId': '6292fc80-47fb-2982-dc54-d366a114cf85'
   'welcome':
@@ -14,8 +14,8 @@
     'userId': '811e2465c893d630398810e72c2c57633b9d911d'
   'core':
     'themes': [
-      'yosemite-unity-ui'
-      'fizzy'
+      'seti-ui'
+      'seti-syntax'
     ]
     'projectHome': '/Users/couto/Development/'
     'excludeVcsIgnoredPaths': false
@@ -28,6 +28,7 @@
     'newGistsDefaultToPrivate': true
   'linter':
     'lintOnChange': false
+    'showErrorInline': true
   'linter-scss-lint':
     'scssLintExecutablePath': '/Users/couto/.rbenv/shims'
   'linter-jscs':
