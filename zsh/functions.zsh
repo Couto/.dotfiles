@@ -138,30 +138,30 @@ function brew-add() {
     local brewfile="$DOTFILES/homebrew/Brewfile";
 
     for package in "$@"; do
-        echo "install $package" >> "$brewfile";
+        echo "${package}" >> "${brewfile}";
     done
 
-    brew bundle "$brewfile";
+    brew install "${package}";
 }
 
 function cask-add() {
     local brewfile="$DOTFILES/homebrew/Caskfile";
 
     for package in "$@"; do
-        echo "cask install $package" >> "$brewfile";
+        echo "${package}" >> "${brewfile}";
     done
 
-    brew bundle "$brewfile";
+    brew cask install "${package}";
 }
 
 function foundry-add() {
     local brewfile="$DOTFILES/homebrew/Foundryfile";
-
+ 
     for package in "$@"; do
-        echo "cask install $package" >> "$brewfile";
+        echo "${package}" >> "$brewfile";
     done
 
-    brew bundle "$brewfile";
+    brew cask install "${package}";
 }
 
 function git-repository-url() {
