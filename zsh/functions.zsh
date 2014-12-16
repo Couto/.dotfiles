@@ -171,3 +171,15 @@ function git-repository-url() {
 function git-repository-shorturl() {
     git-repository-url | grep -o ':.*/.*.git' | grep -o '[a-zA-Z0-9_-]*/[a-zA-Z0-9_-]*' | uniq
 }
+
+# List processes listening on the five port
+# Empty to list them all
+list-processes-on-port() {
+    local port=$1;
+    
+    if [ -z "$port" ]; then
+        sudo lsof -n -i;
+    else
+        sudo lsof -n -i:$port;
+    fi
+}

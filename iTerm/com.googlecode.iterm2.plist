@@ -13079,9 +13079,7 @@
 	<key>MaxVertically</key>
 	<false/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/.dotfiles/iTerm</string>
-	<key>NSNavPanelExpandedSizeForOpenMode</key>
-	<string>{712, 817}</string>
+	<string>~/Documents</string>
 	<key>NSQuotedKeystrokeBinding</key>
 	<string></string>
 	<key>NSRepeatCountBinding</key>
@@ -13099,18 +13097,26 @@
 		BAtzdHJlYW10eXBlZIHoA4QBQISEhAhOU1N0cmluZwGEhAhOU09iamVjdACF
 		hAErATGG
 		</data>
-		<string>302</string>
+		<string>322</string>
 	</array>
 	<key>NSTableView Hidden Columns KeyBingingTable</key>
 	<array/>
 	<key>NSTableView Sort Ordering KeyBingingTable</key>
 	<array/>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>2049 88 445 270 0 0 2560 1418 </string>
+	<string>1087 259 445 270 0 0 1920 1058 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>703 389 924 485 0 0 2560 1418 </string>
+	<string>335 411 796 474 0 0 1920 1058 </string>
+	<key>NSWindow Frame SUStatusFrame</key>
+	<string>388 580 400 129 0 0 1920 1080 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>650 516 620 392 0 0 1920 1080 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>573 184 1585 1183 0 0 2560 1418 </string>
+	<string>101 552 570 352 0 0 1920 1058 </string>
+	<key>NSWindow Frame iTerm Window 1</key>
+	<string>8 492 570 352 0 0 1920 1080 </string>
+	<key>NSWindow Frame iTerm Window 2</key>
+	<string>296 670 585 351 0 0 1920 1058 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -13839,6 +13845,8 @@
 			<string>/Users/couto</string>
 		</dict>
 	</array>
+	<key>NoSyncSuppressAnnyoingBellOffer</key>
+	<true/>
 	<key>OnlyWhenMoreTabs</key>
 	<true/>
 	<key>OpenArrangementAtStartup</key>
@@ -13896,14 +13904,18 @@
 	<integer>3</integer>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
+	<key>SUFeedAlternateAppNameKey</key>
+	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>http://iterm2.com/appcasts/testing.xml</string>
+	<string>https://iterm2.com/appcasts/nightly.xml</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2014-10-26T19:41:32Z</date>
+	<date>2014-12-11T09:53:06Z</date>
 	<key>SavePasteHistory</key>
 	<false/>
+	<key>Secure Input</key>
+	<true/>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowPaneTitles</key>
@@ -13943,6 +13955,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>2.0</string>
+	<string>2.9.20141203-nightly</string>
 </dict>
 </plist>
