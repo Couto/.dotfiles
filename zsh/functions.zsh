@@ -156,7 +156,7 @@ function cask-add() {
 
 function foundry-add() {
     local brewfile="$DOTFILES/homebrew/Foundryfile";
- 
+
     for package in "$@"; do
         echo "${package}" >> "$brewfile";
     done
@@ -174,12 +174,26 @@ function git-repository-shorturl() {
 
 # List processes listening on the five port
 # Empty to list them all
-list-processes-on-port() {
+function list-processes-on-port() {
     local port=$1;
-    
+
     if [ -z "$port" ]; then
         sudo lsof -n -i;
     else
         sudo lsof -n -i:$port;
     fi
+}
+
+function ip() {
+
+    local interfaces="$(ifconfig -l)";
+
+    for i in ${interfaces}; do
+        local ip=$(ifconfig "${i}" | awk '/inet / {print $2}');
+        if [[ ${ip} ]]; then
+            echo "${i}: ${ip}";
+        fi
+    done
+
+    echo "ext: $(wanip)";
 }

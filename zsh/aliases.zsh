@@ -43,4 +43,3 @@ alias bbi='bbi -r $(git-repository-shorturl)'
 # Utilities
 alias trim="sed -e 's/^[[:space:]]*//g' -e 's/[[:space:]]*\$//g'"; # echo " some string with spaces " | trim
 alias genpasswd="cat /usr/share/dict/words | grep -v '[^ a-z]|[^ A-Z]' | shuf | tail -n 3 | xargs | sed -e 's/ /-/g'"
-
