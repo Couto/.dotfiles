@@ -1,7 +1,7 @@
 [user]
     name = Couto
     email = hello@luiscouto.pt
-	signingkey = 0x7C625B90A6816DA3
+    signingkey = 0x7C625B90A6816DA3
 
 [push]
     default = simple

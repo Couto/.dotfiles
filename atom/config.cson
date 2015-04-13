@@ -1,12 +1,12 @@
 "*":
   editor:
-    fontFamily: "\"Source Code Pro\""
-    fontSize: 13
     showInvisibles: true
     showIndentGuide: true
     tabLength: 4
     useShadowDOM: true
     invisibles: {}
+    fontSize: 14
+    fontFamily: "\"DejaVu Sans Mono\", \"Fira Mono\", \"M+ 1mn\""
   "exception-reporting":
     userId: "6292fc80-47fb-2982-dc54-d366a114cf85"
   welcome:
@@ -30,10 +30,12 @@
   linter:
     lintOnChange: false
     showErrorInline: true
+    showInfoMessages: true
+    statusBar: "Show error if the cursor is in range"
   "linter-scss-lint":
     scssLintExecutablePath: "/Users/couto/.rbenv/shims/scss-lint"
   "linter-jscs":
-    preset: "airbnb"
+    preset: "crockford"
   "file-icons":
     forceShow: true
   "linter-csslint": {}
@@ -42,7 +44,24 @@
     shellcheckExecutablePath: "/usr/local/bin/shellcheck"
   "linter-tidy":
     tidyExecutablePath: "/usr/local/bin/tidy"
-  react:
-    jsxTagStartPattern: "(?x)((^|=|return)\\s*<([^!/?](?!.+?(</.+?>))))"
-    jsxComplexAttributePattern: "(?x)\\{ [^}\"']* $|\\( [^)\"']* $"
-    decreaseIndentForNextLinePattern: "(?x) />\\s*(,|;)?\\s*$ | ^\\s*\\S+.*</[-_\\.A-Za-z0-9]+>$"
+  react: {}
+  "tree-view": {}
+  "atom-color-highlight": {}
+  "autocomplete-plus":
+    strictMatching: true
+  docblockr:
+    auto_add_method_tag: true
+    development_mode: true
+    lower_case_primitives: true
+    spacer_between_sections: true
+    newline_after_block: true
+    return_tag: "@returns"
+  "markdown-preview":
+    breakOnSingleNewline: true
+  minimap:
+    plugins:
+      "git-diff": true
+      "find-and-replace": true
+      bookmarks: true
+      selection: true
+    scrollAnimation: true
