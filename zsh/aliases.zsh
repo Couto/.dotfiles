@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/local/bin/zsh
 
 if [ "$TERM" != "dumb" ]; then
     export LS_OPTIONS='--color=auto'

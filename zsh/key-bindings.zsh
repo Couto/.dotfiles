@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/zsh
 
 # History Substring Search key bindings
 bindkey '^[[A' history-substring-search-up

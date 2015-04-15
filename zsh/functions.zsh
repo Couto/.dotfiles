@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/local/bin/zsh
 
 red='\e[00;31m';
 green='\e[00;32m';
@@ -19,7 +19,7 @@ function q() {
 
 # Query isitup.org to check if given url is online
 # is-up 15minuteslate.net
-is-up () {
+function is-up () {
     local url="$1";
     local uastring="BASH/cURL";
     local status_code=$(curl -s -A "$uastring" "http://isitup.org/$url.json" | python -mjson.tool | grep 'status_code' | grep -o "\d")

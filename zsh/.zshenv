@@ -1,4 +1,8 @@
-#!/bin/zsh
+#!/usr/local/bin/zsh
+
+# Quick shortcuts
+export HOME=/Users/couto;
+export DOTFILES=${HOME}/.dotfiles
 
 # Path
 typeset -U path
@@ -9,6 +13,11 @@ path=(
     /usr/local/sbin
     $path
 );
+
+# rbenv, pyenv, nvm and the likes
+source "$(brew --prefix nvm)/nvm.sh"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Manpages
 export MANPATH=$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH;
@@ -21,7 +30,7 @@ export LC_ALL="en_US.UTF-8";
 export ADOTDIR=$DOTFILES/.antigen
 
 # Editors
-export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest/"
+export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest"
 export ATOM="$ATOM_PATH/Atom.app"
 export EDITOR=$(which vim)
 export VISUAL="$(which vim)"
