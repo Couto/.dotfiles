@@ -1,7 +1,7 @@
 start_time=$(date +%s)
 
 # Get aliases, functions and so on
-for file in ${DOTFILES}/zsh/{exports,aliases,functions,key-bindings}.zsh; do
+for file in ${DOTFILES}/zsh/{aliases,functions,key-bindings}.zsh; do
     source $file;
 done
 
