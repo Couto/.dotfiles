@@ -1,3 +1,5 @@
+#!/usr/local/bin/zsh
+
 start_time=$(date +%s)
 
 # Get aliases, functions and so on
