@@ -1,65 +1,14 @@
 "*":
-  editor:
-    showInvisibles: true
-    showIndentGuide: true
-    tabLength: 4
-    useShadowDOM: true
-    invisibles: {}
-    fontSize: 14
-    fontFamily: "\"DejaVu Sans Mono\", \"Fira Mono\", \"M+ 1mn\""
   "exception-reporting":
-    userId: "ac2732ff-3b9f-be77-3cb6-b0117e5e24b5"
+    userId: "5f8af393-f572-e5fe-8aaa-505215621235"
   welcome:
     showOnStartup: false
   core:
-    themes: [
-      "seti-ui"
-      "seti-syntax"
-    ]
-    projectHome: "/Users/couto/Development/"
-  "scope-inspector":
-    userId: "811e2465c893d630398810e72c2c57633b9d911d"
-  "local-history":
-    difftoolCommand: "diff {current-file} {revision-file}"
-  "gist-it":
-    userToken: "f9981bdec95ab7d3830abcb896cc097e239580b2"
-    newGistsDefaultToPrivate: true
-  linter:
-    lintOnChange: false
-    showErrorInline: true
-    showInfoMessages: true
-    statusBar: "Show error if the cursor is in range"
-  "linter-scss-lint":
-    scssLintExecutablePath: "/Users/couto/.rbenv/shims/scss-lint"
-  "linter-jscs":
-    preset: "crockford"
-  "file-icons":
-    forceShow: true
-  "linter-csslint": {}
-  "linter-jshint": {}
-  "linter-shellcheck":
-    shellcheckExecutablePath: "/usr/local/bin/shellcheck"
-  "linter-tidy":
-    tidyExecutablePath: "/usr/local/bin/tidy"
-  react: {}
-  "tree-view": {}
-  "atom-color-highlight": {}
-  "autocomplete-plus":
-    strictMatching: true
-  docblockr:
-    auto_add_method_tag: true
-    development_mode: true
-    lower_case_primitives: true
-    spacer_between_sections: true
-    newline_after_block: true
-    return_tag: "@returns"
-  "markdown-preview":
-    breakOnSingleNewline: true
-  minimap:
-    plugins:
-      "git-diff": true
-      "find-and-replace": true
-      bookmarks: true
-      selection: true
-    scrollAnimation: true
-
+    projectHome: "/Users/couto/Development"
+  editor:
+    invisibles: {}
+    showInvisibles: true
+    showIndentGuide: true
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
+  linter: {}

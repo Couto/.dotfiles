@@ -15,7 +15,10 @@ antigen bundles <<EOFBUNDLES
     rupa/z
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
+    jimmijj/zsh-syntax-highlighting
+    tarruda/zsh-autosuggestions
     kennethreitz/autoenv
+    mafredri/zsh-async
     sindresorhus/pure
 
 EOFBUNDLES
@@ -41,6 +44,7 @@ setopt share_history # share command history data
 # smart urls
 autoload -U url-quote-magic
 zle -N self-insert url-quote-magic
+zle -N zle-line-init
 
 # Display computer information using archey
 # but only if we're not inside a tmux/screen session

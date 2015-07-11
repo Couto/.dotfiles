@@ -9,6 +9,7 @@ typeset -U path
 path=(
     $DOTFILES/bin
     $(brew --prefix)/opt/coreutils/libexec/gnubin
+    $(brew --prefix)/opt/
     /usr/local/bin
     /usr/local/sbin
     $path

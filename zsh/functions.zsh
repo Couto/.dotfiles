@@ -197,3 +197,8 @@ function ip() {
 
     echo "ext: $(wanip)";
 }
+
+# Enable fish like suggestions
+function zle-line-init() {
+    zle autosuggest-start
+}
