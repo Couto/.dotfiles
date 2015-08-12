@@ -15,11 +15,6 @@ path=(
     $path
 );
 
-# rbenv, pyenv, nvm and the likes
-source "$(brew --prefix nvm)/nvm.sh"
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
 # Manpages
 export MANPATH=$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH;
 
@@ -39,10 +34,6 @@ export VISUAL="$(which vim)"
 # Configurations
 export NVM_DIR=$HOME/.nvm
 
-export DOCKER_HOST=tcp://192.168.59.103:2376
-export DOCKER_CERT_PATH=/Users/couto/.boot2docker/certs/boot2docker-vm
-export DOCKER_TLS_VERIFY=1
-
 # Highlight section titles in manual pages
 export LESS_TERMCAP_md="${yellow}";
 
@@ -55,3 +46,18 @@ export GREP_OPTIONS="--color=auto";
 if [[ -n ${TMUX}  ]]; then
     consolidate-path
 fi
+
+# rbenv, pyenv, nvm and the likes
+source "$(brew --prefix nvm)/nvm.sh"
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# TODO find a better way to have an updated version of openSSH
+eval $(ssh-agent)
+
+function cleanup {
+  echo "Killing SSH-Agent"
+  kill -9 $SSH_AGENT_PID
+}
+
+trap cleanup EXIT

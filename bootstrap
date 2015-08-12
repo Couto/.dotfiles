@@ -16,9 +16,11 @@ declare -a SYMLINK_FILES=(
     "${DOTFILES_DIRECTORY}/zsh/.zshrc      : ${HOME}/.zshrc"
     "${DOTFILES_DIRECTORY}/vim/            : ${HOME}/.vim"
     "${DOTFILES_DIRECTORY}/vim/.vimrc      : ${HOME}/.vimrc"
+    "${DOTFILES_DIRECTORY}/tmux/           : ${HOME}/.tmux"
     "${DOTFILES_DIRECTORY}/tmux/.tmux.conf : ${HOME}/.tmux.conf"
     "${DOTFILES_DIRECTORY}/git/.gitconfig  : ${HOME}/.gitconfig"
     "${DOTFILES_DIRECTORY}/git/.gitignore  : ${HOME}/.gitignore"
+    "${DOTFILES_DIRECTORY}/ssh             : ${HOME}/.ssh"
 );
 
 #forEach () {
