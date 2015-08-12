@@ -16,7 +16,6 @@ gnupg/*
 !gnupg/gpg.conf
 
 ssh/*
-!ssh/config
 
 config/keybase
 .antigen
