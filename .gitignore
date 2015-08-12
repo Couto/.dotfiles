@@ -16,3 +16,6 @@ gnupg/*
 !gnupg/gpg.conf
 config/keybase
 .antigen
+
+tmux/plugins/*
+tmux/resurrect/
