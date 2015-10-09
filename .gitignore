@@ -1,0 +1,8 @@
+tag-tmux/plugins/*
+!tag-tmux/plugins/tpm
+
+tag-ssh/ssh/*
+!tag-ssh/ssh/config
+
+tag-atom/atom/*
+!tag-atom/atom/config.cson

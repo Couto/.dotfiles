@@ -1,0 +1,33 @@
+#!/usr/bin/env zsh
+
+VIM_DIR="${HOME}/.vim";
+AUTOLOAD_DIR="${VIM_DIR}/autoload";
+BACKUPS_DIR="${VIM_DIR}/backups";
+SWAPS_DIR="${VIM_DIR}/swaps";
+UNDO_DIR="${VIM_DIR}/undo";
+
+create_dirs() {
+  [[ ! -d "${VIM_DIR}" ]] && mkdir -p "${VIM_DIR}";
+  [[ ! -d "${AUTOLOAD_DIR}" ]] && mkdir -p "${AUTOLOAD_DIR}";
+  [[ ! -d "${BACKUPS_DIR}" ]] && mkdir -p "${BACKUPS_DIR}";
+  [[ ! -d "${SWAPS_DIR}" ]] && mkdir -p "${SWAPS_DIR}";
+  [[ ! -d "${UNDO_DIR}" ]] && mkdir -p "${UNDO_DIR}";
+}
+
+setup_plugvim() {
+  local plug_file="${AUTOLOAD_DIR}/plug.vim";
+  local remote_file="https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim";
+  
+  # Download vim-plug
+  if [[ -d "${AUTOLOAD_DIR}" && ! -f "${plug_file}" ]]; then
+    curl -fLo "${plug_file}" --create-dirs "${remote_file}";
+  fi
+  
+  # If vim-plug is installed, install all vim plugins
+  if [[ -f "${plug_file}" ]]; then
+    vim -u "${HOME}/.vimrc.bundles" +PlugInstall +PlugClean! +qa;
+  fi
+}
+
+create_dirs;
+setup_plugvim;

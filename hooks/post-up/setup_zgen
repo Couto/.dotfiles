@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+setup_zgen() {
+  local repo_url="https://github.com/tarjoilija/zgen.git"
+  local zgen_dir="${HOME}/.zgen"
+
+  if [[ ! -d "${zgen_dir}" ]]; then
+    git clone "${repo_url}" "${zgen_dir}"
+  fi
+}
+
+setup_zgen;

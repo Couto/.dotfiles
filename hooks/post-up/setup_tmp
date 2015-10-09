@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+dir=$(dirname $0);
+TMUX_DIR="${HOME}/.tmux"
+PLUGINS_DIR="${TMUX_DIR}/plugins";
+TPM_DIR="${TMUX_DIR}/plugins";
+
+setup_tpm() {
+  local bin="${TPM_DIR}/bin/install_plugins";
+
+  if [[ -f ${bin} ]]; then
+    echo "Installing tmux plugins";
+    ${bin};
+  fi
+}
+
+create_dirs() {
+  [[ ! -d ${TMUX_DIR} ]] && mkdir -p ${TMUX_DIR};
+  [[ ! -d ${PLUGINS_DIR} ]] && mkdir -p ${PLUGINS_DIR};
+  [[ ! -d ${TMUX_DIR} ]] && mkdir -p ${TMUX_DIR};
+}
+
+create_dirs;
+setup_tpm;

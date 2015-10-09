@@ -1,0 +1,80 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" Vim native settings
+set pastetoggle=<F2>
+set nowrap                    " don't wrap lines
+set smartindent
+set tabstop=2
+set shiftwidth=2
+set shiftround
+set expandtab
+
+" Make it obvious where 80 characters is
+set textwidth=80
+set colorcolumn=+1
+
+" Numbers
+set number                    " Show gutter
+set numberwidth=5
+
+" Don’t create backups when editing files in certain directories
+set backupskip=/tmp/*,/private/tmp/*
+
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+end
+
+" Centralize backups, swapfiles and undo history
+
+if exists("&backupdir")
+  set backupdir=~/.vim/backups
+endif
+
+set directory=~/.vim/swaps
+
+if exists("&undodir")
+	set undodir=~/.vim/undo
+  set undofile
+endif
+
+" Theme (seoul256)
+colo seoul256
+
+" NERDTree
+" autocmd vimenter * NERDTree " open a NERDTree automatically when vim starts up
+autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically when vim starts up if no files were specified
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif "  close vim if the only window left open is a NERDTree
+let NERDTreeShowHidden=1      " Show hidden files
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_aggregate_errors = 1
+
+" vim-airline
+let g:airline_powerline_fonts = 1             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
+let g:airline#extensions#tabline#enabled = 1  " Automatically displays all buffers when there's only one tab open.
+
+" vim-gitgutter
+let g:gitgutter_diff_args = '-w'        " Ignore whitespace on git diffs
+let g:gitgutter_realtime = 1            " Turn to zero for performance
+let g:gitgutter_eager = 1               " Turn to zero for performance
+let g:gitgutter_sign_column_always = 1  " Always show the gutter
+
+highlight SignColumn ctermbg=none
+highlight GitGutterAdd ctermbg=none
+highlight GitGutterChange ctermbg=none
+highlight GitGutterDelete ctermbg=none
+highlight GitGutterChangeDelete ctermbg=none
+
+" vim-autoclose
+let g:autoclose_vim_commentmode = 1
+
+filetype plugin indent on    " required
