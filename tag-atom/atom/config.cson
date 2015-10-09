@@ -1,0 +1,18 @@
+"*":
+  welcome:
+    showOnStartup: false
+  core:
+    projectHome: "/Users/couto/Development"
+    disabledPackages: [
+      "exception-reporting"
+    ]
+  editor:
+    invisibles: {}
+    showIndentGuide: true
+    showInvisibles: true
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
+  tabs:
+    enableVcsColoring: true
+  "markdown-preview":
+    useGitHubStyle: true

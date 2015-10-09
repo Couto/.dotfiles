@@ -1,0 +1,3 @@
+TAGS='git tmux vim zsh ssh npm atom gnupg curl beets'
+SYMLINK_DIRS='atom'
+EXCLUDES='README.md modules'

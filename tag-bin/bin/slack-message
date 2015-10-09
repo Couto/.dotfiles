@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+
+# Defaults
+ENDPOINT="https://hooks.slack.com/services/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";
+CHANNEL="#imgcnvrtr-logs";
+USERNAME="Couto";
+AVATAR="https://avatars1.githubusercontent.com/u/165314?v=3&s=100";
+TEXT="Some text";
+
+function usage() {
+  cat <<EOF
+ -e String Slack Webhook's Endpoint (Default: ${ENDPOINT})
+ -c String Channel name (Default: ${CHANNEL})
+ -u String Username to be userd (Default: ${USERNAME})
+ -a String Image URL to be used as avatar (Default: ${AVATAR})
+ -t String Message to be sent (Default: ${TEXT})
+EOF
+  exit 0;
+}
+
+function request() {
+  local payload="payload={\"channel\": "${CHANNEL}", \"username\":
+  "${USERNAME}", \"text\": "${TEXT}", \"icon_url\":\"${AVATAR}\"}";
+  echo "${payload}";
+  curl -X POST --data-urlencode "${payload}" "${ENDPOINT}"
+}
+
+
+while getopts ":a:c:u:t:e:" flag; do
+  case "${flag}" in
+    a) AVATAR=${OPTARG} ;;
+    c) CHANNEL=${OPTARG} ;;
+    u) USERNAME=${OPTARG} ;;
+    t) TEXT=${OPTARG} ;;
+    e) ENDPOINT=${OPTARG} ;;
+    *) usage ;;
+  esac
+done
+
+echo "${ENDPOINT}";
+echo "${CHANNEL}";
+echo "${USERNAME}";
+echo "${AVATAR}";
+echo "${TEXT}";
+
+request;
