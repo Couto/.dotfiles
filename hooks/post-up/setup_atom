@@ -1,0 +1,6 @@
+#!/usr/bin/env zsh
+
+APM="$(which apm)";
+
+APM login;
+APM stars --install;

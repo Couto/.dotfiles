@@ -20,8 +20,11 @@
     showOnRightSide: true
   minimap:
     displayMinimapOnLeft: true
-    absoluteMode: true
   "file-icons":
     onChanges: true
   pigments:
     mergeColorDuplicates: true
+  linter:
+    showErrorTabLine: true
+    statusIconScope: "Line"
+    showErrorPanel: false
