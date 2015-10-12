@@ -16,3 +16,12 @@
     enableVcsColoring: true
   "markdown-preview":
     useGitHubStyle: true
+  "tree-view":
+    showOnRightSide: true
+  minimap:
+    displayMinimapOnLeft: true
+    absoluteMode: true
+  "file-icons":
+    onChanges: true
+  pigments:
+    mergeColorDuplicates: true
