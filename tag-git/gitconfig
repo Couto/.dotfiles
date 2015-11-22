@@ -16,6 +16,9 @@
 
   # Pull changes using rebase
   up = pull --rebase --prune
+  
+  # Pull changes but fast-forward only
+  pf = pull --ff-only
 
   # View abbreviated SHA, description, and history graph of the latest 20 commits
   l = log --pretty=oneline -n 20 --graph --abbrev-commit
@@ -134,3 +137,4 @@
   # Use this file to override settings, like at work computer
   path = .gitconfig.user
   path = .gitconfig.local
+

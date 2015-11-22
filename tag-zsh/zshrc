@@ -6,7 +6,7 @@ source "${HOME}/.zgen/zgen.zsh"
 # check if there's no init script
 if ! zgen saved; then
   echo "Creating a zgen save"
- 
+
   # bulk load
   zgen loadall <<EOPLUGINS
     mafredri/zsh-async
@@ -15,6 +15,7 @@ if ! zgen saved; then
     zsh-users/zsh-history-substring-search
     zsh-users/zsh-completions src
     robbyrussell/oh-my-zsh plugins/ssh-agent
+    "${HOME}/.zsh/atom"
     "${HOME}/.zsh/osx"
     "${HOME}/.zsh/fs"
     "${HOME}/.zsh/network"
@@ -23,6 +24,7 @@ EOPLUGINS
   # save all to init script
   zgen save
 fi
+
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

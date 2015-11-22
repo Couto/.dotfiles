@@ -6,10 +6,16 @@
     disabledPackages: [
       "exception-reporting"
     ]
+    themes: [
+      "one-dark-ui"
+      "duotone-dark-syntax"
+    ]
   editor:
     invisibles: {}
     showIndentGuide: true
     showInvisibles: true
+    fontFamily: "\"Fira Code\""
+    fontSize: 12
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
   tabs:
@@ -20,11 +26,32 @@
     showOnRightSide: true
   minimap:
     displayMinimapOnLeft: true
+    autoToggle: false
   "file-icons":
     onChanges: true
   pigments:
     mergeColorDuplicates: true
+    supportedFiletypes: [
+      ".css"
+      ".scss"
+      ".sass"
+      ".less"
+      ".styl"
+      ".stylus"
+    ]
   linter:
     showErrorTabLine: true
     statusIconScope: "Line"
     showErrorPanel: false
+  react: {}
+  "linter-jscs":
+    esnext: true
+    onlyConfig: true
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+    useGlobalEslint: true
+  "symbols-tree-view": {}
+  emmet: {}
+  "merge-conflicts": {}
