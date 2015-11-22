@@ -6,3 +6,5 @@ tag-ssh/ssh/*
 
 tag-atom/atom/*
 !tag-atom/atom/config.cson
+!tag-atom/atom/styles.less
+!tag-atom/atom/keymap.cson
