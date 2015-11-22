@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+function usage() {
+  cat <<EOF
+  Clean up typical photos from whiteboards
+
+    -i String Image filename
+    -o String Cleaned image filename
+
+  More info: https://gist.github.com/lelandbatey/8677901
+EOF
+  exit 0;
+}
+
+function clean() {
+  local input=${1};
+  local output=${2};
+
+  echo "${input}" "${output}"
+
+  convert "${input}" \
+    -morphology Convolve DoG:15,100,0 \
+    -negate \
+    -normalize \
+    -blur 0x1 \
+    -channel RBG -level 60%,91%,0.1 "${output}";
+}
+
+while getopts ":i:o:" flag; do
+  case "${flag}" in
+    i) INPUT=${OPTARG} ;;
+    o) OUTPUT=${OPTARG} ;;
+    *) usage ;;
+  esac
+done
+
+clean ${INPUT} ${OUTPUT};
