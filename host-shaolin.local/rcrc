@@ -1,0 +1,2 @@
+TAGS='git dnsmasq tmux vim zsh ssh npm atom gnupg curl beets bin'
+EXCLUDES='README.md modules'
