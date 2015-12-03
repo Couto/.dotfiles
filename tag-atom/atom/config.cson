@@ -15,15 +15,14 @@
     showIndentGuide: true
     showInvisibles: true
     fontFamily: "\"Fira Code\""
-    fontSize: 12
+    fontSize: 13
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
   tabs:
     enableVcsColoring: true
   "markdown-preview":
     useGitHubStyle: true
-  "tree-view":
-    showOnRightSide: true
+  "tree-view": {}
   minimap:
     displayMinimapOnLeft: true
     autoToggle: false
@@ -42,7 +41,6 @@
   linter:
     showErrorTabLine: true
     statusIconScope: "Line"
-    showErrorPanel: false
   react: {}
   "linter-jscs":
     esnext: true
@@ -52,6 +50,8 @@
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
     useGlobalEslint: true
+    globalNodePath: "/Users/couto/.nvm/versions/node/v5.1.0"
   "symbols-tree-view": {}
   emmet: {}
   "merge-conflicts": {}
+  "autocomplete-emojis": {}

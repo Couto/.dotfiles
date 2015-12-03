@@ -9,10 +9,11 @@ export LANG="en_US.UTF-8";
 export LC_ALL="en_US.UTF-8";
 
 # Editors
-export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest"
-export ATOM="$ATOM_PATH/Atom.app"
-export EDITOR=$(which vim)
-export VISUAL="$(which vim)"
+export ATOM_PATH="/opt/homebrew-cask/Caskroom/atom/latest";
+export ATOM="${ATOM_PATH}/Atom.app";
+export ATOM_BIN="$(which atom)";
+export EDITOR="$(which vim)";
+export VISUAL="$(which vim)";
 
 # Configurations
 export NVM_DIR=$HOME/.nvm
