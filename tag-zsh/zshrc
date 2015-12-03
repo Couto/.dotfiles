@@ -12,18 +12,27 @@ if ! zgen saved; then
     mafredri/zsh-async
     sindresorhus/pure
     rupa/z
-    zsh-users/zsh-history-substring-search
-    zsh-users/zsh-completions src
-    robbyrussell/oh-my-zsh plugins/ssh-agent
-    "${HOME}/.zsh/atom"
     "${HOME}/.zsh/osx"
     "${HOME}/.zsh/fs"
     "${HOME}/.zsh/network"
+    zsh-users/zsh-completions src
+    zsh-users/zsh-syntax-highlighting
+    zsh-users/zsh-history-substring-search
 EOPLUGINS
 
   # save all to init script
   zgen save
 fi
+
+# bind UP and DOWN arrow keys
+zmodload zsh/terminfo
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+# bind UP and DOWN arrow keys (compatibility fallback
+# for Ubuntu 12.04, Fedora 21, and MacOSX 10.9 users)
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 
 
 # Local config
