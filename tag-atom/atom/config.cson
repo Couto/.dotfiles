@@ -22,7 +22,8 @@
     enableVcsColoring: true
   "markdown-preview":
     useGitHubStyle: true
-  "tree-view": {}
+  "tree-view":
+    squashDirectoryNames: true
   minimap:
     displayMinimapOnLeft: true
     autoToggle: false
