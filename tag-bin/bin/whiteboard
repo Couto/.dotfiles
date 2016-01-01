@@ -34,4 +34,4 @@ while getopts ":i:o:" flag; do
   esac
 done
 
-clean ${INPUT} ${OUTPUT};
+clean "${INPUT}" "${OUTPUT}";
