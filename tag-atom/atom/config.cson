@@ -5,25 +5,27 @@
     projectHome: "/Users/couto/Development"
     disabledPackages: [
       "exception-reporting"
+      "metrics"
     ]
     themes: [
       "one-dark-ui"
-      "duotone-dark-syntax"
+      "duotone-dark-space-syntax"
     ]
   editor:
     invisibles: {}
     showIndentGuide: true
     showInvisibles: true
     fontFamily: "\"Fira Code\""
-    fontSize: 13
   whitespace:
     ignoreWhitespaceOnCurrentLine: false
   tabs:
     enableVcsColoring: true
+    usePreviewTabs: true
   "markdown-preview":
     useGitHubStyle: true
   "tree-view":
     squashDirectoryNames: true
+    showOnRightSide: true
   minimap:
     displayMinimapOnLeft: true
     autoToggle: false
@@ -56,3 +58,22 @@
   emmet: {}
   "merge-conflicts": {}
   "autocomplete-emojis": {}
+  "atom-ternjs":
+    lint: false
+    useSnippetsAndFunction: true
+    excludeLowerPriorityProviders: true
+    useSnippets: true
+  "jscs-fixer": {}
+  "atom-beautify":
+    _analyticsUserId: "1320650d-61f0-429d-97f5-eb88e9b77943"
+  "ide-haskell": {}
+  build: {}
+  "find-and-replace":
+    openProjectFindResultsInRightPane: true
+  "status-bar": {}
+  "fuzzy-finder": {}
+  "spell-check": {}
+  "git-log": {}
+  "git-history":
+    showDiff: false
+  "git-plus": {}
