@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 
+# Bash's unofficial strict mode
+set -euo pipefail
+IFS=$'\n\t'
+
+
 # Defaults
-ENDPOINT="https://hooks.slack.com/services/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";
-CHANNEL="#imgcnvrtr-logs";
+ENDPOINT="https://hooks.slack.com/services/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"
+CHANNEL="#testing_nevermind";
 USERNAME="Couto";
 AVATAR="https://avatars1.githubusercontent.com/u/165314?v=3&s=100";
 TEXT="Some text";
@@ -19,8 +24,8 @@ EOF
 }
 
 function request() {
-  local payload="payload={\"channel\": "${CHANNEL}", \"username\":
-  "${USERNAME}", \"text\": "${TEXT}", \"icon_url\":\"${AVATAR}\"}";
+  local payload="payload={\"channel\": \"${CHANNEL}\", \"username\":\"${USERNAME}\", \"text\": \"${TEXT}\", \"icon_url\":\"${AVATAR}\"}";
+  
   echo "${payload}";
   curl -X POST --data-urlencode "${payload}" "${ENDPOINT}"
 }
