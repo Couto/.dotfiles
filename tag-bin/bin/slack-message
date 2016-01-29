@@ -26,7 +26,6 @@ EOF
 function request() {
   local payload="payload={\"channel\": \"${CHANNEL}\", \"username\":\"${USERNAME}\", \"text\": \"${TEXT}\", \"icon_url\":\"${AVATAR}\"}";
   
-  echo "${payload}";
   curl -X POST --data-urlencode "${payload}" "${ENDPOINT}"
 }
 
@@ -41,11 +40,5 @@ while getopts ":a:c:u:t:e:" flag; do
     *) usage ;;
   esac
 done
-
-echo "${ENDPOINT}";
-echo "${CHANNEL}";
-echo "${USERNAME}";
-echo "${AVATAR}";
-echo "${TEXT}";
 
 request;
