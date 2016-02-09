@@ -1,9 +1,11 @@
 Protocol 2
 IdentitiesOnly yes
+# https://security-tracker.debian.org/tracker/CVE-2016-0777
+UseRoaming no
+# https://github.com/drduh/OS-X-Yosemite-Security-and-Privacy-Guide
+HashKnownHosts yes
 
 Host *
-  # https://github.com/drduh/OS-X-Yosemite-Security-and-Privacy-Guide
-  HashKnownHosts yes
   # https://stribika.github.io/2015/01/04/secure-secure-shell.html
   Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
   KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
