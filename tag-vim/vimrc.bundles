@@ -5,19 +5,7 @@ end
 call plug#begin('~/.vim/bundle')
 
   Plug 'tpope/vim-sensible'
-  Plug 'tpope/vim-fugitive'
-  Plug 'spf13/vim-autoclose'
-  Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-  Plug 'scrooloose/syntastic'
-  Plug 'kien/ctrlp.vim'
-  Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-  Plug 'majutsushi/tagbar'
-  Plug 'ervandew/supertab'
-  Plug 'kien/rainbow_parentheses.vim'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'bling/vim-airline'
-  Plug 'bronson/vim-trailing-whitespace'
-  Plug 'junegunn/seoul256.vim'
+  Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
   if filereadable(expand("~/.vimrc.bundles.local"))
     source ~/.vimrc.bundles.local

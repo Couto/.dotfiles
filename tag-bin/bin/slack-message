@@ -24,9 +24,10 @@ EOF
 }
 
 function request() {
-  local payload="payload={\"channel\": \"${CHANNEL}\", \"username\":\"${USERNAME}\", \"text\": \"${TEXT}\", \"icon_url\":\"${AVATAR}\"}";
+  local payload="{\"channel\": \"${CHANNEL}\", \"username\":\"${USERNAME}\", \"text\": \"${TEXT}\", \"icon_url\":\"${AVATAR}\"}";
   
-  curl -X POST --data-urlencode "${payload}" "${ENDPOINT}"
+  echo "${payload}"
+  curl -X POST -H "Content-Type: application/json" --data "${payload}" "${ENDPOINT}"
 }
 
 
