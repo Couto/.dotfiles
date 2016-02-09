@@ -39,7 +39,13 @@ if exists("&undodir")
 endif
 
 " Theme (seoul256)
-colo seoul256
+" colo seoul256
+
+" Reload .vimrc whenever we make changes
+augroup reload_vimrc " {
+  autocmd!
+  autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
 
 " NERDTree
 " autocmd vimenter * NERDTree " open a NERDTree automatically when vim starts up
@@ -48,15 +54,18 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeShowHidden=1      " Show hidden files
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
+if exists("*SyntasticStatuslineFlag")
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
+
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  let g:syntastic_aggregate_errors = 1
+endif
 
 " vim-airline
 let g:airline_powerline_fonts = 1             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
@@ -78,3 +87,7 @@ highlight GitGutterChangeDelete ctermbg=none
 let g:autoclose_vim_commentmode = 1
 
 filetype plugin indent on    " required
+
+" vim-markdown
+let g:vim_markdown_toc_autofit=1
+au FileType markdown setl conceallevel=2
