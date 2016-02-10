@@ -1,36 +1,61 @@
 "*":
-  welcome:
-    showOnStartup: false
+  "atom-ternjs":
+    excludeLowerPriorityProviders: true
+    lint: false
+    useSnippets: true
+    useSnippetsAndFunction: true
+  "autocomplete-emojis": {}
+  build: {}
   core:
-    projectHome: "/Users/couto/Development"
     disabledPackages: [
       "exception-reporting"
       "metrics"
     ]
+    projectHome: "/Users/couto/Development"
     themes: [
       "one-dark-ui"
       "duotone-dark-space-syntax"
     ]
   editor:
+    fontFamily: "\"Fira Code\""
     invisibles: {}
     showIndentGuide: true
     showInvisibles: true
-    fontFamily: "\"Fira Code\""
-  whitespace:
-    ignoreWhitespaceOnCurrentLine: false
-  tabs:
-    enableVcsColoring: true
-    usePreviewTabs: true
-  "markdown-preview":
-    useGitHubStyle: true
-  "tree-view":
-    squashDirectoryNames: true
-    showOnRightSide: true
-  minimap:
-    displayMinimapOnLeft: true
-    autoToggle: false
+  emmet: {}
   "file-icons":
     onChanges: true
+  "find-and-replace":
+    openProjectFindResultsInRightPane: true
+  "fuzzy-finder": {}
+  "git-history":
+    showDiff: false
+  "git-log": {}
+  "git-plus": {}
+  linter:
+    showErrorTabLine: true
+    statusIconScope: "Line"
+  "linter-eslint":
+    disableWhenNoEslintrcFileInPath: true
+    useGlobalEslint: true
+  "linter-jscs":
+    esnext: true
+    onlyConfig: true
+  "linter-jshint":
+    disableWhenNoJshintrcFileInPath: true
+  "markdown-preview":
+    useGitHubStyle: true
+  "merge-conflicts": {}
+  minimap:
+    autoToggle: false
+    displayMinimapOnLeft: true
+    plugins:
+      bookmarks: false
+      "find-and-replace": false
+      "git-diff": true
+      "highlight-selected": true
+      linter: true
+      "minimap-hide": true
+      selection: true
   pigments:
     mergeColorDuplicates: true
     supportedFiletypes: [
@@ -41,39 +66,17 @@
       ".styl"
       ".stylus"
     ]
-  linter:
-    showErrorTabLine: true
-    statusIconScope: "Line"
   react: {}
-  "linter-jscs":
-    esnext: true
-    onlyConfig: true
-  "linter-jshint":
-    disableWhenNoJshintrcFileInPath: true
-  "linter-eslint":
-    disableWhenNoEslintrcFileInPath: true
-    useGlobalEslint: true
-    globalNodePath: "/Users/couto/.nvm/versions/node/v5.1.0"
-  "symbols-tree-view": {}
-  emmet: {}
-  "merge-conflicts": {}
-  "autocomplete-emojis": {}
-  "atom-ternjs":
-    lint: false
-    useSnippetsAndFunction: true
-    excludeLowerPriorityProviders: true
-    useSnippets: true
-  "jscs-fixer": {}
-  "atom-beautify":
-    _analyticsUserId: "1320650d-61f0-429d-97f5-eb88e9b77943"
-  "ide-haskell": {}
-  build: {}
-  "find-and-replace":
-    openProjectFindResultsInRightPane: true
-  "status-bar": {}
-  "fuzzy-finder": {}
   "spell-check": {}
-  "git-log": {}
-  "git-history":
-    showDiff: false
-  "git-plus": {}
+  "status-bar": {}
+  "symbols-tree-view": {}
+  tabs:
+    enableVcsColoring: true
+    usePreviewTabs: true
+  "tree-view":
+    showOnRightSide: true
+    squashDirectoryNames: true
+  welcome:
+    showOnStartup: false
+  whitespace:
+    ignoreWhitespaceOnCurrentLine: false
