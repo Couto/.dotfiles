@@ -5,6 +5,10 @@ end
 call plug#begin('~/.vim/bundle')
 
   Plug 'tpope/vim-sensible'
+  Plug 'morhetz/gruvbox'
+  Plug 'scrooloose/nerdtree'
+  Plug 'scrooloose/syntastic'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
   if filereadable(expand("~/.vimrc.bundles.local"))
