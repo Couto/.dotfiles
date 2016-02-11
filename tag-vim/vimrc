@@ -21,25 +21,29 @@ set numberwidth=5
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-end
-
 " Centralize backups, swapfiles and undo history
-
 if exists("&backupdir")
   set backupdir=~/.vim/backups
 endif
 
-set directory=~/.vim/swaps
+if exists("&directory")
+  set directory=~/.vim/swaps
+endif
 
 if exists("&undodir")
 	set undodir=~/.vim/undo
   set undofile
 endif
 
+" Load bundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+end
+
 " Theme (seoul256)
 " colo seoul256
+set background=dark
+colorscheme gruvbox
 
 " Reload .vimrc whenever we make changes
 augroup reload_vimrc " {
@@ -54,28 +58,35 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeShowHidden=1      " Show hidden files
 
 " Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-if exists("*SyntasticStatuslineFlag")
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
+let g:syntastic_always_populate_loc_list=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_check_on_open=1
+let g:syntastic_check_on_wq=0
+let g:syntastic_aggregate_errors=1
+let g:syntastic_javascript_checkers = ['eslint']
 
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-  let g:syntastic_aggregate_errors = 1
+" Load local eslint if it's present in local node_modules
+let local_eslint = finddir('node_modules/', '.;') . '.bin/eslint'
+if matchstr(local_eslint, "^\/\\w") == ''
+  let local_eslint = getcwd() . "/" . local_eslint
+endif
+if executable(local_eslint)
+  let g:syntastic_javascript_eslint_exec = local_eslint
 endif
 
 " vim-airline
-let g:airline_powerline_fonts = 1             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
-let g:airline#extensions#tabline#enabled = 1  " Automatically displays all buffers when there's only one tab open.
+let g:airline_powerline_fonts=1             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
+let g:airline#extensions#tabline#enabled=1  " Automatically displays all buffers when there's only one tab open.
 
 " vim-gitgutter
-let g:gitgutter_diff_args = '-w'        " Ignore whitespace on git diffs
-let g:gitgutter_realtime = 1            " Turn to zero for performance
-let g:gitgutter_eager = 1               " Turn to zero for performance
-let g:gitgutter_sign_column_always = 1  " Always show the gutter
+let g:gitgutter_diff_args='-w'        " Ignore whitespace on git diffs
+let g:gitgutter_realtime=1            " Turn to zero for performance
+let g:gitgutter_eager=1               " Turn to zero for performance
+let g:gitgutter_sign_column_always=1  " Always show the gutter
 
 highlight SignColumn ctermbg=none
 highlight GitGutterAdd ctermbg=none
@@ -84,7 +95,7 @@ highlight GitGutterDelete ctermbg=none
 highlight GitGutterChangeDelete ctermbg=none
 
 " vim-autoclose
-let g:autoclose_vim_commentmode = 1
+let g:autoclose_vim_commentmode=1
 
 filetype plugin indent on    " required
 
