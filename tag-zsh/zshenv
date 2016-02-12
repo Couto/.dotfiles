@@ -44,6 +44,6 @@ path=(
 typeset -U path
 
 # rbenv, pyenv, nvm and the likes
-source "$(brew --prefix nvm)/nvm.sh"
+. $(brew --prefix nvm)/nvm.sh
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
