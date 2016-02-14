@@ -1,0 +1,60 @@
+#!/usr/bin/env zsh
+
+BIN="$(which brew)"
+
+TAPS=(
+  thoughtbot/formulae
+  caskroom/versions
+  caskroom/fonts
+);
+
+PACKAGES=(
+  coreutils
+  dnsmasq --with-dnssec
+  dnscrypt-proxy
+  tree
+  nvm
+  shellcheck
+  rbenv
+  rcm
+  pyenv
+  tmux
+  z
+  zsh
+);
+
+APPS=(
+  atom
+  iterm2
+  slack
+  macpass
+  vagrant
+  virtualbox
+  the-unarchiver
+  firefox
+  google-chrome
+  google-chrome-canary
+);
+
+FONTS=(
+  font-fira-mono
+  font-dejavu-sans-mono-for-powerline
+);
+
+if [[ -n ${BIN} ]]; then
+  setup_homebrew;
+fi
+
+setup_homebrew() {
+  ruby -e "$(curl -fsSL
+  https://raw.githubusercontent.com/Homebrew/install/master/install)"
+}
+
+setup_cask() {
+  brew install caskroom/cask/brew-cask
+
+}
+
+install_packages() {
+
+}
