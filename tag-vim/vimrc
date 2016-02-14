@@ -24,16 +24,16 @@ set backupskip=/tmp/*,/private/tmp/*
 " Centralize backups, swapfiles and undo history
 if exists("&backupdir")
   set backupdir=~/.vim/backups
-endif
+end
 
 if exists("&directory")
   set directory=~/.vim/swaps
-endif
+end
 
 if exists("&undodir")
 	set undodir=~/.vim/undo
   set undofile
-endif
+end
 
 " Load bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -64,7 +64,7 @@ set statusline+=%*
 
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=1
+let g:syntastic_check_on_open=0
 let g:syntastic_check_on_wq=0
 let g:syntastic_aggregate_errors=1
 let g:syntastic_javascript_checkers = ['eslint']
@@ -73,10 +73,10 @@ let g:syntastic_javascript_checkers = ['eslint']
 let local_eslint = finddir('node_modules/', '.;') . '.bin/eslint'
 if matchstr(local_eslint, "^\/\\w") == ''
   let local_eslint = getcwd() . "/" . local_eslint
-endif
+end
 if executable(local_eslint)
   let g:syntastic_javascript_eslint_exec = local_eslint
-endif
+end
 
 " vim-airline
 let g:airline_powerline_fonts=1             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
