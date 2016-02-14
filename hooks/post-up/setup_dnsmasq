@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "conf-dir=${HOME}/.dnsmasq/,*.conf" >> /usr/local/etc/dnsmasq.conf
+
+sudo cp -fv /usr/local/opt/dnsmasq/*.plist /Library/LaunchDaemons
+sudo chown root /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
+sudo launchctl load /Library/LaunchDaemons/homebrew.mxcl.dnsmasq.plist
