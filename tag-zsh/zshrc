@@ -15,6 +15,7 @@ if ! zgen saved; then
     "${HOME}/.zsh/osx"
     "${HOME}/.zsh/fs"
     "${HOME}/.zsh/network"
+    "${HOME}/.zsh/ssh"
     zsh-users/zsh-completions src
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
