@@ -30,8 +30,7 @@
 local _plugin__ssh_env
 local _plugin__forwarding
 
-function _plugin__start_agent()
-{
+function _plugin__start_agent() {
   local -a identities
   local lifetime
   zstyle -s :omz:plugins:ssh-agent lifetime lifetime

@@ -10,14 +10,18 @@
     disabledPackages: [
       "exception-reporting"
       "metrics"
+      "keyboard-localization"
+      "linter-jscs"
+      "linter-flow"
     ]
     projectHome: "/Users/couto/Development"
     themes: [
       "one-dark-ui"
-      "duotone-dark-space-syntax"
+      "duotone-dark-syntax"
     ]
   editor:
     fontFamily: "\"Fira Code\""
+    fontSize: 13
     invisibles: {}
     showIndentGuide: true
     showInvisibles: true
@@ -26,17 +30,21 @@
     onChanges: true
   "find-and-replace":
     openProjectFindResultsInRightPane: true
+  fonts:
+    fontFamily: "FiraCode"
   "fuzzy-finder": {}
   "git-history":
     showDiff: false
   "git-log": {}
   "git-plus": {}
+  "keyboard-localization":
+    useKeyboardLayout: "pt_PT"
   linter:
     showErrorTabLine: true
     statusIconScope: "Line"
   "linter-eslint":
     disableWhenNoEslintrcFileInPath: true
-    useGlobalEslint: true
+    globalNodePath: "/Users/couto/.nvm/versions/node/v5.7.1"
   "linter-jscs":
     esnext: true
     onlyConfig: true
@@ -47,15 +55,21 @@
   "merge-conflicts": {}
   minimap:
     autoToggle: false
-    displayMinimapOnLeft: true
     plugins:
       bookmarks: false
+      bookmarksDecorationsZIndex: 0
       "find-and-replace": false
+      "find-and-replaceDecorationsZIndex": 0
       "git-diff": true
-      "highlight-selected": true
+      "git-diffDecorationsZIndex": 0
+      "highlight-selected": false
+      "highlight-selectedDecorationsZIndex": 0
       linter: true
+      linterDecorationsZIndex: 0
       "minimap-hide": true
+      "minimap-hideDecorationsZIndex": 0
       selection: true
+      selectionDecorationsZIndex: 0
   pigments:
     mergeColorDuplicates: true
     supportedFiletypes: [
@@ -68,14 +82,20 @@
     ]
   react: {}
   "spell-check": {}
+  "split-diff":
+    ignoreWhitespace: true
   "status-bar": {}
   "symbols-tree-view": {}
   tabs:
     enableVcsColoring: true
     usePreviewTabs: true
+  "terminal-plus":
+    core: {}
+    style: {}
   "tree-view":
     showOnRightSide: true
     squashDirectoryNames: true
+  "vim-surround": {}
   welcome:
     showOnStartup: false
   whitespace:
