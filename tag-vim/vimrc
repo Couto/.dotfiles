@@ -9,6 +9,7 @@ set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
+set list                      " show invisible chars
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -17,6 +18,7 @@ set colorcolumn=+1
 " Numbers
 set number                    " Show gutter
 set numberwidth=5
+set relativenumber
 
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
@@ -31,7 +33,7 @@ if exists("&directory")
 end
 
 if exists("&undodir")
-	set undodir=~/.vim/undo
+  set undodir=~/.vim/undo
   set undofile
 end
 
@@ -40,10 +42,10 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 end
 
-" Theme (seoul256)
-" colo seoul256
-set background=dark
-colorscheme gruvbox
+" Theme
+syntax enable
+set t_Co=256
+"colorscheme duotone-darkearth
 
 " Reload .vimrc whenever we make changes
 augroup reload_vimrc " {
@@ -65,7 +67,7 @@ set statusline+=%*
 let g:syntastic_always_populate_loc_list=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_check_on_open=0
-let g:syntastic_check_on_wq=0
+let g:syntastic_check_on_wq=1
 let g:syntastic_aggregate_errors=1
 let g:syntastic_javascript_checkers = ['eslint']
 
@@ -77,6 +79,24 @@ end
 if executable(local_eslint)
   let g:syntastic_javascript_eslint_exec = local_eslint
 end
+
+" vim-javascript
+let g:javascript_conceal = 1
+let g:javascript_conceal_function   = "ƒ"
+let g:javascript_conceal_null       = "ø"
+let g:javascript_conceal_this       = "@"
+let g:javascript_conceal_return     = "⇚"
+let g:javascript_conceal_undefined  = "¿"
+let g:javascript_conceal_NaN        = "ℕ"
+let g:javascript_conceal_prototype  = "¶"
+let g:javascript_conceal_static     = "•"
+let g:javascript_conceal_super      = "Ω"
+au FileType javascript set conceallevel=2
+
+augroup jsfolding
+  autocmd!
+  autocmd FileType javascript setlocal foldenable|setlocal foldmethod=syntax
+augroup END
 
 " vim-airline
 let g:airline_powerline_fonts=1             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
@@ -95,10 +115,10 @@ highlight GitGutterDelete ctermbg=none
 highlight GitGutterChangeDelete ctermbg=none
 
 " vim-autoclose
-let g:autoclose_vim_commentmode=1
+let g:autoclose_vim_commentmode = 1
 
 filetype plugin indent on    " required
 
 " vim-markdown
-let g:vim_markdown_toc_autofit=1
+let g:vim_markdown_toc_autofit = 1
 au FileType markdown setl conceallevel=2
