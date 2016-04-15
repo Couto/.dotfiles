@@ -1,7 +1,10 @@
 "*":
   "atom-ternjs":
+    displayAboveSnippets: true
     excludeLowerPriorityProviders: true
+    guess: false
     lint: false
+    sort: false
     useSnippets: true
     useSnippetsAndFunction: true
   "autocomplete-emojis": {}
@@ -13,6 +16,7 @@
       "keyboard-localization"
       "linter-jscs"
       "linter-flow"
+      "project-manager"
     ]
     projectHome: "/Users/couto/Development"
     themes: [
@@ -37,6 +41,7 @@
     showDiff: false
   "git-log": {}
   "git-plus": {}
+  "highlight-line": {}
   "keyboard-localization":
     useKeyboardLayout: "pt_PT"
   linter:
@@ -54,22 +59,9 @@
     useGitHubStyle: true
   "merge-conflicts": {}
   minimap:
-    autoToggle: false
     plugins:
-      bookmarks: false
-      bookmarksDecorationsZIndex: 0
-      "find-and-replace": false
-      "find-and-replaceDecorationsZIndex": 0
-      "git-diff": true
-      "git-diffDecorationsZIndex": 0
-      "highlight-selected": false
-      "highlight-selectedDecorationsZIndex": 0
-      linter: true
-      linterDecorationsZIndex: 0
       "minimap-hide": true
       "minimap-hideDecorationsZIndex": 0
-      selection: true
-      selectionDecorationsZIndex: 0
   pigments:
     mergeColorDuplicates: true
     supportedFiletypes: [
@@ -80,6 +72,8 @@
       ".styl"
       ".stylus"
     ]
+  "project-manager":
+    closeCurrent: true
   react: {}
   "spell-check": {}
   "split-diff":
@@ -95,6 +89,8 @@
   "tree-view":
     showOnRightSide: true
     squashDirectoryNames: true
+  "vim-mode":
+    useClipboardAsDefaultRegister: false
   "vim-surround": {}
   welcome:
     showOnStartup: false
