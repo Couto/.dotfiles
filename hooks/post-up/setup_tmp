@@ -20,5 +20,10 @@ create_dirs() {
   [[ ! -d ${TMUX_DIR} ]] && mkdir -p ${TMUX_DIR};
 }
 
-create_dirs;
-setup_tpm;
+main() {
+  echo "Post-up Hook for TMP"
+  create_dirs;
+  setup_tpm;
+}
+
+main

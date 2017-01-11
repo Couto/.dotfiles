@@ -29,5 +29,10 @@ setup_plugvim() {
   fi
 }
 
-create_dirs;
-setup_plugvim;
+main() {
+  echo "Post-up Hook for PlugVim"
+  create_dirs;
+  setup_plugvim;
+}
+
+main
