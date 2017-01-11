@@ -2,5 +2,11 @@
 
 APM="$(which apm)";
 
-APM login;
-APM stars --install;
+#APM login;
+#APM stars --install;
+
+main() {
+  echo "Post-Up Hook for Atom";
+}
+
+main

@@ -1,6 +1,8 @@
 #!/usr/bin/env zsh
 
-BIN="$(which brew)"
+HOMEBREW_FOLDER="${HOME}/.homebrew"
+BIN="${HOMEBREW_FOLDER}/bin/brew"
+
 
 TAPS=(
   thoughtbot/formulae
@@ -41,20 +43,38 @@ FONTS=(
   font-dejavu-sans-mono-for-powerline
 );
 
-if [[ -n ${BIN} ]]; then
-  setup_homebrew;
-fi
 
 setup_homebrew() {
-  ruby -e "$(curl -fsSL
-  https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  mkdir -p ${HOMEBREW_FOLDER} && curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ${HOMEBREW_FOLDER}
 }
 
 setup_cask() {
-  brew install caskroom/cask/brew-cask
+  echo "${BIN}"
+  ${BIN} tap caskroom/cask
 
 }
 
-install_packages() {
+setup_common_taps() {
+  local taps=(
+    'caskroom/versions'
+    'caskroom/fonts'
+  );
 
+  for i in ${tap}; do
+    ${BIN} tap ${i}
+  done
 }
+
+main() {
+
+  if [[ -n ${BIN} ]]; then
+    echo "Installing homebrew";
+    setup_homebrew;
+
+    echo "Installing brew-cask";
+    setup_cask
+    setup_common_taps
+  fi
+}
+
+main
