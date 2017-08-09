@@ -4,6 +4,8 @@ IdentitiesOnly yes
 UseRoaming no
 # https://github.com/drduh/OS-X-Yosemite-Security-and-Privacy-Guide
 HashKnownHosts yes
+ServerAliveCountMax 5
+ServerAliveInterval 120
 
 Host *
 # Note: Ideally the following lines were the ones in use. However at the
@@ -22,10 +24,19 @@ Host *
   ServerAliveInterval 120
 
 # It doesn't support ed25519 nor ecdsa keys
-Host bitbucket.org
+Host bitbucket.org *.bitbucket.org
+  Hostname bitbucket.org
   User git
-  IdentityFile ~/.ssh/id_rsa
+  IdentityFile ~/.ssh/id_ed25519_bitbucket
 
 Host github.com
   User git
-  IdentityFile ~/.ssh/id_rsa_github
+  IdentityFile ~/.ssh/id_ed25519_github
+
+Host gitlab.com
+  User git
+  IdentityFile ~/.ssh/id_ed25519_luiscouto.pt
+
+Host gitlab.tvgnetwork.local
+  User git
+  IdentityFile ~/.ssh/id_ed25519_gitlab
