@@ -18,32 +18,34 @@ set colorcolumn=+1
 set number                    " Show gutter
 set numberwidth=5
 
+" Show invisibles
+set list " Display white space
+set listchars=tab:▸\ ,eol:¬,trail:·,space:·,extends:>,precedes:<
+
+" Show matching parens
+let loaded_matchparen = 1
+
 " Don’t create backups when editing files in certain directories
 set backupskip=/tmp/*,/private/tmp/*
 
 " Centralize backups, swapfiles and undo history
 if exists("&backupdir")
   set backupdir=~/.vim/backups
-end
+endif
 
 if exists("&directory")
   set directory=~/.vim/swaps
-end
+endif
 
 if exists("&undodir")
-	set undodir=~/.vim/undo
+  set undodir=~/.vim/undo
   set undofile
-end
+endif
 
 " Load bundles
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
-end
-
-" Theme (seoul256)
-" colo seoul256
-set background=dark
-colorscheme gruvbox
+endif
 
 " Reload .vimrc whenever we make changes
 augroup reload_vimrc " {
@@ -51,35 +53,43 @@ augroup reload_vimrc " {
   autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END " }
 
+" Theme
+if has("termguicolors")
+ "  set termguicolors       " enable true colors support
+endif
+
+" Ayu
+" let ayucolor="light"  " for light version of theme
+let ayucolor="mirage"   " for mirage version of theme
+" let ayucolor="dark"   " for dark version of theme
+
+" Nord
+colorscheme nord
+
 " NERDTree
-" autocmd vimenter * NERDTree " open a NERDTree automatically when vim starts up
-autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically when vim starts up if no files were specified
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif "  close vim if the only window left open is a NERDTree
 let NERDTreeShowHidden=1      " Show hidden files
+map <C-n> :NERDTreeToggle<CR>
+autocmd vimenter * NERDTree " open a NERDTree automatically when vim starts up
+autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically when vim starts up if no files were specified
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "close vim if the only window left open is a NERDTree
 
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Ale
+let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
+let g:ale_lint_on_text_changed = 'never' " Dont run ale when text changes
+let g:ale_lint_on_enter = 0              " Dont run ale when opening a file
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\}
 
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_check_on_open=0
-let g:syntastic_check_on_wq=0
-let g:syntastic_aggregate_errors=1
-let g:syntastic_javascript_checkers = ['eslint']
+let g:ale_fixers = {
+\  'javascript': ['eslint', 'prettier']
+\}
 
-" Load local eslint if it's present in local node_modules
-let local_eslint = finddir('node_modules/', '.;') . '.bin/eslint'
-if matchstr(local_eslint, "^\/\\w") == ''
-  let local_eslint = getcwd() . "/" . local_eslint
-end
-if executable(local_eslint)
-  let g:syntastic_javascript_eslint_exec = local_eslint
-end
+" Auto-format Elm files
+let g:elm_format_autosave = 1
 
 " vim-airline
-let g:airline_powerline_fonts=1             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
+let g:airline_powerline_fonts=0             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
 let g:airline#extensions#tabline#enabled=1  " Automatically displays all buffers when there's only one tab open.
 
 " vim-gitgutter
