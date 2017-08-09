@@ -1,0 +1,2 @@
+TAGS='atom beets bin curl git npm osx ssh tmux vim zsh'
+EXCLUDES='README.md modules'
