@@ -1,7 +1,7 @@
 #!/usr/bin/env zsh
 
 # Quick shortcuts
-export HOME=/Users/couto;
+export HOME="/Users/$USER";
 export DOTFILES=${HOME}/.dotfiles
 
 # Fix locales
@@ -32,9 +32,15 @@ export LESS_TERMCAP_md="${yellow}";
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
+# Homebrew options (no analytics, local install)
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_CASK_OPTS='--appdir=~/Applications --caskroom=~/.homebrew/Caskroom'
+
+
 # Path
 path=(
   "${HOME}/.bin"
+  "${HOME}/.homebrew/bin"
   $(brew --prefix)/opt/coreutils/libexec/gnubin
   $(brew --prefix)/opt
   /usr/local/bin

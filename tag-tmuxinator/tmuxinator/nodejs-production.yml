@@ -1,0 +1,48 @@
+# ~/.tmuxinator/nodejs-staging.yml
+
+name: nodejs-staging
+root: ~/Development/tvg-node-express
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+# Specifies (by name or index) which window will be selected on project startup. If not set, the first window is used.
+# startup_window: logs
+
+# Controls whether the tmux session should be attached to automatically. Defaults to true.
+# attach: false
+
+# Runs after everything. Use it to attach to tmux with custom options etc.
+# post: tmux -CC attach -t nodejs-staging
+
+windows:
+  - servers:
+      layout: tile
+      panes:
+        - tvgvprnjs01:
+          - ssh -v coutol_adm@tvgvprnjs01.tvgprod.local 
+        - tvgvprnjs02:
+          - ssh -v coutol_adm@tvgvprnjs02.tvgprod.local
+        - tvgvprnjs03:
+          - ssh -v coutol_adm@tvgvprnjs03.tvgprod.local 
+        - tvgvprnjs04:
+          - ssh -v coutol_adm@tvgvprnjs04.tvgprod.local 
+        - tvgvprnjs05:
+          - ssh -v coutol_adm@tvgvprnjs05.tvgprod.local 
+        - tvgvprnjs06:
+          - ssh -v coutol_adm@tvgvprnjs06.tvgprod.local 
+        - tvgvprnjs07:
+          - ssh -v coutol_adm@tvgvprnjs07.tvgprod.local 
+  - project: 

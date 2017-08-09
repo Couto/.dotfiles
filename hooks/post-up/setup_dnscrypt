@@ -1,14 +1,19 @@
 #!/usr/bin/env bash
 
 
-export PLIST='/Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist';
-export
-MARKER='<string>/usr/local/opt/dnscrypt-proxy/sbin/dnscrypt-proxy</string>';
-export ARGS='<string>--local-address=127.0.0.1:5355</string><string>--resolvers-list=/usr/local/share/dnscrypt-proxy/dnscrypt-resolvers.csv</string>';
+main() {
+ 
 
-sudo cp -fv /usr/local/opt/dnscrypt-proxy/*.plist /Library/LaunchDaemons
-sudo chown root "${PLIST}"; 
+  echo "Post-Up Hook for dnscrypt";
 
-sudo sed -i '' 's|'${MARKER}'|'${MARKER}'\'$'\n'${ARGS}'|' ${PLIST};
+  export PLIST='/Library/LaunchDaemons/homebrew.mxcl.dnscrypt-proxy.plist';
+  export MARKER='<string>/usr/local/opt/dnscrypt-proxy/sbin/dnscrypt-proxy</string>';
+  export ARGS='<string>--local-address=127.0.0.1:5355</string><string>--resolvers-list=/usr/local/share/dnscrypt-proxy/dnscrypt-resolvers.csv</string>';
 
-sudo launchctl load ${PLIST}
+  sudo cp -fv /usr/local/opt/dnscrypt-proxy/*.plist /Library/LaunchDaemons
+  sudo chown root "${PLIST}"; 
+
+  sudo sed -i '' 's|'${MARKER}'|'${MARKER}'\'$'\n'${ARGS}'|' ${PLIST};
+
+  sudo launchctl load ${PLIST}
+}
