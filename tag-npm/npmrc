@@ -1,2 +1,2 @@
 loglevel=http
-cache=/Users/couto/.npm
+cache=~/.npm
