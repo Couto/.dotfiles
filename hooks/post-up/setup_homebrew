@@ -26,7 +26,7 @@ PACKAGES=(
 APPS=(
   atom
   iterm2
-  slack
+  slack-beta
   macpass
   vagrant
   virtualbox
@@ -41,20 +41,34 @@ FONTS=(
   font-dejavu-sans-mono-for-powerline
 );
 
-if [[ -n ${BIN} ]]; then
-  setup_homebrew;
-fi
-
 setup_homebrew() {
-  ruby -e "$(curl -fsSL
-  https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 }
 
-setup_cask() {
-  brew install caskroom/cask/brew-cask
-
+setup_homebrewcask() {
+  ${BIN} install caskroom/cask/brew-cask
+  for i in "${TAPS[@]}" do:
+    ${BIN} tap ${i}
+  done
 }
 
 install_packages() {
+  local pkgs=${1}
+  local modifier="${2}"
 
+  for i in "${pksgs[@]}" do:
+    ${BIN} ${modifier} install ${i}
+  done
 }
+
+main () {
+  if [[ -n ${BIN} ]]; then
+    setup_homebrew;
+    setup_homebrewcask;
+    install_packages ${PACKAGES};
+    install_packages ${APPS} "cask";
+    install_packages ${FONTS} "cask";
+  fi
+}
+
+main;

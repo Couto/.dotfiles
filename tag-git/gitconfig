@@ -11,17 +11,17 @@
   # Better git status
   st = status -sb
 
+  # View abbreviated SHA, description, and history graph of the latest 20 commits
+  l = log --pretty=oneline --graph --abbrev-commit 
+
   # Nice git log with graph view
-  lg = log --graph --pretty=format:'%Cred%h%Creset (%G?) -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
 
   # Pull changes using rebase
   up = pull --rebase --prune
   
   # Pull changes but fast-forward only
   pf = pull --ff-only
-
-  # View abbreviated SHA, description, and history graph of the latest 20 commits
-  l = log --pretty=oneline -n 20 --graph --abbrev-commit
 
   # View the current working tree status using the short format
   s = status -s
@@ -92,10 +92,12 @@
   # More info: <http://www.git-tower.com/blog/make-git-rebase-safe-on-osx/>
   trustctime = false
 
+  # Be case sensitive
+  ignorecase = false
 [color]
   # Use colors in Git commands that are capable of colored output when
   # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-  ui = auto
+	ui = true
 
 [color "branch"]
   current = yellow reverse
@@ -103,10 +105,12 @@
   remote = green
 
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold # line info
-  old = red # deletions
-  new = green # additions
+	meta = 227
+	frag = magenta bold
+	old = red bold
+	new = green bold
+	commit = 227 bold
+	whitespace = red reverse
 
 [color "status"]
   added = yellow
@@ -121,10 +125,6 @@
   # Automatically correct and execute mistyped commands
   autocorrect = 1
 
-[merge]
-  # Include summaries of merged commits in newly created merge commit messages
-  log = true
-
 [rerere]
   enable = 1
   # https://gitfu.wordpress.com/2008/04/20/git-rerere-rereremember-what-you-did-last-time/
@@ -137,3 +137,8 @@
   # Use this file to override settings, like at work computer
   path = .gitconfig.user
   path = .gitconfig.local
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
