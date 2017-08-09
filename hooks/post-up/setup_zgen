@@ -9,8 +9,10 @@ setup_zgen() {
   fi
 }
 
-main(){
+
+main() {
+  echo "Post-Up Hook for Zgen"
   setup_zgen;
 }
 
-main;
+main
