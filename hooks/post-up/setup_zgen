@@ -9,4 +9,8 @@ setup_zgen() {
   fi
 }
 
-setup_zgen;
+main(){
+  setup_zgen;
+}
+
+main;
