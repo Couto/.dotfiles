@@ -81,24 +81,35 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd vimenter * NERDTree " open a NERDTree automatically when vim starts up
 autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically when vim starts up if no files were specified
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "close vim if the only window left open is a NERDTree
+autocmd VimEnter * NERDTree | wincmd p " Focus editor instead of NERDTree
 
 " Ale
 let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
 let g:ale_lint_on_text_changed = 'never' " Dont run ale when text changes
-let g:ale_lint_on_enter = 0              " Dont run ale when opening a file
+let g:ale_lint_on_enter = 1              " Dont run ale when opening a file
+let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
 
 let g:ale_fixers = {
-\  'javascript': ['eslint', 'prettier']
+\  'javascript': ['prettier', 'eslint']
 \}
+
+" ctrlp
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](node_modules|\.git|\.hg|\.svn|\.tmp)$',
+  \ }
+
 
 " Auto-format Elm files
 let g:elm_format_autosave = 1
-"
+
 " vim-javascript
-let g:javascript_conceal = 1
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_flow = 1
+
+let g:javascript_conceal = 0
 let g:javascript_conceal_function   = "ƒ"
 let g:javascript_conceal_null       = "ø"
 let g:javascript_conceal_this       = "@"
@@ -108,12 +119,16 @@ let g:javascript_conceal_NaN        = "ℕ"
 let g:javascript_conceal_prototype  = "¶"
 let g:javascript_conceal_static     = "•"
 let g:javascript_conceal_super      = "Ω"
-au FileType javascript set conceallevel=2
+au FileType javascript set conceallevel=0
 
-augroup jsfolding
-  autocmd!
-  autocmd FileType javascript setlocal foldenable|setlocal foldmethod=syntax
-augroup END
+" vim-flow
+let g:flow#autoclose=1
+let g:flow#enable=1
+
+" augroup jsfolding
+"  autocmd!
+"  autocmd FileType javascript setlocal foldenable|setlocal foldmethod=syntax
+"augroup END
 
 " vim-airline
 let g:airline_powerline_fonts=0             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
