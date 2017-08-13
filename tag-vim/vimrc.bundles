@@ -19,10 +19,11 @@ call plug#begin('~/.vim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'w0rp/ale'
-  Plug 'flowtype/vim-flow', { 'for': 'javascript' }
+  Plug 'mileszs/ack.vim'
+  Plug 'flowtype/vim-flow'
+  Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
   Plug 'elmcast/elm-vim', { 'for': 'elm' }
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-  Plug 'pangloss/vim-javascript', {'for': 'javascript'}
 
   if filereadable(expand("~/.vimrc.bundles.local"))
     source ~/.vimrc.bundles.local
