@@ -10,6 +10,10 @@ set shiftwidth=2
 set shiftround
 set expandtab
 set list                      " show invisible chars
+set incsearch
+set hlsearch
+set ignorecase                " Ignore case when searching
+set smartcase                 " But sometimes is useful
 
 " Make it obvious where 80 characters is
 set textwidth=80
