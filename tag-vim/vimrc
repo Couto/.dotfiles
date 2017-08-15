@@ -88,6 +88,8 @@ let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
 let g:ale_lint_on_text_changed = 'never' " Dont run ale when text changes
 let g:ale_lint_on_enter = 1              " Dont run ale when opening a file
 let g:ale_fix_on_save = 1
+let g:ale_sign_error='●'
+let g:ale_sign_warning='●'
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \}
@@ -96,10 +98,8 @@ let g:ale_fixers = {
 \  'javascript': ['prettier', 'eslint']
 \}
 
-" ctrlp
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](node_modules|\.git|\.hg|\.svn|\.tmp)$',
-  \ }
+hi ALEErrorSign ctermfg=red ctermbg=none
+hi ALEWarningSign ctermfg=yellow ctermbg=none
 
 
 " Auto-format Elm files
