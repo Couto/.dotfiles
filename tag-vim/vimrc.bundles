@@ -13,7 +13,10 @@ call plug#begin('~/.vim/bundle')
 
   Plug 'tpope/vim-sensible'
   Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'tpope/vim-fugitive'
+  Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
+  Plug 'junegunn/fzf.vim'
   Plug 'ayu-theme/ayu-vim'
   Plug 'arcticicestudio/nord-vim'
   Plug 'vim-airline/vim-airline'
