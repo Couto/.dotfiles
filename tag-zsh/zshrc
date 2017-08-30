@@ -16,6 +16,7 @@ if ! zgen saved; then
     "${HOME}/.zsh/fs"
     "${HOME}/.zsh/network"
     "${HOME}/.zsh/ssh"
+    "${HOME}/.zsh/history"
     zsh-users/zsh-completions src
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
@@ -41,6 +42,9 @@ bindkey -M vicmd 'j' history-substring-search-down
 
 # Enable incremental substring search
 bindkey '^R' history-incremental-search-backward
+
+# FZF settings
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

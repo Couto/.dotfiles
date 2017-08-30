@@ -1,5 +1,6 @@
+
 set nocompatible              " be iMproved, required
-filetype off                  " required
+filetype on                  " required
 
 " Vim native settings
 set pastetoggle=<F2>
@@ -14,6 +15,8 @@ set incsearch
 set hlsearch
 set ignorecase                " Ignore case when searching
 set smartcase                 " But sometimes is useful
+set showmatch                  " Highlight matching parens
+set showcmd " Show leader
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -64,16 +67,22 @@ syntax enable
 set t_Co=256
 
 if has("termguicolors")
- "  set termguicolors       " enable true colors support
+  " set termguicolors       " enable true colors support
 endif
 
 " Ayu
 " let ayucolor="light"  " for light version of theme
-let ayucolor="mirage"   " for mirage version of theme
+" let ayucolor="mirage"   " for mirage version of theme
 " let ayucolor="dark"   " for dark version of theme
+" colorscheme ayu
 
 " Nord
 colorscheme nord
+
+" Solarized
+" let g:solarized_visibility="low"
+" set background=light
+" colorscheme solarized
 
 " NERDTree
 let NERDTreeShowHidden=1      " Show hidden files
@@ -85,7 +94,7 @@ autocmd VimEnter * NERDTree | wincmd p " Focus editor instead of NERDTree
 
 " Ale
 let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
-let g:ale_lint_on_text_changed = 'never' " Dont run ale when text changes
+let g:ale_lint_on_text_changed = 'always' " Dont run ale when text changes
 let g:ale_lint_on_enter = 1              " Dont run ale when opening a file
 let g:ale_fix_on_save = 1
 let g:ale_sign_error='●'
@@ -101,9 +110,14 @@ let g:ale_fixers = {
 hi ALEErrorSign ctermfg=red ctermbg=none
 hi ALEWarningSign ctermfg=yellow ctermbg=none
 
+" vim-elm
+let g:elm_jump_to_error = 1
+let g:elm_make_show_warnings = 1
+let g:elm_detailed_complete = 1
+let g:elm_format_autosave = 1       " Auto-format Elm files
+let g:elm_format_fail_silently = 0
+let g:elm_setup_keybindings = 1
 
-" Auto-format Elm files
-let g:elm_format_autosave = 1
 
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1

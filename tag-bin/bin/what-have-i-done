@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -euo pipefail
+IFS=$'\n\t'
+
+function main {
+
+}
+
+while getopts ":a:c:u:t:e:" flag; do
+  case "${flag}" in
+    a) AVATAR=${OPTARG} ;;
+    c) CHANNEL=${OPTARG} ;;
+    u) USERNAME=${OPTARG} ;;
+    t) TEXT=${OPTARG} ;;
+    e) ENDPOINT=${OPTARG} ;;
+    *) usage ;;
+  esac
+done
+
+
+
+
+main
+
