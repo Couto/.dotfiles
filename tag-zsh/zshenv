@@ -54,3 +54,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # Manpages
 export MANPATH=$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH;
 
+# FZF Settings
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+

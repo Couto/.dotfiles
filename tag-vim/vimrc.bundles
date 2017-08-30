@@ -19,6 +19,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'junegunn/fzf.vim'
   Plug 'ayu-theme/ayu-vim'
   Plug 'arcticicestudio/nord-vim'
+  Plug 'altercation/vim-colors-solarized'
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
   Plug 'w0rp/ale'
