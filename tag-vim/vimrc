@@ -94,8 +94,9 @@ autocmd VimEnter * NERDTree | wincmd p " Focus editor instead of NERDTree
 
 " Ale
 let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
-let g:ale_lint_on_text_changed = 'always' " Dont run ale when text changes
-let g:ale_lint_on_enter = 1              " Dont run ale when opening a file
+let g:ale_lint_on_text_changed = 'always' " Run ale when text changes
+let g:ale_lint_delay = 1000               " Wait 1s before linting
+let g:ale_lint_on_enter = 1              " Run ale when opening a file
 let g:ale_fix_on_save = 1
 let g:ale_sign_error='●'
 let g:ale_sign_warning='●'
@@ -123,27 +124,11 @@ let g:elm_setup_keybindings = 1
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
 
-let g:javascript_conceal = 0
-let g:javascript_conceal_function   = "ƒ"
-let g:javascript_conceal_null       = "ø"
-let g:javascript_conceal_this       = "@"
-let g:javascript_conceal_return     = "⇚"
-let g:javascript_conceal_undefined  = "¿"
-let g:javascript_conceal_NaN        = "ℕ"
-let g:javascript_conceal_prototype  = "¶"
-let g:javascript_conceal_static     = "•"
-let g:javascript_conceal_super      = "Ω"
-au FileType javascript set conceallevel=0
 
 " vim-flow
 let g:flow#autoclose=1
 let g:flow#enable=1
-let g:flow#showquickfix = 0
-
-" augroup jsfolding
-"  autocmd!
-"  autocmd FileType javascript setlocal foldenable|setlocal foldmethod=syntax
-"augroup END
+let g:flow#showquickfix = 1
 
 " vim-airline
 let g:airline_powerline_fonts=0             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
@@ -169,3 +154,9 @@ filetype plugin indent on    " required
 " vim-markdown
 let g:vim_markdown_toc_autofit = 1
 au FileType markdown setl conceallevel=2
+
+" FZF
+nnoremap <silent> <Leader><Leader> :Files<CR>
+nnoremap <silent> <Leader>ag :Ag<CR>
+nnoremap <silent> <Leader><Enter> :Buffers<CR>
+
