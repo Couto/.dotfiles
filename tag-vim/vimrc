@@ -92,6 +92,12 @@ autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "close vim if the only window left open is a NERDTree
 autocmd VimEnter * NERDTree | wincmd p " Focus editor instead of NERDTree
 
+" undotree
+nnoremap U :UndotreeToggle<cr>
+let g:undotree_WindowLayout = 3
+let g:undotree_ShortIndicators = 1
+let g:undotree_SetFocusWhenToggle = 1
+
 " Ale
 let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
 let g:ale_lint_on_text_changed = 'always' " Run ale when text changes
