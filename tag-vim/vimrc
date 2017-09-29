@@ -174,4 +174,3 @@ nnoremap <silent> <Leader><Enter> :Buffers<CR>
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
