@@ -13,6 +13,7 @@ call plug#begin('~/.vim/bundle')
 
   Plug 'tpope/vim-sensible'
   Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-surround'
   Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
   Plug 'junegunn/fzf.vim'
