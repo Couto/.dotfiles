@@ -94,10 +94,11 @@
 
   # Be case sensitive
   ignorecase = false
+
 [color]
   # Use colors in Git commands that are capable of colored output when
   # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-	ui = true
+  ui = true
 
 [color "branch"]
   current = yellow reverse
@@ -105,12 +106,12 @@
   remote = green
 
 [color "diff"]
-	meta = 227
-	frag = magenta bold
-	old = red bold
-	new = green bold
-	commit = 227 bold
-	whitespace = red reverse
+  meta = 227
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  commit = 227 bold
+  whitespace = red reverse
 
 [color "status"]
   added = yellow
@@ -137,8 +138,9 @@
   # Use this file to override settings, like at work computer
   path = .gitconfig.user
   path = .gitconfig.local
+
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
