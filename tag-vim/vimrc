@@ -17,6 +17,7 @@ set ignorecase                " Ignore case when searching
 set smartcase                 " But sometimes is useful
 set showmatch                  " Highlight matching parens
 set showcmd " Show leader
+set cursorline                " Highlight cursor line
 
 " Make it obvious where 80 characters is
 set textwidth=80
@@ -35,7 +36,7 @@ set listchars=tab:▸\ ,eol:¬,trail:·,space:·,extends:>,precedes:<
 let loaded_matchparen = 1
 
 " Don’t create backups when editing files in certain directories
-set backupskip=/tmp/*,/private/tmp/*
+" set backupskip=/tmp/*,/private/tmp/*
 
 " Centralize backups, swapfiles and undo history
 if exists("&backupdir")
@@ -76,13 +77,16 @@ if has("termguicolors")
 endif
 
 " Ayu
-" let ayucolor="light"  " for light version of theme
-" let ayucolor="mirage"   " for mirage version of theme
-" let ayucolor="dark"   " for dark version of theme
+let ayucolor="light"  " for light version of theme
+let ayucolor="mirage"   " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+
 " colorscheme ayu
+" set background=light
 
 " Nord
 colorscheme nord
+set background=dark
 
 " Solarized
 " let g:solarized_visibility="low"
@@ -91,11 +95,16 @@ colorscheme nord
 
 " NERDTree
 let NERDTreeShowHidden=1      " Show hidden files
+
 map <C-n> :NERDTreeToggle<CR>
-autocmd vimenter * NERDTree " open a NERDTree automatically when vim starts up
-autocmd vimenter * if !argc() | NERDTree | endif " open a NERDTree automatically when vim starts up if no files were specified
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "close vim if the only window left open is a NERDTree
-autocmd VimEnter * NERDTree | wincmd p " Focus editor instead of NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if &ft!="gitcommit" | NERDTree 
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
+autocmd VimEnter * wincmd p
+
+" gitcommits
+au FileType gitcommit setl spell
 
 " undotree
 nnoremap U :UndotreeToggle<cr>
@@ -106,22 +115,33 @@ let g:undotree_SetFocusWhenToggle = 1
 " Ale
 let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
 let g:ale_lint_on_text_changed = 'always' " Run ale when text changes
-let g:ale_lint_delay = 1000               " Wait 1s before linting
 let g:ale_lint_on_enter = 1              " Run ale when opening a file
 let g:ale_fix_on_save = 1
 let g:ale_sign_error='●'
 let g:ale_sign_warning='●'
+let g:ale_sign_column_always = 1
+let g:ale_completion_enabled=1    " Enable completion where available.
 let g:ale_linters = {
-\   'javascript': ['eslint'],
+\   'javascript': ['eslint', 'flow', 'vale'],
+\   'typescript': ['tslint', 'tsserver', 'vale'],
 \   'markdown': ['vale'],
+\   'gitcommit': ['vale'],
 \}
 
 let g:ale_fixers = {
-\  'javascript': ['prettier', 'eslint']
+\  'javascript': ['eslint'],
+\  'typescript': ['tslint'],
 \}
 
 hi ALEErrorSign ctermfg=red ctermbg=none
 hi ALEWarningSign ctermfg=yellow ctermbg=none
+
+
+let g:prettier#config#single_quote = 'true'
+let g:prettier#config#bracket_spacing = 'true'
+let g:prettier#config#arrow_parens = 'avoid'
+let g:prettier#config#parser = 'babylon'
+let g:prettier#config#trailing_comma = 'es5'
 
 " vim-elm
 let g:elm_jump_to_error = 1
@@ -131,11 +151,9 @@ let g:elm_format_autosave = 1       " Auto-format Elm files
 let g:elm_format_fail_silently = 0
 let g:elm_setup_keybindings = 1
 
-
 " vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_flow = 1
-
 
 " vim-flow
 let g:flow#autoclose=1
@@ -146,26 +164,18 @@ let g:flow#showquickfix = 1
 let g:airline_powerline_fonts=0             " Automatically populate the g:airline_symbols dictionary with the powerline symbols.
 let g:airline#extensions#tabline#enabled=1  " Automatically displays all buffers when there's only one tab open.
 
-" vim-gitgutter
-let g:gitgutter_diff_args='-w'        " Ignore whitespace on git diffs
-let g:gitgutter_realtime=1            " Turn to zero for performance
-let g:gitgutter_eager=1               " Turn to zero for performance
-let g:gitgutter_sign_column_always=1  " Always show the gutter
-
-highlight SignColumn ctermbg=none
-highlight GitGutterAdd ctermbg=none
-highlight GitGutterChange ctermbg=none
-highlight GitGutterDelete ctermbg=none
-highlight GitGutterChangeDelete ctermbg=none
-
 " vim-autoclose
 let g:autoclose_vim_commentmode = 1
+
+" vim-signify
+let g:signify_vcs_list = ['git', 'hg']
 
 filetype plugin indent on    " required
 
 " vim-markdown
 let g:vim_markdown_toc_autofit = 1
 au FileType markdown setl conceallevel=2
+au FileType markdown setl spell
 
 " FZF
 nnoremap <silent> <Leader><Leader> :Files<CR>

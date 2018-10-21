@@ -6,6 +6,8 @@
   aliaslist =  config --get-regexp '(alias.*)'
 
   # serve the repository locally so that colleagues can access it on LAN
+  # They should use the remote git://<ip>/ <- that's it
+  # https://gist.github.com/datagrok/5080545
   serve = daemon --reuseaddr --base-path=. --export-all --verbose --enable=receive-pack
 
   # Better git status
@@ -15,13 +17,15 @@
   l = log --pretty=oneline --graph --abbrev-commit 
 
   # Nice git log with graph view
-  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+  lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %G? %an%C(reset)' --all
 
   # Pull changes using rebase
   up = pull --rebase --prune
   
   # Pull changes but fast-forward only
   pf = pull --ff-only
+
+  pp = !"git push -u origin $(git_current_branch)"
 
   # View the current working tree status using the short format
   s = status -s
@@ -39,8 +43,8 @@
   c = clone --recursive
 
   # Commit all changes
-  ca = !git add -A && git commit -av
-  cp = !git add -p && git commit -v
+  ca = !git add -A && git commit -S -av
+  cp = !git add -p && git commit -S -v
 
   # Switch to a branch, creating it if necessary
   go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
@@ -77,6 +81,7 @@
 
   # List contributors with number of commits
   contributors = shortlog --summary --numbered
+	oldest-ancestor = !zsh -c 'diff --old-line-format= --new-line-format= <(git rev-list --first-parent \"${1:-master}\") <(git rev-list --first-parent \"${2:-HEAD}\") | head -1' -
 
 [core]
   # Use custom `.gitignore` and `.gitattributes`
@@ -94,6 +99,7 @@
 
   # Be case sensitive
   ignorecase = false
+  pager = "$(brew --prefix)/share/git-core/contrib/diff-highlight/diff-highlight | less -rx1,5"
 
 [color]
   # Use colors in Git commands that are capable of colored output when
@@ -139,8 +145,12 @@
   path = .gitconfig.user
   path = .gitconfig.local
 
-[color "diff-highlight"]
-  oldNormal = red bold
-  oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
+[commit]
+	template = ~/.dotfiles/tag-git/.gitmessage
+
+# [color "diff-highlight"]
+#   oldNormal = red bold
+#   oldHighlight = red bold 52
+#   newNormal = green bold
+#   newHighlight = green bold 22
+ 
