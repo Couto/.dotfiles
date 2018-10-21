@@ -16,6 +16,7 @@ call plug#begin('~/.vim/bundle')
   Plug 'tpope/vim-surround'
   Plug 'mhinz/vim-signify'
   Plug 'mhinz/vim-startify'
+  Plug 'tpope/vim-repeat'
   Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
   Plug 'junegunn/fzf.vim'
