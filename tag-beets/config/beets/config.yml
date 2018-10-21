@@ -5,9 +5,14 @@
 # fetchart  - gets the album's cover art
 # embedart  - places the cover art inside the files' metainfo
 # lastgenre - fetchs music styles for the tracks
+
+directory: "/Volumes/Shared Files/Music/"
+import:
+  move: yes
+
 plugins:
   - convert
-  - discogs
+    #  - discogs
   - replaygain
   - scrub
   - chroma
@@ -15,6 +20,11 @@ plugins:
   - embedart
   - lastgenre
   - fromfilename
-  # - lyrics
+  - lyrics
   - thumbnails
+
+fetchart:
+    cautious: true
+    cover_names: front back
+    sources: wikipedia itunes * 
 
