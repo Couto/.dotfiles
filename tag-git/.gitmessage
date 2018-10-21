@@ -1,0 +1,20 @@
+
+
+# Describe the changes done in this commit
+
+
+# Describe why these changes were necessary
+
+
+
+# Uncomment if it applies
+# More info here: https://git.wiki.kernel.org/index.php/CommitMessageConventions
+# Co-authored-by: Jane Doe <email@example.com>
+# Signed-off-by: Jane Doe <email@example.com>
+# Reported-by: Jane Doe <email@example.com>
+# Tested-by: Jane Doe <email@example.com>
+# Acked-by: Jane Doe <email@example.com>
+# Reviewed-by: Jane Doe <email@example.com>
+# Thanks: Jane Doe <email@example.com>
+# Fixes: #Ticket-number
+
