@@ -31,9 +31,11 @@ setup_plugvim() {
 
 main() {
   echo "Post-up Hook for PlugVim"
-  create_dirs;
-  setup_plugvim;
-}
 
+  if [ ! -d "${VIM_DIR}" ]; then
+    create_dirs;
+    setup_plugvim;
+  fi
+}
 
 main;

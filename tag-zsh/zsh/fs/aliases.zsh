@@ -17,3 +17,4 @@ if [ "${TERM}" != "dumb" ]; then
 fi
 
 alias l='ls ${LS_OPTIONS} -blAhF'
+

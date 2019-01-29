@@ -104,7 +104,7 @@
 [color]
   # Use colors in Git commands that are capable of colored output when
   # outputting to the terminal. (This is the default setting in Git ≥ 1.8.4.)
-  ui = always
+	ui = always
 
 [color "branch"]
   current = yellow reverse
@@ -112,17 +112,13 @@
   remote = green
 
 [color "diff"]
-  commit = green
-  meta = yellow
-  frag = cyan
-  old = red
-  new = green
-  whitespace = red reverse
+	commit = green bold
+	meta = yellow
+	frag = cyan bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
 
-[pager]
-  log = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less -FRXsu --tabs=4
 
 [color "status"]
   added = yellow
@@ -134,10 +130,10 @@
   oldReset = noul
 
 [color "diff-highlight"]
-  oldNormal = red bold
+	oldNormal = red bold
   oldHighlight = red bold 52
-  newNormal = green bold
-  newHighlight = green bold 22
+	newNormal = green bold
+	newHighlight = green bold 22
 
 [diff]
   # Detect copies as well as renames

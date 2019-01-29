@@ -3,57 +3,61 @@
 # Quick shortcuts
 export HOME="/Users/$USER";
 export DOTFILES=${HOME}/.dotfiles
-export BREW="${HOME}/.homebrew/bin/brew"
+export HOMEBREW_DIR="${HOME}/.homebrew"
+export BREW="${HOMEBREW_DIR}/bin/brew"
 
 # Fix locales
 export LANG="en_US.UTF-8";
 export LC_ALL="en_US.UTF-8";
 
 # Editors
-export EDITOR="$(which vim)";
-export VISUAL="$(which vim)";
+export EDITOR="$(which nvim)";
+export VISUAL="$(which nvim)";
 
-# Configurations
-export NVM_DIR=$HOME/.nvm
-#
 # Homebrew options (no analytics, local install)
 export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_CASK_OPTS='--appdir=~/Applications --caskroom=~/.homebrew/Caskroom'
+export HOMEBREW_CASK_OPTS='--appdir=~/Applications'
 
 # Always enable colored `grep` output
 export GREP_OPTIONS="--color=auto";
 
 # Increase history
 export HISTFILE=~/.zsh_history
-export HISTSIZE=10000
-export SAVEHIST=10000
-
-# Highlight section titles in manual pages
-export LESS_TERMCAP_md="${yellow}";
+export HISTSIZE=100000
+export SAVEHIST=100000
 
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
 # Path
+typeset -U path
 path=(
   "${HOME}/.bin"
-  "${HOME}/.homebrew/bin"
-  $(brew --prefix)/opt/curl/bin
-  $(brew --prefix)/opt/coreutils/libexec/gnubin
-  $(brew --prefix)/opt
+  "${HOMEBREW_DIR}/opt/curl/bin"
+  "${HOMEBREW_DIR}/opt/coreutils/libexec/gnubin"
+  "${HOMEBREW_DIR}/bin"
+  "${HOMEBREW_DIR}/opt"
   /usr/local/bin
   /usr/local/sbin
+  /usr/bin
+  /bin
+  /usr/sbin
+  /sbin
   $path
 );
-typeset -U path
 
-# rbenv, pyenv, nvm and the likes
-. $(brew --prefix nvm)/nvm.sh
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# export GPG_TTY="$(tty)"
+# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+# gpgconf --launch gpg-agent
+
+gpgconf --launch gpg-agent
+export SSH_AUTH_SOCKET=$HOME/.gnupg/S.gpg-agent.ssh
+
+
+export ASDF_DIR="${HOMEBREW_DIR}/opt/asdf"
 
 # Manpages
-export MANPATH=$(brew --prefix)/opt/coreutils/libexec/gnuman:$MANPATH;
+export MANPATH="${HOMEBREW_DIR}/opt/coreutils/libexec/gnuman:$MANPATH;"
 
 # FZF Settings
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'

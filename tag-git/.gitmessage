@@ -1,14 +1,14 @@
 
 
 # Describe the changes done in this commit
+# "If applied, this commit will___ "
 
 
-# Describe why these changes were necessary
+# Describe what and why these changes were necessary
 
 
 
 # Uncomment if it applies
-# More info here: https://git.wiki.kernel.org/index.php/CommitMessageConventions
 # Co-authored-by: Jane Doe <email@example.com>
 # Signed-off-by: Jane Doe <email@example.com>
 # Reported-by: Jane Doe <email@example.com>
@@ -17,4 +17,10 @@
 # Reviewed-by: Jane Doe <email@example.com>
 # Thanks: Jane Doe <email@example.com>
 # Fixes: #Ticket-number
+
+# Bibliography:
+# https://chris.beams.io/posts/git-commit/
+# https://zulip.readthedocs.io/en/latest/contributing/version-control.html
+# https://juffalow.com/other/write-good-git-commit-message
+# https://git.wiki.kernel.org/index.php/CommitMessageConventions
 

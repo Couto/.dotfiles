@@ -28,8 +28,15 @@ set numberwidth=5
 set relativenumber
 
 " Show invisibles
-set list " Display white space
-set listchars=tab:▸\ ,eol:¬,trail:·,space:·,extends:>,precedes:<
+" set list " Display white space
+" set listchars=tab:▸\ ,eol:¬,trail:·,space:·,extends:>,precedes:<
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+" autocmd BufWinEnter * match ExtraWhitespace /\s\+$/ 
+" autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/ 
+" autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+" autocmd BufWinLeave * call clearmatches()
 
 " Show matching parens
 let loaded_matchparen = 1
@@ -97,13 +104,14 @@ let NERDTreeShowHidden=1      " Show hidden files
 
 map <C-n> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if &ft!="gitcommit" | NERDTree 
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd VimEnter * if &ft!="gitcommit" | NERDTree 
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif 
-autocmd VimEnter * NERDTree | wincmd p " After it starts focus the last window instead of NERDTree
+" autocmd VimEnter * NERDTree | wincmd p " After it starts focus the last window instead of NERDTree
 
 " gitcommits
 au FileType gitcommit setl spell
+let g:fugitive_git_executable = 'LANG=en_US.UTF-8 git'
 
 " undotree
 nnoremap U :UndotreeToggle<cr>
@@ -113,34 +121,29 @@ let g:undotree_SetFocusWhenToggle = 1
 
 " Ale
 let g:airline#extensions#ale#enabled = 1 " Show errors in statusline
-let g:ale_lint_on_text_changed = 'always' " Run ale when text changes
+let g:ale_sign_column_always = 1
+let g:ale_completion_enabled=1    " Enable completion where available.
 let g:ale_lint_on_enter = 1              " Run ale when opening a file
+let g:ale_lint_on_text_changed = 'always' " Run ale when text changes
 let g:ale_fix_on_save = 1
 let g:ale_sign_error='●'
 let g:ale_sign_warning='●'
-let g:ale_sign_column_always = 1
-let g:ale_completion_enabled=1    " Enable completion where available.
 let g:ale_linters = {
 \   'javascript': ['eslint', 'flow', 'vale'],
 \   'typescript': ['tslint', 'tsserver', 'vale'],
-\   'markdown': ['vale'],
-\   'gitcommit': ['vale'],
+\   'gitcommit': ['gitlint', 'vale'],
 \}
 
 let g:ale_fixers = {
-\  'javascript': ['eslint'],
-\  'typescript': ['tslint'],
+\  'javascript': ['eslint', 'prettier'],
+\  'typescript': ['tslint', 'prettier'],
+\  'sh': ['shfmt'],
 \}
-
 hi ALEErrorSign ctermfg=red ctermbg=none
 hi ALEWarningSign ctermfg=yellow ctermbg=none
 
-
-let g:prettier#config#single_quote = 'true'
-let g:prettier#config#bracket_spacing = 'true'
-let g:prettier#config#arrow_parens = 'avoid'
-let g:prettier#config#parser = 'babylon'
-let g:prettier#config#trailing_comma = 'es5'
+" Prettier
+let g:prettier#exec_cmd_async = 1
 
 " vim-elm
 let g:elm_jump_to_error = 1
@@ -177,9 +180,55 @@ au FileType markdown setl conceallevel=2
 au FileType markdown setl spell
 
 " FZF
+" let g:fzf_prefer_tmux = 1
 nnoremap <silent> <Leader><Leader> :Files<CR>
 nnoremap <silent> <Leader>ag :Ag<CR>
+nnoremap <silent> <Leader>rg :Rg<CR>
 nnoremap <silent> <Leader><Enter> :Buffers<CR>
+
+" ctrlp
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/node_modules/*
+let g:ctrlp_show_hidden = 1
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
+
+" use ag if available
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+" use rg if available
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ $*
+  set gfm=%f:%l:%c:%m,%f:%l%m,%f\ \ %l%m
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+" FlyGrep
+nnoremap <silent> <Leader>f :FlyGrep<cr>
 
 " vimwiki
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+nnoremap <silent> <Leader>dt :VimwikiTabMakeDiaryNote<CR>
+nnoremap <silent> <Leader>di :VimwikiDiaryIndex<CR>
+nnoremap <silent> <Leader>dig :VimwikiDiaryGenerateLinks<CR>
+
+" Calendar
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+
+
+" vim-terraform
+let g:terraform_fmt_on_save=1
+let g:terraform_align=1
+
+" vim-test
+nmap <silent> <Leader>tn :TestNearest<CR>
+nmap <silent> <Leader>tf :TestFile<CR>
+nmap <silent> <Leader>ts :TestSuite<CR>
+nmap <silent> <Leader>tl :TestLast<CR>
+nmap <silent> <Leader>tv :TestVisit<CR>
+let test#strategy = "neovim"

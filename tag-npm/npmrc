@@ -1,2 +1,3 @@
 loglevel=http
-cache=~/.npm
+cache=/Users/couto/.npm
+//registry.npmjs.org/:_authToken=f4ee7988-b800-4225-8943-0a938ba60087

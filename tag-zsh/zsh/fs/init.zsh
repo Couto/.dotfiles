@@ -8,7 +8,5 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 setopt PUSHD_TO_HOME        # Push to home directory when no argument is given.
 setopt EXTENDED_GLOB        # Use extended globbing syntax.
 
-CWD="$(dirname ${(%):-%x})";
-source "${CWD}/aliases.zsh";
-source "${CWD}/functions.zsh";
-
+source "${0:h}/aliases.zsh"
+source "${0:h}/functions.zsh";

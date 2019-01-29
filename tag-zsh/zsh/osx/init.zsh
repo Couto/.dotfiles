@@ -1,4 +1,3 @@
 #!/usr/bin/env zsh
 
-CWD="$(dirname ${(%):-%x})";
-source "${CWD}/aliases.zsh";
+source "${0:h}/aliases.zsh";

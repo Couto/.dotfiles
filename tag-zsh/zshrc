@@ -15,19 +15,26 @@ if ! zgen saved; then
     "${HOME}/.zsh/osx"
     "${HOME}/.zsh/fs"
     "${HOME}/.zsh/network"
-    "${HOME}/.zsh/ssh"
+    "${HOME}/.zsh/git"
     "${HOME}/.zsh/history"
     zsh-users/zsh-completions src
     zsh-users/zsh-syntax-highlighting
     zsh-users/zsh-history-substring-search
+    "${HOMEBREW_DIR}/share/zsh-completions"
+    "${HOMEBREW_DIR}/opt/git-extras/share/git-extras/git-extras-completion.zsh"
+    "${ASDF_DIR}/asdf.sh"
 EOPLUGINS
-
   # save all to init script
   zgen save
 fi
 
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 # bind UP and DOWN arrow keys
 zmodload zsh/terminfo
+
 bindkey "$terminfo[kcuu1]" history-substring-search-up
 bindkey "$terminfo[kcud1]" history-substring-search-down
 
@@ -48,3 +55,10 @@ bindkey '^R' history-incremental-search-backward
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+# This slows down the zsh startup time by approx 60ms
+# if [ $commands[kubectl] ]; then
+#   source <(kubectl completion zsh)
+# fi
+
+. "${ASDF_DIR}/etc/bash_completion.d/asdf.bash"

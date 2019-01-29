@@ -11,32 +11,58 @@ endif
   
 call plug#begin('~/.vim/bundle')
 
+  Plug 'janko-m/vim-test'
   Plug 'tpope/vim-sensible'
-  Plug 'tpope/vim-fugitive'
   Plug 'tpope/vim-surround'
-  Plug 'mhinz/vim-signify'
   Plug 'mhinz/vim-startify'
   Plug 'tpope/vim-repeat'
+  Plug 'tpope/vim-commentary'
+  Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+  Plug 'Raimondi/delimitMate'
+
+  " Git
+  Plug 'tpope/vim-fugitive'
+  Plug 'mhinz/vim-signify'
+  Plug 'hotwatermorning/auto-git-diff'
+
+  " Navigation
   Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } 
+  Plug 'ctrlpvim/ctrlp.vim'
+  " Plug 'nixprime/cpsm'
+  Plug 'wsdjeg/FlyGrep.vim'
+
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
   Plug 'junegunn/fzf.vim'
+
+  " Themes
   Plug 'ayu-theme/ayu-vim'
   Plug 'arcticicestudio/nord-vim'
   Plug 'altercation/vim-colors-solarized'
+
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'w0rp/ale'
+  Plug 'andreypopp/vim-colors-plain'
+
+  " Language syntax or settings
   Plug 'sheerun/vim-polyglot'
-  Plug 'leafgarland/typescript-vim'
+  Plug 'hashivim/vim-terraform', { 'for': 'terraform' }
   Plug 'flowtype/vim-flow', { 'for': 'javascript' }
   Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+  Plug 'leafgarland/typescript-vim', { 'for': ['typescript', 'javascript'] }
   Plug 'elmcast/elm-vim', { 'for': 'elm' }
   Plug 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-  Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-  Plug 'vimwiki/vimwiki'
+  Plug 'mzlogin/vim-markdown-toc'
+  Plug 'vim-scripts/AnsiEsc.vim'
+
+  " Linters and formatters
+  Plug 'w0rp/ale'
   Plug 'prettier/vim-prettier', {
     \ 'do': 'yarn install',
     \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue'] }
+
+  " Utilities
+  Plug 'itchyny/calendar.vim'
+  Plug 'vimwiki/vimwiki'
 
   if filereadable(expand("~/.vimrc.bundles.local"))
     source ~/.vimrc.bundles.local

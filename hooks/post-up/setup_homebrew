@@ -2,84 +2,17 @@
 
 HOMEBREW_FOLDER="${HOME}/.homebrew"
 BIN="${HOMEBREW_FOLDER}/bin/brew"
-
-
-TAPS=(
-  thoughtbot/formulae
-  caskroom/versions
-  caskroom/fonts
-);
-
-PACKAGES=(
-  coreutils
-  dnsmasq --with-dnssec
-  dnscrypt-proxy
-  tree
-  nvm
-  shellcheck
-  rbenv
-  rcm
-  pyenv
-  tmux
-  z
-  zsh
-);
-
-APPS=(
-  atom
-  iterm2
-  slack-beta
-  macpass
-  vagrant
-  virtualbox
-  the-unarchiver
-  firefox
-  google-chrome
-  google-chrome-canary
-);
-
-FONTS=(
-  font-fira-mono
-  font-dejavu-sans-mono-for-powerline
-);
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 
 setup_homebrew() {
   mkdir -p ${HOMEBREW_FOLDER} && curl -fsSL https://github.com/Homebrew/brew/tarball/master | tar xz --strip 1 -C ${HOMEBREW_FOLDER}
-}
-
-setup_cask() {
-  echo "${BIN}"
-  ${BIN} tap caskroom/cask
-
-}
-
-setup_common_taps() {
-  local taps=(
-    'caskroom/versions'
-    'caskroom/fonts'
-  );
-
-  for i in ${tap}; do
-    ${BIN} tap ${i}
-  done
-}
-
-install_packages() {
-  local pkgs=${1}
-  local modifier="${2}"
-
-  for i in "${pksgs[@]}" do:
-    ${BIN} ${modifier} install ${i}
-  done
 }
 
 main () {
   if [[ -n ${BIN} ]]; then
     setup_homebrew;
     setup_homebrewcask;
-    install_packages ${PACKAGES};
-    install_packages ${APPS} "cask";
-    install_packages ${FONTS} "cask";
+    brew bundle --file="${CURRENT_DIR}/Brewfile" 
   fi
 }
 
