@@ -16,5 +16,6 @@ if [ "${TERM}" != "dumb" ]; then
     #eval `dircolors ~/.dir_colors`
 fi
 
-alias l='ls ${LS_OPTIONS} -blAhF'
+#alias l='ls ${LS_OPTIONS} -blAhF'
 
+alias l='exa -alghH'

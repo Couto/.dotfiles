@@ -29,29 +29,8 @@ export SAVEHIST=100000
 # Don’t clear the screen after quitting a manual page
 export MANPAGER="less -X";
 
-# Path
-typeset -U path
-path=(
-  "${HOME}/.bin"
-  "${HOMEBREW_DIR}/opt/curl/bin"
-  "${HOMEBREW_DIR}/opt/coreutils/libexec/gnubin"
-  "${HOMEBREW_DIR}/bin"
-  "${HOMEBREW_DIR}/opt"
-  /usr/local/bin
-  /usr/local/sbin
-  /usr/bin
-  /bin
-  /usr/sbin
-  /sbin
-  $path
-);
-
-# export GPG_TTY="$(tty)"
-# export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 # gpgconf --launch gpg-agent
-
-gpgconf --launch gpg-agent
-export SSH_AUTH_SOCKET=$HOME/.gnupg/S.gpg-agent.ssh
+# export SSH_AUTH_SOCKET=$HOME/.gnupg/S.gpg-agent.ssh
 
 
 export ASDF_DIR="${HOMEBREW_DIR}/opt/asdf"

@@ -19,11 +19,15 @@ call plug#begin('~/.vim/bundle')
   Plug 'tpope/vim-commentary'
   Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
   Plug 'Raimondi/delimitMate'
-
+  Plug 'RRethy/vim-illuminate'
+  Plug 'inside/vim-search-pulse'
+  Plug 'junegunn/rainbow_parentheses.vim'
+ 
   " Git
   Plug 'tpope/vim-fugitive'
   Plug 'mhinz/vim-signify'
   Plug 'hotwatermorning/auto-git-diff'
+  Plug 'rhysd/git-messenger.vim'
 
   " Navigation
   Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}

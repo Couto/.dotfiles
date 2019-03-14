@@ -7,10 +7,11 @@ source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
   echo "Creating a zgen save"
 
+    # mafredri/zsh-async
+    # sindresorhus/pure
+  
   # bulk load
   zgen loadall <<EOPLUGINS
-    mafredri/zsh-async
-    sindresorhus/pure
     rupa/z
     "${HOME}/.zsh/osx"
     "${HOME}/.zsh/fs"
@@ -24,6 +25,7 @@ if ! zgen saved; then
     "${HOMEBREW_DIR}/opt/git-extras/share/git-extras/git-extras-completion.zsh"
     "${ASDF_DIR}/asdf.sh"
 EOPLUGINS
+  zgen load denysdovhan/spaceship-prompt spaceship
   # save all to init script
   zgen save
 fi
@@ -50,6 +52,28 @@ bindkey -M vicmd 'j' history-substring-search-down
 # Enable incremental substring search
 bindkey '^R' history-incremental-search-backward
 
+# Path
+typeset -U path
+path=(
+  "${HOME}/.bin"
+  "${HOMEBREW_DIR}/opt/curl/bin"
+  "${HOMEBREW_DIR}/opt/coreutils/libexec/gnubin"
+  "${HOMEBREW_DIR}/bin"
+  "${HOMEBREW_DIR}/opt"
+  /usr/local/bin
+  /usr/local/sbin
+  /usr/bin
+  /bin
+  /usr/sbin
+  /sbin
+  $path
+);
+
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent
+
+
 # FZF settings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -60,5 +84,10 @@ bindkey '^R' history-incremental-search-backward
 # if [ $commands[kubectl] ]; then
 #   source <(kubectl completion zsh)
 # fi
+
+
+# Spaceship customizations
+export SPACESHIP_TIME_SHOW=true
+export SPACESHIP_PACKAGE_SHOW=false
 
 . "${ASDF_DIR}/etc/bash_completion.d/asdf.bash"

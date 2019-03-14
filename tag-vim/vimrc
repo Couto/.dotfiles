@@ -19,8 +19,8 @@ set showcmd " Show leader
 set cursorline                " Highlight cursor line
 
 " Make it obvious where 80 characters is
-set textwidth=80
-set colorcolumn=+1
+set textwidth=0     "Dont wrap text at 80 columns
+set colorcolumn=80  "Display column lin at 80 columns
 
 " Numbers
 set number                    " Show gutter
@@ -112,6 +112,9 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 " gitcommits
 au FileType gitcommit setl spell
 let g:fugitive_git_executable = 'LANG=en_US.UTF-8 git'
+
+" GitMessenger
+let g:git_messenger_no_default_mappings = 0
 
 " undotree
 nnoremap U :UndotreeToggle<cr>
@@ -232,3 +235,4 @@ nmap <silent> <Leader>ts :TestSuite<CR>
 nmap <silent> <Leader>tl :TestLast<CR>
 nmap <silent> <Leader>tv :TestVisit<CR>
 let test#strategy = "neovim"
+

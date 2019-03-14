@@ -93,3 +93,4 @@ chunkc tiling::rule --owner \"MacPass\" --state float
 chunkc tiling::rule --owner \"Cisco AnyConnect Secure Mobility Client\" --state float
 chunkc tiling::rule --owner \"Harvest\" --state float
 chunkc tiling::rule --owner \"KeePassXC\" --state float
+chunkc tiling::rule --owner \"licecap\" --state float
